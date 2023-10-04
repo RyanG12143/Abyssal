@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Creature : MonoBehaviour
+public class CreatureLeftRight : MonoBehaviour
 {
     private float speed = 2f;
     private bool isFacingRight = true;
