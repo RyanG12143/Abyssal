@@ -6,14 +6,10 @@ public class Nightingale : MonoBehaviour
 {
 
     private float horizontal;
-    private float vertical;
     private float speed = 8f;
-    private bool isFacingRight = true;
 
 
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +22,6 @@ public class Nightingale : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        Flip();
     }
 
     private void FixedUpdate()
@@ -34,14 +29,4 @@ public class Nightingale : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
-    private void Flip()
-    {
-        if (isFacingRight && horizontal < 0f || isFacingRight && horizontal > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
-    }
 }
