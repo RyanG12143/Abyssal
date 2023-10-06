@@ -47,6 +47,7 @@ public class EnemyController : MonoBehaviour
                 break;
         }
 
+        //Checks what state to be in
         if (IsPlayerInRange(range) && currState != EnemyState.Die)
         {
             currState = EnemyState.Follow;
@@ -69,6 +70,7 @@ public class EnemyController : MonoBehaviour
         return transform.localScale.x > 0;
     }
 
+    //Wander method
     void Wander()
     {
         {
@@ -91,10 +93,11 @@ public class EnemyController : MonoBehaviour
 
     }
 
-
+    //Follow method
     void Follow()
     {
-
+        
+        //Changes in position x
         if (transform.position.x > target.position.x)
         {
             //target is left
@@ -110,5 +113,20 @@ public class EnemyController : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), moveSpeed * Time.deltaTime);
         }
 
+        //Changes in position y
+        if (transform.position.y > target.position.y)
+        {
+            //target is left
+            transform.localScale = new Vector2(-1, 1);
+            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), moveSpeed * Time.deltaTime);
+        }
+        else if (transform.position.y < target.position.y)
+        {
+            //target is right
+            transform.localScale = new Vector2(1, 1);
+            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), moveSpeed * Time.deltaTime);
+        }
     }
 }

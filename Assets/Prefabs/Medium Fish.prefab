@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1414766885189864282}
   - component: {fileID: 3556609045130136719}
   - component: {fileID: 3663781290711527478}
-  - component: {fileID: 8235876335031027478}
+  - component: {fileID: 7555750050832403828}
   m_Layer: 0
   m_Name: Medium Fish
   m_TagString: Untagged
@@ -151,8 +151,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0029156804, y: 0.0037865944}
-  m_Size: {x: 0.6691039, y: 0.3399937}
+  m_Offset: {x: -0.00069516903, y: 0.00008541355}
+  m_Size: {x: 0.64689785, y: 0.3251901}
   m_Direction: 1
 --- !u!50 &3663781290711527478
 Rigidbody2D:
@@ -181,7 +181,7 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &8235876335031027478
+--- !u!114 &7555750050832403828
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,12 +190,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7316498124066588477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7a28f4b5dd6d6d449ec1b4d5078eba7, type: 3}
+  m_Script: {fileID: 11500000, guid: c65ac5c470a25ad4aaa785ac1742a9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 3663781290711527478}
-  groundCheck: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  moveDistance: 5
+  currState: 0
+  target: {fileID: 0}
+  range: 2
+  moveSpeed: 2
