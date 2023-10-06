@@ -2,26 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nightingale : MonoBehaviour
+public class NightingaleMovement : MonoBehaviour
 {
 
     private float direction;
     private Vector2 facing;
-    private float speed = 4f;
+    private float speed = 0.5f;
     private bool isFacingRight;
 
 
+    [SerializeField] private float maxSpeed;
     [SerializeField] private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        attachToFaceMouse(FindObjectOfType<FaceMouse>());
     }
 
     // Update is called once per frame
     void Update()
     {
+        faceMouse();
         direction = Input.GetAxisRaw("Vertical");
 
         flip();
@@ -29,12 +30,17 @@ public class Nightingale : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(facing.x * direction * speed, facing.y * direction * speed);
+        Vector2 acceleration = new Vector2(facing.x * direction * speed, facing.y * direction * speed);
+
+        if (rb.velocity.magnitude < maxSpeed)
+        {
+            rb.velocity += acceleration;
+        }
     }
 
     private void flip()
     {
-        if ((isFacingRight && facing.x > 0) || (!isFacingRight && facing.x < 0))
+        if ((isFacingRight && facing.x > 0.05) || (!isFacingRight && facing.x < -0.05))
         {
             isFacingRight = !isFacingRight;
             Vector3 localeScale = transform.localScale;
@@ -44,13 +50,27 @@ public class Nightingale : MonoBehaviour
         }
     }
 
-    public void attachToFaceMouse(FaceMouse faceMouse)
+    void faceMouse()
     {
-        faceMouse.addOnDirectionChanged(updateFacing);
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        facing = new Vector2(
+            mousePosition.x - transform.position.x,
+            mousePosition.y - transform.position.y
+            );
+
+        facing.Normalize();
+        transform.right = facing;
     }
 
-    private void updateFacing(Vector2 newf) 
+    Vector2 getFacing()
     {
-        facing = newf;
+        return facing;
+    }
+
+    bool getIsFacingRight()
+    {
+        return isFacingRight;
     }
 }
