@@ -6,10 +6,9 @@ using UnityEngine;
 public class TorpedoFire : MonoBehaviour
 {
     private float fireSpeed = 4.0f;
-    private float fireInput;
-    private bool isMoving = false;
-    public GameObject player;
-    private Vector3 offset = new Vector3(0, -5);
+    private float leftBound = -10;
+    private float rightBound = 10;
+    private NightingaleMovement movementScript;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -23,17 +22,14 @@ public class TorpedoFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fireInput = Input.GetAxis("Fire3");
         
+        transform.Translate(Vector2.right * Time.deltaTime * fireSpeed);
 
-        if(fireInput > 0f)
+        if(transform.position.x < leftBound || transform.position.x > rightBound)
         {
-           //transform.position = new Vector3(player.transform.x, player.transform.y - 15, player.transform.z);
-           isMoving = true;
+            Destroy(gameObject);
         }
-        if (isMoving)
-        {
-            transform.Translate(Vector2.right * Time.deltaTime * fireSpeed);
-        }
+        
+        
     }
 }
