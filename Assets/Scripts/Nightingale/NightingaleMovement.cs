@@ -73,4 +73,10 @@ public class NightingaleMovement : MonoBehaviour
     {
         return isFacingRight;
     }
+
+    Vector2 getMovementDirection()
+    {
+        Vector2 movementDirection = rb.velocity;
+        return movementDirection;
+    }
 }
