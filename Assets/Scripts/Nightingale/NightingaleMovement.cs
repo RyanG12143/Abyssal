@@ -8,6 +8,7 @@ public class Nightingale : MonoBehaviour
     private float direction;
     private Vector2 facing;
     private float speed = 4f;
+    private bool isFacingRight;
 
 
     [SerializeField] private Rigidbody2D rb;
@@ -23,11 +24,24 @@ public class Nightingale : MonoBehaviour
     {
         direction = Input.GetAxisRaw("Vertical");
 
+        flip();
     }
 
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(facing.x * direction * speed, facing.y * direction * speed);
+    }
+
+    private void flip()
+    {
+        if ((isFacingRight && facing.x > 0) || (!isFacingRight && facing.x < 0))
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localeScale = transform.localScale;
+            localeScale.y *= -1;
+            transform.localScale = localeScale;
+
+        }
     }
 
     public void attachToFaceMouse(FaceMouse faceMouse)

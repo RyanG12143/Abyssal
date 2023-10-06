@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 1243227728}
   - component: {fileID: 1243227727}
   - component: {fileID: 1243227726}
+  - component: {fileID: 1243227729}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -215,6 +216,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1243227729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243227725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea020d100995c3488c9a8f43125218d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8433790471605263173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,16 +237,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.040708
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalRotation.w
