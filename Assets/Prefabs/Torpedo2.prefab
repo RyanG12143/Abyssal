@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5741915684073239113}
   - component: {fileID: 1465999131729606377}
   - component: {fileID: 6580562475178365997}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Torpedo2
   m_TagString: Torpedo
   m_Icon: {fileID: 0}

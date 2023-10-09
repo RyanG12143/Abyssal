@@ -16,7 +16,7 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        torpedoLocation = new Vector2(transform.position.x, transform.position.y -0.5f);
+        torpedoLocation = new Vector2(transform.position.x + 0.1f, transform.position.y);
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             

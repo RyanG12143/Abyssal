@@ -8,6 +8,7 @@ public class TorpedoFire : MonoBehaviour
     private float fireSpeed = 4.0f;
     private float leftBound = -10;
     private float rightBound = 10;
+    public float verticalBound = 10;
     private GameObject Nightingale = null;
     private Vector2 direction;
 
@@ -20,15 +21,11 @@ public class TorpedoFire : MonoBehaviour
             Nightingale = GameObject.Find("Nightingale");
         }
 
-        if (Nightingale.GetComponent<NightingaleMovement>().getIsFacingRight())
-        {
-            direction = Vector2.left;
-        }
+       
+        
+       direction = Nightingale.GetComponent<NightingaleMovement>().getFacing();
+ 
 
-        else
-        {
-            direction = Vector2.right;
-        }
     }
 
     // Update is called once per frame
@@ -52,7 +49,8 @@ public class TorpedoFire : MonoBehaviour
 
         transform.Translate(direction * Time.deltaTime * fireSpeed);
 
-        if (transform.position.x < leftBound || transform.position.x > rightBound)
+        if (transform.position.x < leftBound || transform.position.x > rightBound
+            || transform.position.y < -verticalBound || transform.position.y > verticalBound)
         {
             Destroy(gameObject);
         }
