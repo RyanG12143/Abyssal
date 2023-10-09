@@ -7,7 +7,7 @@ public class NightingaleMovement : MonoBehaviour
 
     private float direction;
     private Vector2 facing;
-    private float speed = 0.5f;
+    private float speed = 0.1f;
     private bool isFacingRight;
 
 
@@ -63,24 +63,23 @@ public class NightingaleMovement : MonoBehaviour
         facing.Normalize();
         transform.right = facing;
     }
-
-    Vector2 getFacing()
+    public Vector2 getFacing()
     {
         return facing;
     }
 
-    bool getIsFacingRight()
+    public bool getIsFacingRight()
     {
         return isFacingRight;
     }
 
-    Vector2 getMovementDirection()
+    public Vector2 getMovementDirection()
     {
         Vector2 movementDirection = rb.velocity;
         return movementDirection;
     }
 
-    Vector2 getMovementDirectionNormal()
+    public Vector2 getMovementDirectionNormal()
     {
         Vector2 movementDirection = rb.velocity;
         movementDirection.Normalize();
