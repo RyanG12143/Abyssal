@@ -208,5 +208,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0437e7b7d3a8dec4db60c9ff42a4044c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torpedoPrefab: {fileID: 7806043391271970413, guid: 633d2013b9f507b4d8d606d8ad4ae74c, type: 3}
+  torpedoPrefab: {fileID: 5618860476881002139, guid: 592ebd0937163d9459e96f7c3b4108c4, type: 3}
   torpedoLocation: {x: 0, y: 0}
