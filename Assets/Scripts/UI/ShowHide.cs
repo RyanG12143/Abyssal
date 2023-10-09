@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ShowHide : MonoBehaviour
 {
-    [Header("POOP!")]
+    [Header("GameObject going away")]
     public GameObject targetObject;
     public float speed = 0.5f;
 
@@ -21,4 +21,14 @@ public class ShowHide : MonoBehaviour
     {
         targetObject.SetActive(false);
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
 }
