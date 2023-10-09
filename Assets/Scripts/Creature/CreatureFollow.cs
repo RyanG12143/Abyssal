@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public enum EnemyState
 {
-  Wander,
-  Follow,
-  Die,
-};
+    Wander,
+    Follow,
+    Die,
+}
 
 public class EnemyController : MonoBehaviour
 {
@@ -16,12 +15,10 @@ public class EnemyController : MonoBehaviour
     public EnemyState currState = EnemyState.Wander;
 
     public Transform target;
-
     Rigidbody2D myRigidbody;
 
     public float range = 2f;
     public float moveSpeed = 2f;
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,18 +33,18 @@ public class EnemyController : MonoBehaviour
     {
         switch (currState)
         {
-            case (EnemyState.Wander):
+            case EnemyState.Wander:
                 Wander();
                 break;
-            case (EnemyState.Follow):
+            case EnemyState.Follow:
                 Follow();
                 break;
-            case (EnemyState.Die):
+            case EnemyState.Die:
                 // Die();
                 break;
         }
 
-        //Checks what state to be in
+        // Checks what state to be in
         if (IsPlayerInRange(range) && currState != EnemyState.Die)
         {
             currState = EnemyState.Follow;
@@ -56,8 +53,6 @@ public class EnemyController : MonoBehaviour
         {
             currState = EnemyState.Wander;
         }
-
-
     }
 
     private bool IsPlayerInRange(float range)
@@ -65,68 +60,40 @@ public class EnemyController : MonoBehaviour
         return Vector3.Distance(transform.position, player.transform.position) <= range;
     }
 
-    bool isFacingRight()
-    {
-        return transform.localScale.x > 0;
-    }
-
-    //Wander method
+    // Wander method
     void Wander()
     {
+        if (isFacingRight())
         {
-            if (isFacingRight())
-            {
-                myRigidbody.velocity = new Vector2(moveSpeed, 0f);
-            }
-            else
-            {
-                myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
-            }
+            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
         }
-
-
+        else
+        {
+            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody.velocity.x)), 1f);
-
     }
 
-    //Follow method
+    // Follow method
     void Follow()
     {
-        
-        //Changes in position x
-        if (transform.position.x > target.position.x)
-        {
-            //target is left
-            transform.localScale = new Vector2(-1, 1);
-            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), moveSpeed * Time.deltaTime);
-        }
-        else if (transform.position.x < target.position.x)
-        {
-            //target is right
-            transform.localScale = new Vector2(1, 1);
-            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), moveSpeed * Time.deltaTime);
-        }
+        Vector2 targetPosition = target.position;
+        Vector2 currentPosition = transform.position;
 
-        //Changes in position y
-        if (transform.position.y > target.position.y)
-        {
-            //target is left
-            transform.localScale = new Vector2(-1, 1);
-            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), moveSpeed * Time.deltaTime);
-        }
-        else if (transform.position.y < target.position.y)
-        {
-            //target is right
-            transform.localScale = new Vector2(1, 1);
-            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x, transform.position.y), moveSpeed * Time.deltaTime);
-        }
+        Vector2 direction = (targetPosition - currentPosition).normalized;
+
+        // Use LookAt to make the enemy face the player
+        transform.right = direction;
+
+        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+    }
+
+    bool isFacingRight()
+    {
+        return transform.localScale.x > 0;
     }
 }
