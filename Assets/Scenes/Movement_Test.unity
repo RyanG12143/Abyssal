@@ -320,6 +320,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1202467531740560110, guid: 1289f1328ef924647845097412ba7562, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202467531740560110, guid: 1289f1328ef924647845097412ba7562, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202467531740560110, guid: 1289f1328ef924647845097412ba7562, type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -371,6 +383,10 @@ PrefabInstance:
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9099159503175847581, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_Name
