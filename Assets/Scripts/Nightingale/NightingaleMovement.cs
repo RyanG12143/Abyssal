@@ -7,7 +7,7 @@ public class NightingaleMovement : MonoBehaviour
 
     private float direction;
     private Vector2 facing;
-    private float speed = 0.5f;
+    private float speed = 0.1f;
     private bool isFacingRight;
 
 
