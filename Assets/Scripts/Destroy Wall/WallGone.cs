@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class WallGone : MonoBehaviour
 {
     public GameObject ByeWall;
@@ -11,6 +9,6 @@ public class WallGone : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Torpedo")
-        Destroy(ByeWall);
+            Destroy(ByeWall);
     }
 }

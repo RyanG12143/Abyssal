@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Falling rocks
   - Torpedo
+  - Destroy
   layers:
   - Default
   - TransparentFX
