@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 1707562161266299056}
   - component: {fileID: 1202467531740560110}
   - component: {fileID: 7437065499313436525}
-  - component: {fileID: 679383037275696588}
   m_Layer: 0
   m_Name: Nightingale
   m_TagString: Untagged
@@ -113,9 +112,9 @@ Transform:
   m_GameObject: {fileID: 9099159503175847581}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.06, y: -0.09, z: 0.040708}
-  m_LocalScale: {x: 3.3625, y: 3.3625, z: 3.3625}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8120793219803548095}
   m_Father: {fileID: 0}
@@ -168,7 +167,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -181,7 +180,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7437065499313436525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,16 +193,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d192d95f1ba80048babd53212a3d730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 4
   rb: {fileID: 1202467531740560110}
---- !u!114 &679383037275696588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9099159503175847581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65116e25b486901449592793e7af3279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
