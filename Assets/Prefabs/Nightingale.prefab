@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1707562161266299056}
   - component: {fileID: 1202467531740560110}
   - component: {fileID: 7437065499313436525}
+  - component: {fileID: 9083185665963598300}
   m_Layer: 0
   m_Name: Nightingale
   m_TagString: Untagged
@@ -195,3 +196,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 4
   rb: {fileID: 1202467531740560110}
+--- !u!114 &9083185665963598300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9099159503175847581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0437e7b7d3a8dec4db60c9ff42a4044c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torpedoPrefab: {fileID: 7806043391271970413, guid: 633d2013b9f507b4d8d606d8ad4ae74c, type: 3}
+  torpedoLocation: {x: 0, y: 0}
