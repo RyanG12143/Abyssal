@@ -79,4 +79,11 @@ public class NightingaleMovement : MonoBehaviour
         Vector2 movementDirection = rb.velocity;
         return movementDirection;
     }
+
+    Vector2 getMovementDirectionNormal()
+    {
+        Vector2 movementDirection = rb.velocity;
+        movementDirection.Normalize();
+        return movementDirection;
+    }
 }
