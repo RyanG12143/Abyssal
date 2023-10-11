@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c3b4118b1947b46bb460a3671874b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SonarSpread: {fileID: 7059186980223934350, guid: 09c7b8c9830d85342a84b78479b5c611, type: 3}
 --- !u!4 &1419741862
 Transform:
   m_ObjectHideFlags: 0
