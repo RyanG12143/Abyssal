@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 
@@ -24,7 +27,9 @@ public class EnemyController : MonoBehaviour
 
     public bool hitPlayer = false;
     private bool isFacingRight = true;
+    private bool creatureTurn = false;
     public float moveDistance = 5f;
+    public float turnInterval = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +37,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         myRigidbody = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        StartCoroutine(ChangeCreatureTurn());
     }
 
     // Update is called once per frame
@@ -75,7 +81,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // Flipping sprite
-        //flip();
+        flip();
     }
 
     // Checking if player is in range
@@ -87,13 +93,21 @@ public class EnemyController : MonoBehaviour
     // Wander method
     void Wander()
     {
-        if (isFacingRight)
+        if (creatureTurn)
         {
             myRigidbody.velocity = new Vector2(moveSpeed, 0f);
         }
         else
         {
             myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+        }
+    }
+    IEnumerator ChangeCreatureTurn()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(turnInterval);
+            creatureTurn = !creatureTurn; // Toggle the value of creatureTurn
         }
     }
 
@@ -116,7 +130,7 @@ public class EnemyController : MonoBehaviour
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
     }
 
-    //bool isFacingRight()
+    //private bool isTravelingRight()
     //{
     //    return transform.localScale.x > 0;
     //}
@@ -136,15 +150,21 @@ public class EnemyController : MonoBehaviour
         myRigidbody.velocity = new Vector2(-direction.x * moveSpeed, -direction.y * moveSpeed);
     }
 
-    //private void flip()
-    //{
-    //    if ((isFacingRight && myRigidbody.velocity.x > 0.05) || (!isFacingRight && myRigidbody.velocity.y < -0.05))
-    //    {
-    //        isFacingRight = !isFacingRight;
-    //        Vector3 localeScale = transform.localScale;
-    //        localeScale.y *= -1;
-    //        transform.localScale = localeScale;
+    private void flip()
+    {
+        Vector2 targetPosition = target.position;
+        Vector2 currentPosition = transform.position;
 
-    //    }
-    //}
+        Vector2 direction = (targetPosition - currentPosition).normalized;
+
+        if ((isFacingRight && direction.x < -0.1) || (!isFacingRight && direction.x > 0.1))
+        {
+            isFacingRight = !isFacingRight;
+
+            Vector3 localScale = transform.localScale;
+            localScale.y *= -1;
+            transform.localScale = localScale;
+        }
+    }
+
 }
