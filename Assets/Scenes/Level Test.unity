@@ -1206,7 +1206,7 @@ Transform:
   m_GameObject: {fileID: 551621659}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.97, y: -3.26, z: 0}
+  m_LocalPosition: {x: 8.51, y: -6.97, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2986,7 +2986,7 @@ Transform:
   m_GameObject: {fileID: 1235737037}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.74, y: 1.01, z: 0}
+  m_LocalPosition: {x: 9.69, y: 9.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3548,6 +3548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1916042959}
+  - component: {fileID: 1916042960}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -3586,6 +3587,18 @@ Transform:
   - {fileID: 1693907515}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1916042960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916042958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a028e5d52a57c4e8d4ddfea5752947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1917576314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3678,13 +3691,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Falling rocks
       objectReference: {fileID: 0}
+    - target: {fileID: 7289094565865626083, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 54
+      objectReference: {fileID: 0}
     - target: {fileID: 7514222140775873191, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.69
+      value: 12.42
       objectReference: {fileID: 0}
     - target: {fileID: 7514222140775873191, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.42
+      value: 9.15
       objectReference: {fileID: 0}
     - target: {fileID: 7514222140775873191, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
       propertyPath: m_LocalPosition.z
