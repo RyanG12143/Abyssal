@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DamageNightingale : MonoBehaviour
 {
-    public GameObject health;
-    HealthBar bar;
+    public GameObject Healthbar;
+    HealthBar health;
     private void OnCollisionEnter2D(Collision2D other)
     {
-        bar = health.getComponent<HealthBar>();
+        health = Healthbar.GetComponent<HealthBar>();
         if (other.gameObject.tag == "DamageOnHit")
-        bar.ChangeHealthImage();
+        health.LowerHealthImage();
     }
     // Start is called before the first frame update
     void Start()
