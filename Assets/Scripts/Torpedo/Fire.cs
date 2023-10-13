@@ -5,8 +5,8 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     public GameObject torpedoPrefab;
-    public Vector2 torpedoLocation;
-    private float countdown = 4;
+    private Vector2 torpedoLocation;
+    public bool isCooldownActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +22,20 @@ public class Fire : MonoBehaviour
         //countdown -= Time.deltaTime;
 
         //Fires the torpedo if you press left shift
-        if (Input.GetKeyDown(KeyCode.LeftShift)) //&& countdown <=0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isCooldownActive)
         {
             
             Instantiate(torpedoPrefab, torpedoLocation, torpedoPrefab.transform.rotation);
-            //countdown = 4;
+            StartCoroutine(torpedoCooldown());
+            
         }
+    }
+
+    IEnumerator torpedoCooldown()
+    {
+        isCooldownActive = true;
+        yield return new WaitForSeconds(2);
+        isCooldownActive = false;
+        
     }
 }

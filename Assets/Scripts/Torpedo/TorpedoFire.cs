@@ -12,6 +12,7 @@ public class TorpedoFire : MonoBehaviour
     private GameObject mainCamera;
     
     private Vector2 direction;
+    private Vector3 rotation;
 
     
     //Initializes the torpedo's direction
@@ -34,7 +35,10 @@ public class TorpedoFire : MonoBehaviour
 
 
         direction = Nightingale.GetComponent<NightingaleMovement>().getFacing();
-       
+        rotation = Nightingale.GetComponent<NightingaleMovement>().getFacing();
+        transform.eulerAngles = rotation;
+        
+        
  
 
     }
@@ -57,6 +61,7 @@ public class TorpedoFire : MonoBehaviour
         
 
         transform.Translate(direction * Time.deltaTime * fireSpeed);
+        
 
         //Destroys the torpedo if it goes out of bounds
         if (transform.position.x < -horizontalBound || transform.position.x > horizontalBound
