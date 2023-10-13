@@ -20,13 +20,12 @@ public class Sonar : MonoBehaviour
     {
         sonarSizeIncrease = false;
         SonarSpread.transform.localScale = new Vector3(1f, 1f, 1f);
+        creaturesScanned = GameObject.FindGameObjectsWithTag("CreatureSonar");
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        creaturesScanned = GameObject.FindGameObjectsWithTag("CreatureSonar");
 
         if (Nightingale == null)
         {
@@ -44,23 +43,31 @@ public class Sonar : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((SonarSpread.transform.localScale.x < 20f) && sonarSizeIncrease)
+        if ((SonarSpread.transform.localScale.x < 40f) && sonarSizeIncrease)
         {
 
-            SonarSpread.transform.localScale += new Vector3(4f, 4f, 4f) * Time.deltaTime;
+            SonarSpread.transform.localScale += new Vector3(14f, 14f, 14f) * Time.deltaTime;
+            //SonarSpread.GetComponent<CapsuleCollider2D>().size += new Vector2(14f, 14f) * Time.deltaTime;
 
-            foreach (GameObject creature in creaturesScanned)
+            Debug.Log(SonarSpread.transform.localScale.x);
+
+            foreach (var creature in creaturesScanned)
             {
 
-                creature.GetComponent<SpriteRenderer>().color = Color.red;
-
+                Debug.Log(Vector2.Distance(target.position, creature.transform.position));
+                if(Vector2.Distance(target.position, creature.transform.position) < (SonarSpread.transform.localScale.x))
+                {
+         
+                    creature.GetComponent<SpriteRenderer>().color = Color.red;
+                }
             }
 
         }
         else
         {
             sonarSizeIncrease = false;
-            SonarSpread.transform.localScale = new Vector3(1f, 1f, 1f);
+            SonarSpread.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            //SonarSpread.GetComponent<CapsuleCollider2D>().size += new Vector2(0.1f, 0.1f) * Time.deltaTime;
         }
 
     }
@@ -75,7 +82,9 @@ public class Sonar : MonoBehaviour
 
         target = Nightingale.transform;
 
-        Instantiate(SonarSpread, target.position, target.rotation);
+        Vector3 newPos = new Vector3(target.position.x, target.position.y, 0f);
+
+        SonarSpread.transform.position = newPos;
 
         sonarSizeIncrease = true;
 
