@@ -7,7 +7,6 @@ public class Sonar : MonoBehaviour
 {
     private GameObject[] creaturesScanned;
 
-    private Transform target;
     private GameObject Nightingale = null;
 
     public GameObject SonarSpread;
@@ -38,27 +37,22 @@ public class Sonar : MonoBehaviour
             SonarScan(creaturesScanned);
         }
 
-
-    }
-
-    private void FixedUpdate()
-    {
         if ((SonarSpread.transform.localScale.x < 40f) && sonarSizeIncrease)
         {
 
-            SonarSpread.transform.localScale += new Vector3(14f, 14f, 14f) * Time.deltaTime;
-            //SonarSpread.GetComponent<CapsuleCollider2D>().size += new Vector2(14f, 14f) * Time.deltaTime;
-
-            Debug.Log(SonarSpread.transform.localScale.x);
+            SonarSpread.transform.localScale += new Vector3(14f, 14f, 0f) * Time.deltaTime;
 
             foreach (var creature in creaturesScanned)
             {
 
-                Debug.Log(Vector2.Distance(target.position, creature.transform.position));
-                if(Vector2.Distance(target.position, creature.transform.position) < (SonarSpread.transform.localScale.x))
+                if (Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5))
                 {
-         
-                    creature.GetComponent<SpriteRenderer>().color = Color.red;
+
+                    //creature.GetComponent<SpriteRenderer>().color = Color.red;
+                    
+                    StartCoroutine(Fade(creature));
+                    Debug.Log("Coroutine Called!");
+                   
                 }
             }
 
@@ -66,8 +60,7 @@ public class Sonar : MonoBehaviour
         else
         {
             sonarSizeIncrease = false;
-            SonarSpread.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-            //SonarSpread.GetComponent<CapsuleCollider2D>().size += new Vector2(0.1f, 0.1f) * Time.deltaTime;
+            SonarSpread.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
         }
 
     }
@@ -80,13 +73,43 @@ public class Sonar : MonoBehaviour
             Nightingale = GameObject.Find("Nightingale");
         }
 
-        target = Nightingale.transform;
+        Transform target = Nightingale.transform;
 
         Vector3 newPos = new Vector3(target.position.x, target.position.y, 0f);
 
         SonarSpread.transform.position = newPos;
 
         sonarSizeIncrease = true;
+
+    }
+
+    IEnumerator Fade(GameObject creature)
+    {
+        Color current = new Color((creature.GetComponent<SpriteRenderer>().color.r), (creature.GetComponent<SpriteRenderer>().color.g), (creature.GetComponent<SpriteRenderer>().color.b));
+
+        Color scanned = Color.red;
+
+        for(int i = 0; i < 25; i++)
+        {
+
+            creature.GetComponent<SpriteRenderer>().color = Color.Lerp(current, scanned, i/25.0f);
+
+            yield return new WaitForSeconds(.05f);
+
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < 25; i++)
+        {
+
+            creature.GetComponent<SpriteRenderer>().color = Color.Lerp(scanned, current, i/25.0f);
+
+            yield return new WaitForSeconds(.05f);
+
+        }
+
+        //  creature.GetComponent<SpriteRenderer>().color = Color.Lerp(scanned, current, Time.deltaTime);
 
     }
 
