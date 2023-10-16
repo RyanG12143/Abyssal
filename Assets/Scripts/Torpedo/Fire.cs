@@ -19,9 +19,9 @@ public class Fire : MonoBehaviour
     {
         //Places the torpedo on the right side of the sub
         torpedoLocation = new Vector2(transform.position.x + 0.1f, transform.position.y);
-        //countdown -= Time.deltaTime;
+        
 
-        //Fires the torpedo if you press left shift
+        //Fires the torpedo if you press left shift and the cooldown is over
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isCooldownActive)
         {
             
