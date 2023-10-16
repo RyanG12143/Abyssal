@@ -2994,7 +2994,7 @@ Transform:
   m_GameObject: {fileID: 1235737037}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.64, y: 9.5, z: 0}
+  m_LocalPosition: {x: 10.27, y: 8.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3711,13 +3711,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Falling rocks
       objectReference: {fileID: 0}
+    - target: {fileID: 4888696227317429375, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454014920374455347, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7514222140775873191, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.41
+      value: 15.73
       objectReference: {fileID: 0}
     - target: {fileID: 7514222140775873191, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.81
+      value: 8.71
       objectReference: {fileID: 0}
     - target: {fileID: 7514222140775873191, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
       propertyPath: m_LocalPosition.z

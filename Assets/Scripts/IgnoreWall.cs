@@ -16,6 +16,8 @@ public class IgnoreWall : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
+        yield return new WaitForSeconds(5);
+        Destroy(GetComponent<Rigidbody2D>());
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
