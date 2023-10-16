@@ -406,6 +406,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5003848400767584478, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 6367912506319712472, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -1223,6 +1227,10 @@ PrefabInstance:
     - target: {fileID: 5003848400767584478, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
       propertyPath: m_Name
       value: SideWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003848400767584478, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6367912506319712472, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
       propertyPath: m_LocalScale.y
@@ -2986,7 +2994,7 @@ Transform:
   m_GameObject: {fileID: 1235737037}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.69, y: 9.89, z: 0}
+  m_LocalPosition: {x: 11.64, y: 9.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3010,6 +3018,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1916042959}
     m_Modifications:
+    - target: {fileID: 11839590157040687, guid: dc346fa0cdb1a1b40b44ae5380a44492, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1648728152782740584, guid: dc346fa0cdb1a1b40b44ae5380a44492, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3062,6 +3074,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 9149086640341806325, guid: dc346fa0cdb1a1b40b44ae5380a44492, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3078,6 +3094,10 @@ PrefabInstance:
     - target: {fileID: 5003848400767584478, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
       propertyPath: m_Name
       value: SideWall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003848400767584478, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 6367912506319712472, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
       propertyPath: m_LocalScale.x
@@ -3551,7 +3571,7 @@ GameObject:
   - component: {fileID: 1916042960}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3691,17 +3711,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Falling rocks
       objectReference: {fileID: 0}
-    - target: {fileID: 7289094565865626083, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 54
-      objectReference: {fileID: 0}
     - target: {fileID: 7514222140775873191, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.42
+      value: 14.41
       objectReference: {fileID: 0}
     - target: {fileID: 7514222140775873191, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.15
+      value: 8.81
       objectReference: {fileID: 0}
     - target: {fileID: 7514222140775873191, guid: 1a0967448d288da48b127465882a9f9e, type: 3}
       propertyPath: m_LocalPosition.z
