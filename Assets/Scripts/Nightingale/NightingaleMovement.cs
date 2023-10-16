@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Rendering.Universal;
 
 public class NightingaleMovement : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class NightingaleMovement : MonoBehaviour
     private Vector2 facing;
     private float speed = 0.1f;
     private bool isFacingRight;
+    public GameObject spotLight;
 
 
     [SerializeField] private float maxSpeed;
@@ -43,9 +46,14 @@ public class NightingaleMovement : MonoBehaviour
         if ((isFacingRight && facing.x > 0.05) || (!isFacingRight && facing.x < -0.05))
         {
             isFacingRight = !isFacingRight;
-            Vector3 localeScale = transform.localScale;
-            localeScale.y *= -1;
-            transform.localScale = localeScale;
+
+            Vector3 subLocaleScale = transform.localScale;
+            subLocaleScale.y *= -1;
+            transform.localScale = subLocaleScale;
+
+            Vector3 lightLocaleScale = spotLight.transform.localScale;
+            lightLocaleScale.x *= -1;
+            spotLight.transform.localScale = lightLocaleScale;
 
         }
     }
