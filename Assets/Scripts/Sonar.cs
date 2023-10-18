@@ -14,8 +14,6 @@ public class Sonar : MonoBehaviour
 
     private Boolean sonarSizeIncrease;
 
-    private Boolean isFadeRunning = false;
-
     private Boolean isEffectsRunning = false;
 
     private Boolean isCooldownActive = false;
@@ -65,9 +63,9 @@ public class Sonar : MonoBehaviour
             foreach (var creature in creaturesScanned)
             {
 
-                if ((Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)) && !isFadeRunning)
+                if ((Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
                 {
-                    StartCoroutine(Fade(creature));
+                    creature.GetComponent<CreatureSonarPulse>().StartFade();
                 }
             }
 
@@ -95,39 +93,6 @@ public class Sonar : MonoBehaviour
         SonarSpread.transform.position = newPos;
 
         sonarSizeIncrease = true;
-
-    }
-
-    IEnumerator Fade(GameObject creature)
-    {
-
-        isFadeRunning = true;
-
-        Color current = new Color((creature.GetComponent<SpriteRenderer>().color.r), (creature.GetComponent<SpriteRenderer>().color.g), (creature.GetComponent<SpriteRenderer>().color.b));
-
-        Color scanned = Color.red;
-
-        for(int i = 0; i < 25; i++)
-        {
-
-            creature.GetComponent<SpriteRenderer>().color = Color.Lerp(current, scanned, i/25.0f);
-            yield return new WaitForSeconds(.05f);
-
-        }
-
-
-        yield return new WaitForSeconds(1f);
-
-        for (int i = 0; i < 25; i++)
-        {
-
-            creature.GetComponent<SpriteRenderer>().color = Color.Lerp(scanned, current, i/25.0f);
-
-            yield return new WaitForSeconds(.05f);
-
-        }
-
-        isFadeRunning = false;
 
     }
 

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5335534096149951605}
   - component: {fileID: 346786420984288482}
+  - component: {fileID: 4120313853630434304}
   m_Layer: 0
   m_Name: Sea Dragon
   m_TagString: CreatureSonar
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4120313853630434304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093673448196202864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb79ceac3e062a0409ef0711a498a9e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
