@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed = 2f;
 
     public bool hitPlayer = false;
+    public bool hitByTorpedo = false;
     private bool isFacingRight = true;
     private bool creatureTurn = false;
     public float moveDistance = 5f;
@@ -55,7 +56,7 @@ public class EnemyController : MonoBehaviour
                 Run();
                 break;
             case EnemyState.Die:
-                // Die();
+                Die();
                 break;
         }
 
@@ -71,7 +72,10 @@ public class EnemyController : MonoBehaviour
         else if (!IsPlayerInRange(range) && currState != EnemyState.Die)
         {
             currState = EnemyState.Wander;
-
+        }
+        else if (hitByTorpedo)
+        {
+            currState = EnemyState.Die;
         }
 
         // Checking enemy hit player
@@ -149,7 +153,14 @@ public class EnemyController : MonoBehaviour
 
         myRigidbody.velocity = new Vector2(-direction.x * moveSpeed, -direction.y * moveSpeed);
     }
-     
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
+
+   
+
     //flips
     private void flip()
     {
