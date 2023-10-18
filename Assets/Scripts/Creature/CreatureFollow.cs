@@ -145,11 +145,12 @@ public class EnemyController : MonoBehaviour
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
         // Use LookAt to make the enemy face the player
-        transform.right = direction;
+        transform.right = -direction;
 
         myRigidbody.velocity = new Vector2(-direction.x * moveSpeed, -direction.y * moveSpeed);
     }
-
+     
+    //flips
     private void flip()
     {
         Vector2 targetPosition = target.position;
@@ -163,7 +164,15 @@ public class EnemyController : MonoBehaviour
 
             Vector3 localScale = transform.localScale;
             localScale.y *= -1;
-            transform.localScale = localScale;
+            
+            if (hitPlayer == false)
+            {
+                transform.localScale = localScale;
+            } else
+            {
+                //need to impliment running away flipping
+                transform.localScale = localScale;
+            }
         }
     }
 
