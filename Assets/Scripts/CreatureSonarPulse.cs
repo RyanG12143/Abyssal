@@ -1,11 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CreatureSonarPulse : MonoBehaviour
 {
     private Boolean isFadeRunning = false;
+
+    public Material lit;
+
+    public Material unlit;
+
+    public GameObject SpriteLight;
 
     // Start is called before the first frame update
     void Start()
@@ -32,14 +40,22 @@ public class CreatureSonarPulse : MonoBehaviour
 
         isFadeRunning = true;
 
-        Color current = new Color((GetComponent<SpriteRenderer>().color.r), (GetComponent<SpriteRenderer>().color.g), (GetComponent<SpriteRenderer>().color.b));
+        float current =  GetComponent<Light2D>().intensity = 0f;
 
-        Color scanned = Color.red;
+        Color theDefault = new Color((GetComponent<SpriteRenderer>().color.r), (GetComponent<SpriteRenderer>().color.g), (GetComponent<SpriteRenderer>().color.b));
+
+        float scanned =  GetComponent<Light2D>().intensity = 1f;
+
+        Color scannedColor = Color.red;
+
+        GetComponent<SpriteRenderer>().material = unlit;
 
         for (int i = 0; i < 25; i++)
         {
 
-            GetComponent<SpriteRenderer>().color = Color.Lerp(current, scanned, i / 25.0f);
+            GetComponent<SpriteRenderer>().color = scannedColor;
+
+            GetComponent<Light2D>().intensity = float(current, scanned, i / 25.0f);
             yield return new WaitForSeconds(.05f);
 
         }
@@ -50,12 +66,14 @@ public class CreatureSonarPulse : MonoBehaviour
         for (int i = 0; i < 25; i++)
         {
 
-            GetComponent<SpriteRenderer>().color = Color.Lerp(scanned, current, i / 25.0f);
+            GetComponent<SpriteRenderer>().color = theDefault;
 
             yield return new WaitForSeconds(.05f);
 
         }
 
+
+        GetComponent<SpriteRenderer>().material = lit;
         isFadeRunning = false;
 
     }
