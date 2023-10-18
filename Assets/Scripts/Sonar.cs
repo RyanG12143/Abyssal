@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class Sonar : MonoBehaviour
@@ -16,6 +17,8 @@ public class Sonar : MonoBehaviour
     private Boolean isFadeRunning = false;
 
     private Boolean isEffectsRunning = false;
+
+    private Boolean isCooldownActive = false;
 
 
     // Start is called before the first frame update
@@ -36,10 +39,11 @@ public class Sonar : MonoBehaviour
             Nightingale = GameObject.Find("Nightingale");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isCooldownActive)
         {
             SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 1f);
             SonarScan(creaturesScanned);
+            StartCoroutine(Cooldown());
         }
 
 
@@ -107,10 +111,10 @@ public class Sonar : MonoBehaviour
         {
 
             creature.GetComponent<SpriteRenderer>().color = Color.Lerp(current, scanned, i/25.0f);
-
             yield return new WaitForSeconds(.05f);
 
         }
+
 
         yield return new WaitForSeconds(1f);
 
@@ -156,6 +160,13 @@ public class Sonar : MonoBehaviour
 
         isEffectsRunning = false;
 
+    }
+
+    IEnumerator Cooldown()
+    {
+        isCooldownActive = true;
+        yield return new WaitForSeconds(10f);
+        isCooldownActive = false;
     }
 
 }
