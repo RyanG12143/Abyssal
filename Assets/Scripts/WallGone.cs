@@ -11,6 +11,10 @@ public class WallGone : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Torpedo")
-        Destroy(ByeWall);
+        {
+            Destroy(ByeWall);
+            Destroy(other.gameObject);
+        }
+        
     }
 }
