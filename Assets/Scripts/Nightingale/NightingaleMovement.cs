@@ -6,20 +6,26 @@ using UnityEngine.Rendering.Universal;
 
 public class NightingaleMovement : MonoBehaviour
 {
-
+    // velocity
     private float direction;
+    // direction of vehicle facing
     private Vector2 facing;
+    // speed of acceleration
     private float speed = 0.1f;
+    // which way object is facing for flip
     private bool isFacingRight;
-    public GameObject spotLight;
+    // refrence to game object to flip rotation
+    public GameObject spotlight;
 
-
+    // max velocity of object
     [SerializeField] private float maxSpeed;
+    // rigid body of object
     [SerializeField] private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        //spotlight = GameObject.FindGameObjectWithTag("conelight");
     }
 
     // Update is called once per frame
@@ -31,7 +37,13 @@ public class NightingaleMovement : MonoBehaviour
         flip();
     }
 
+    // updates at fixed times
     private void FixedUpdate()
+    {
+        move();
+    }
+
+    private void move()
     {
         Vector2 acceleration = new Vector2(facing.x * direction * speed, facing.y * direction * speed);
 
@@ -51,9 +63,9 @@ public class NightingaleMovement : MonoBehaviour
             subLocaleScale.y *= -1;
             transform.localScale = subLocaleScale;
 
-            Vector3 lightLocaleScale = spotLight.transform.localScale;
-            lightLocaleScale.x *= -1;
-            spotLight.transform.localScale = lightLocaleScale;
+            Vector3 lightRotation = spotlight.transform.eulerAngles;
+            lightRotation.z += 180;
+            spotlight.transform.eulerAngles = lightRotation;
 
         }
     }
