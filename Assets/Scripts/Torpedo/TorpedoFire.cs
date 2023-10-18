@@ -13,7 +13,7 @@ public class TorpedoFire : MonoBehaviour
     private GameObject mainCamera;
     
     private Vector2 direction;
-    private Vector2 rotation;
+    
     
 
     
@@ -37,41 +37,28 @@ public class TorpedoFire : MonoBehaviour
 
 
         direction = Nightingale.GetComponent<NightingaleMovement>().getFacing();
+        //float angle = Mathf.Atan2(direction.x + 90, direction.y + 90) * Mathf.Rad2Deg;
 
-        
-
+        //transform.rotation = Quaternion.Euler(0, 0, angle);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Checks if the nightingale is initializes and find it if it isn't
-        if (Nightingale == null)
-        {
-            Nightingale = GameObject.Find("Nightingale");
-        }
-
-        if (mainCamera == null)
-        {
-            mainCamera = GameObject.Find("Main Camera");
-        }
-
-        float angle = Mathf.Atan2(direction.x + 90, direction.y + 90) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        transform.Translate(direction * Time.deltaTime * fireSpeed);
         
+        transform.Translate(direction * Time.deltaTime * fireSpeed);
 
-        //Destroys the torpedo if it goes out of bounds
+        destroyTorpedo();
+        
+    }
+
+    void destroyTorpedo()
+    {
         if (transform.position.x < -horizontalBound || transform.position.x > horizontalBound
             || transform.position.y < -verticalBound || transform.position.y > verticalBound)
         {
             Destroy(gameObject);
         }
-
     }
-
-    
 }
