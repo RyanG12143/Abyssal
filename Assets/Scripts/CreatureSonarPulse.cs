@@ -9,10 +9,6 @@ public class CreatureSonarPulse : MonoBehaviour
 {
     private Boolean isFadeRunning = false;
 
-    public Material lit;
-
-    public Material unlit;
-
     public GameObject SpriteLight;
 
     // Start is called before the first frame update
@@ -40,40 +36,37 @@ public class CreatureSonarPulse : MonoBehaviour
 
         isFadeRunning = true;
 
-        float current =  GetComponent<Light2D>().intensity = 0f;
+        SpriteLight.GetComponent<Light2D>().intensity = (0f); ;
 
-        Color theDefault = new Color((GetComponent<SpriteRenderer>().color.r), (GetComponent<SpriteRenderer>().color.g), (GetComponent<SpriteRenderer>().color.b));
-
-        float scanned =  GetComponent<Light2D>().intensity = 1f;
+        Color defaultColor = new Color((GetComponent<SpriteRenderer>().color.r), (GetComponent<SpriteRenderer>().color.g), (GetComponent<SpriteRenderer>().color.b));
 
         Color scannedColor = Color.red;
 
-        GetComponent<SpriteRenderer>().material = unlit;
-
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i <= 26; i++)
         {
 
             GetComponent<SpriteRenderer>().color = scannedColor;
 
-            GetComponent<Light2D>().intensity = float(current, scanned, i / 25.0f);
-            yield return new WaitForSeconds(.05f);
+            SpriteLight.GetComponent<Light2D>().intensity = (i*0.04f);
+            yield return new WaitForSeconds(.01f);
 
         }
 
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
-        for (int i = 0; i < 25; i++)
+        for (int i = 26; i >= 0; i--)
         {
 
-            GetComponent<SpriteRenderer>().color = theDefault;
-
+            SpriteLight.GetComponent<Light2D>().intensity = (i * 0.04f);
             yield return new WaitForSeconds(.05f);
 
         }
+        Debug.Log(SpriteLight.GetComponent<Light2D>().intensity);
+        GetComponent<SpriteRenderer>().color = defaultColor;
 
 
-        GetComponent<SpriteRenderer>().material = lit;
+
         isFadeRunning = false;
 
     }
