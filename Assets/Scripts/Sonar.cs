@@ -58,7 +58,7 @@ public class Sonar : MonoBehaviour
             }
 
 
-            SonarSpread.transform.localScale += new Vector3(14f, 14f, 0f) * Time.deltaTime;
+            SonarSpread.transform.localScale += new Vector3(20f, 20f, 0f) * Time.deltaTime;
 
             foreach (var creature in creaturesScanned)
             {
