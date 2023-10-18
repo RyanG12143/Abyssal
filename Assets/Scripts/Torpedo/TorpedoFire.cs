@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class TorpedoFire : MonoBehaviour
@@ -12,7 +13,8 @@ public class TorpedoFire : MonoBehaviour
     private GameObject mainCamera;
     
     private Vector2 direction;
-    private Vector3 rotation;
+    private Vector2 rotation;
+    
 
     
     //Initializes the torpedo's direction
@@ -35,11 +37,9 @@ public class TorpedoFire : MonoBehaviour
 
 
         direction = Nightingale.GetComponent<NightingaleMovement>().getFacing();
-        rotation = Nightingale.GetComponent<NightingaleMovement>().getFacing();
-        transform.eulerAngles = rotation;
+
         
-        
- 
+
 
     }
 
@@ -57,8 +57,9 @@ public class TorpedoFire : MonoBehaviour
             mainCamera = GameObject.Find("Main Camera");
         }
 
+        float angle = Mathf.Atan2(direction.x + 90, direction.y + 90) * Mathf.Rad2Deg;
 
-        
+        transform.rotation = Quaternion.Euler(0, 0, angle);
 
         transform.Translate(direction * Time.deltaTime * fireSpeed);
         
