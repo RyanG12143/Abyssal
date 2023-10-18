@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 9083185665963598300}
   m_Layer: 0
   m_Name: Nightingale
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,8 +152,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0000000035289593, y: 0.028492946}
-  m_Size: {x: 0.6118849, y: 0.43548796}
+  m_Offset: {x: -0.002150475, y: 0.010572882}
+  m_Size: {x: 0.5273043, y: 0.31363478}
   m_Direction: 1
 --- !u!50 &1202467531740560110
 Rigidbody2D:
