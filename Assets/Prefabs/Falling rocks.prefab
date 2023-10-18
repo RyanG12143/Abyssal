@@ -165,9 +165,21 @@ Transform:
   - {fileID: 312866048145181216}
   - {fileID: 5802364633539779656}
   - {fileID: 6984734303256858827}
-  - {fileID: 4888696227317429375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6701389175883657653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2543631628519133519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f2a0f11cb3f08418b34524aa6c248d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ByeWall: {fileID: 5005911330068157586}
 --- !u!50 &7289094565865626083
 Rigidbody2D:
   serializedVersion: 4
