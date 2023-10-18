@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Falling rocks
   - Torpedo
+  - CreatureSonar
+  - Destroy
+  - DamageOnHit
+  - Wall
   layers:
   - Default
   - TransparentFX
