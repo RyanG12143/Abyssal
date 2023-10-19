@@ -6,12 +6,15 @@ TagManager:
   tags:
   - Falling rocks
   - Torpedo
-  - conelight
+  - CreatureSonar
+  - Destroy
+  - DamageOnHit
+  - Wall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Torpedo
   - Water
   - UI
   - 
