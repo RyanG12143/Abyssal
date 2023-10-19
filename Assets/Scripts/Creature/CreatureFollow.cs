@@ -78,17 +78,12 @@ public class EnemyController : MonoBehaviour
             currState = EnemyState.Die;
         }
 
-        // Checking enemy hit player
-        if (Vector3.Distance(transform.position, player.transform.position) <= 0.7)
-        {
-            hitPlayer = true;
-        }
-
         // Flipping sprite
         flip();
     }
 
     // Checking if player is in range
+    
     private bool IsPlayerInRange(float range)
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
@@ -188,6 +183,12 @@ public class EnemyController : MonoBehaviour
                 transform.localScale = localScale;
             }
         }
+    }
+
+    // Checking enemy hit player
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        hitPlayer = true;
     }
 
 }

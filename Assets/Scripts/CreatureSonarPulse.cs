@@ -7,14 +7,27 @@ using UnityEngine.Rendering.Universal;
 
 public class CreatureSonarPulse : MonoBehaviour
 {
+    private SpriteRenderer SR;
+
     private Boolean isFadeRunning = false;
 
     public GameObject SpriteLight;
 
+    public GameObject Animated;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (GetComponent<SpriteRenderer>() != null)
+        {
+            SR = GetComponent<SpriteRenderer>();
+        }
+        else
+        {
+            //GameObject Animated = gameObject.name.Append("AnimatedFrames_0);
+            SR = Animated.GetComponent<SpriteRenderer>();
+        }
     }
 
     // Update is called once per frame
@@ -36,35 +49,35 @@ public class CreatureSonarPulse : MonoBehaviour
 
         isFadeRunning = true;
 
-        SpriteLight.GetComponent<Light2D>().intensity = (0f); ;
-
-        Color defaultColor = new Color((GetComponent<SpriteRenderer>().color.r), (GetComponent<SpriteRenderer>().color.g), (GetComponent<SpriteRenderer>().color.b));
+        SpriteLight.GetComponent<Light2D>().intensity = (0f);
 
         Color scannedColor = Color.red;
 
-        for (int i = 0; i <= 26; i++)
-        {
+            Color defaultColor = new Color((SR.color.r), (SR.color.g), (SR.color.b));
 
-            GetComponent<SpriteRenderer>().color = scannedColor;
+            for (int i = 0; i <= 26; i++)
+            {
 
-            SpriteLight.GetComponent<Light2D>().intensity = (i*0.04f);
-            yield return new WaitForSeconds(.01f);
+                SR.color = scannedColor;
 
-        }
+                SpriteLight.GetComponent<Light2D>().intensity = (i * 0.04f);
+                yield return new WaitForSeconds(.01f);
+
+            }
 
 
-        yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2f);
 
-        for (int i = 26; i >= 0; i--)
-        {
+            for (int i = 26; i >= 0; i--)
+            {
 
-            SpriteLight.GetComponent<Light2D>().intensity = (i * 0.04f);
-            yield return new WaitForSeconds(.05f);
+                SpriteLight.GetComponent<Light2D>().intensity = (i * 0.04f);
+                yield return new WaitForSeconds(.05f);
 
-        }
-        Debug.Log(SpriteLight.GetComponent<Light2D>().intensity);
-        GetComponent<SpriteRenderer>().color = defaultColor;
+            }
 
+            SR.color = defaultColor;
+       
 
 
         isFadeRunning = false;
