@@ -148,10 +148,13 @@ public class EnemyController : MonoBehaviour
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
-        // Use LookAt to make the enemy face the player
-        transform.right = -direction;
+        // Make the enemy face away from the player
+        transform.right = direction;
 
-        myRigidbody.velocity = new Vector2(-direction.x * moveSpeed, -direction.y * moveSpeed);
+        // Invert the direction for running away
+        direction = -direction;
+
+        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
     }
 
     void Die()
@@ -168,7 +171,7 @@ public class EnemyController : MonoBehaviour
         Vector2 currentPosition = transform.position;
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
-
+        
         if ((isFacingRight && direction.x < -0.1) || (!isFacingRight && direction.x > 0.1))
         {
             isFacingRight = !isFacingRight;
