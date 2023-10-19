@@ -10,6 +10,7 @@ TagManager:
   - Destroy
   - DamageOnHit
   - Wall
+  - Animation
   layers:
   - Default
   - TransparentFX
