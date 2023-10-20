@@ -7,35 +7,38 @@ using UnityEngine.Rendering.Universal;
 
 public class CreatureSonarPulse : MonoBehaviour
 {
+    // SpriteRenderer of the creature
     private SpriteRenderer SR;
 
+    // Is this creature being scanned(fading in/out)?
     private Boolean isFadeRunning = false;
 
+    // SpriteLight of the creature
     public GameObject SpriteLight;
 
+    // Animations of the creature
     public GameObject Animated;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        // Sets SR to the SpriteRenderer of the creature
         if (GetComponent<SpriteRenderer>() != null)
         {
             SR = GetComponent<SpriteRenderer>();
         }
         else
         {
-            //GameObject Animated = gameObject.name.Append("AnimatedFrames_0);
             SR = Animated.GetComponent<SpriteRenderer>();
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /*
+    Leo Dresang
+    10/20/2023
+    Beings the Fade effect
+    */
     public void StartFade()
     {
         if (!isFadeRunning)
@@ -44,6 +47,11 @@ public class CreatureSonarPulse : MonoBehaviour
         }
     } 
 
+    /*
+    Leo Dresang
+    10/20/2023
+    Creates the Fade in/out effect as the creature gets scanned.
+    */
     IEnumerator Fade()
     {
 

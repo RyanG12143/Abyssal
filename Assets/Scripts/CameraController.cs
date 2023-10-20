@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    // Speed of the camera (would not recommend messing with this)
     private float FollowSpeed = 10f;
+
+    // The transform of the Nightingale
     private Transform target;
+
+    // Nightingale
     private GameObject Nightingale = null;
+
+    // Current Nightingale Velocity
     private Vector2 currentVelocity;
 
 
@@ -24,9 +31,8 @@ public class CameraController : MonoBehaviour
         currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getMovementDirection();
 
 
-
+        // These two lines are what effect camera movement
         Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.25f), target.position.y + (currentVelocity.y * 0.85f), -10f);
-
         transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
 
 
