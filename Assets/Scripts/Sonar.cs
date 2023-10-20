@@ -130,7 +130,7 @@ public class Sonar : MonoBehaviour
     IEnumerator Cooldown()
     {
         isCooldownActive = true;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         isCooldownActive = false;
     }
 
