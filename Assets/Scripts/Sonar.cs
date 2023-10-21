@@ -9,6 +9,9 @@ public class Sonar : MonoBehaviour
     // List of scannable creatures
     private GameObject[] creaturesScanned;
 
+    // List of scannable environment tiles
+    private GameObject[] tilesScanned;
+
     // Nightingale
     private GameObject Nightingale = null;
 
@@ -35,6 +38,7 @@ public class Sonar : MonoBehaviour
         SonarSpread.transform.localScale = new Vector3(1f, 1f, 1f);
         SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 0f);
         creaturesScanned = GameObject.FindGameObjectsWithTag("CreatureSonar");
+        tilesScanned = GameObject.FindGameObjectsWithTag("Wall");
     }
 
     // Update is called once per frame
@@ -51,7 +55,7 @@ public class Sonar : MonoBehaviour
         {
             sonarBeep.Play();
             SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 1f);
-            SonarScan(creaturesScanned);
+            SonarScan();
             StartCoroutine(Cooldown());
         }
 
@@ -84,6 +88,15 @@ public class Sonar : MonoBehaviour
                 }
             }
 
+            foreach (var tile in tilesScanned)
+            {
+
+                if ((Vector2.Distance(SonarSpread.transform.position, tile.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                {
+                    tile.GetComponent<EnvironmentSonarPulse>().StartFade();
+                }
+            }
+
         }
         else
         {
@@ -98,7 +111,7 @@ public class Sonar : MonoBehaviour
     10/20/2023
     Prepares allows for sonar scanning to begin.
     */
-    void SonarScan(GameObject[] creaturesScanned)
+    void SonarScan()
     {
 
         if (Nightingale == null)
