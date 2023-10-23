@@ -11,6 +11,9 @@ TagManager:
   - DamageOnHit
   - Wall
   - Animation
+  - Level
+  - Beacon
+  - Interactable
   layers:
   - Default
   - TransparentFX
