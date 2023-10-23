@@ -6577,6 +6577,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 781582623275791781, guid: 70d7649ba5904c34dbe596414d64f6db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4282521890954544395, guid: 70d7649ba5904c34dbe596414d64f6db, type: 3}
       propertyPath: _Nightingale
       value: 
@@ -6624,6 +6628,10 @@ PrefabInstance:
     - target: {fileID: 6835670320208067982, guid: 70d7649ba5904c34dbe596414d64f6db, type: 3}
       propertyPath: m_Name
       value: Sonar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232868910252929992, guid: 70d7649ba5904c34dbe596414d64f6db, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

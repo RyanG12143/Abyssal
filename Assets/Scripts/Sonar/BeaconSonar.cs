@@ -36,11 +36,21 @@ public class BeaconSonar : MonoBehaviour
 
            // Vector2 newPos = new Vector2(newPosx, newPosy);
 
-        Vector2 directionAtoB = _Nightingale.transform.position - _Beacon.transform.position;
-        Vector2 midpointAtoB = new Vector3(((_Nightingale.transform.position.x+_Beacon.transform.position.x)/2f), ((_Nightingale.transform.position.y+_Beacon.transform.position.y)/2f)); // midpoint between A B
-        transform.position = Vector2.Lerp(transform.position, midpointAtoB, 10f * Time.deltaTime);
+        Vector3 directionAtoB = _Nightingale.transform.position - _Beacon.transform.position;
 
-            
+            if (((Mathf.Abs(directionAtoB.x) + Mathf.Abs(directionAtoB.y)) < 5.0f))
+            {
+                GetComponent<SpriteRenderer>().enabled = false;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().enabled = true;
+            }
+
+            directionAtoB.Normalize();
+            transform.position = (_Nightingale.transform.position + (directionAtoB * -1.5f));
+
+
         }
 
     }
@@ -60,7 +70,7 @@ public class BeaconSonar : MonoBehaviour
 
         for (int i = 0; i < 26; i++)
         {
-
+            
             GetComponent<SpriteRenderer>().color = Color.Lerp(current, end, i / 26.0f);
 
             yield return new WaitForSeconds(.02f);
