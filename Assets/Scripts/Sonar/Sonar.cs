@@ -12,6 +12,12 @@ public class Sonar : MonoBehaviour
     // List of scannable environment tiles
     private GameObject[] tilesScanned;
 
+    // List of beacons (should only be one at a time)
+    private GameObject[] beaconsScanned;
+
+    // List of interactable objects
+    private GameObject[] interactablesScanned;
+
     // Nightingale
     private GameObject Nightingale = null;
 
@@ -30,6 +36,8 @@ public class Sonar : MonoBehaviour
     // Sonar sound effect
     public AudioSource sonarBeep;
 
+    public GameObject SonarArrow;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +46,9 @@ public class Sonar : MonoBehaviour
         SonarSpread.transform.localScale = new Vector3(1f, 1f, 1f);
         SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 0f);
         creaturesScanned = GameObject.FindGameObjectsWithTag("CreatureSonar");
-        tilesScanned = GameObject.FindGameObjectsWithTag("Wall");
+        //tilesScanned = GameObject.FindGameObjectsWithTag("Wall");
+        interactablesScanned = GameObject.FindGameObjectsWithTag("Interactable");
+        beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
     }
 
     // Update is called once per frame
@@ -59,23 +69,22 @@ public class Sonar : MonoBehaviour
             StartCoroutine(Cooldown());
         }
 
+        UpdateSonar();
 
     }
-    /*
-    Leo Dresang
-    10/20/2023
-    Updates sonar information every frame.
-    */
-    private void FixedUpdate()
-    {
 
+        /*
+        Leo Dresang
+        10/20/2023
+        Updates sonar information.
+        */
+        void UpdateSonar(){
         if ((SonarSpread.transform.localScale.x < 40f) && sonarSizeIncrease)
         {
             if (!isEffectsRunning)
             {
                 StartCoroutine(Effects());
             }
-
 
             SonarSpread.transform.localScale += new Vector3(20f, 20f, 0f) * Time.deltaTime;
 
@@ -88,14 +97,26 @@ public class Sonar : MonoBehaviour
                 }
             }
 
-            foreach (var tile in tilesScanned)
+            foreach (var interactable in interactablesScanned)
             {
 
-                if ((Vector2.Distance(SonarSpread.transform.position, tile.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                if ((Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
                 {
-                    tile.GetComponent<EnvironmentSonarPulse>().StartFade();
+                    
+                    interactable.GetComponent<InteractableSonarPulse>().StartFade();
                 }
             }
+
+          // foreach (var tile in tilesScanned)
+            {
+
+           //     if ((Vector2.Distance(SonarSpread.transform.position, tile.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                {
+                    
+           //         tile.GetComponent<EnvironmentSonarPulse>().StartFade();
+                }
+            }
+
 
         }
         else
@@ -104,7 +125,9 @@ public class Sonar : MonoBehaviour
             SonarSpread.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
         }
 
+
     }
+
 
     /*
     Leo Dresang
@@ -126,6 +149,8 @@ public class Sonar : MonoBehaviour
         SonarSpread.transform.position = newPos;
 
         sonarSizeIncrease = true;
+
+        SonarArrow.GetComponent<BeaconSonar>().StartPoint(beaconsScanned[0], Nightingale);
 
     }
 

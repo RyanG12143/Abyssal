@@ -21,6 +21,7 @@ public class Beacon : MonoBehaviour
     public float range = 2f;
     private bool floatFlip;
     public bool playerInteract = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class Beacon : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartCoroutine(ChangeFloatDirection());
+
     }
 
     // Update is called once per frame
@@ -73,6 +75,8 @@ public class Beacon : MonoBehaviour
         {
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
+
+
     }
 
     IEnumerator ChangeFloatDirection()
@@ -87,4 +91,6 @@ public class Beacon : MonoBehaviour
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
     }
+
+
 }
