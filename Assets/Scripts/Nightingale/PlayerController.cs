@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageNightingale : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<Health>().damage();
+            this.GetComponent<Health>().damage();
         }
     }
-
 }

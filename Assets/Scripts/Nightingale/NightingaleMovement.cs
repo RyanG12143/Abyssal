@@ -106,7 +106,7 @@ public class NightingaleMovement : MonoBehaviour
 
     // Ryan Guy
     // Return velocity vector
-    public Vector2 getMovementDirection()
+    public Vector2 getVelocity()
     {
         Vector2 movementDirection = rb.velocity;
         return movementDirection;

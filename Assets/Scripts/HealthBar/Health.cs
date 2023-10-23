@@ -13,19 +13,23 @@ public class Health : MonoBehaviour
         currHealth = maxHealth;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            
-        }
-    }
-
     public void setFullHealth()
     {
+        notifyOnHealthChanged(currHealth, maxHealth);
         currHealth = maxHealth;
     }
-    
+
+    public void damage()
+    {
+        notifyOnHealthChanged(currHealth , currHealth - 1);
+        currHealth--;
+    }
+
+    public int getMax()
+    {
+        return maxHealth;
+    }
+
     public delegate void ValueChanged(int oldValue, int newValue);
 
     private ValueChanged onHealthChanged;
@@ -35,4 +39,8 @@ public class Health : MonoBehaviour
         onHealthChanged += newHealthChanged;
     }
 
+    private void notifyOnHealthChanged(int previousHealth, int newHealth)
+    {
+        onHealthChanged(previousHealth, newHealth);
+    }
 }
