@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Health
+            
         }
     }
 

@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
 
         target = Nightingale.transform;
 
-        currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getMovementDirection();
+        currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
 
 
 
