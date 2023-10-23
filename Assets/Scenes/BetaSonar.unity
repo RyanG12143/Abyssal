@@ -5597,6 +5597,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
+--- !u!1 &1531998816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9099159503175847581, guid: 1289f1328ef924647845097412ba7562, type: 3}
+  m_PrefabInstance: {fileID: 1621900556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1580320358
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6572,6 +6577,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4282521890954544395, guid: 70d7649ba5904c34dbe596414d64f6db, type: 3}
+      propertyPath: _Nightingale
+      value: 
+      objectReference: {fileID: 1531998816}
     - target: {fileID: 4667294220771546333, guid: 70d7649ba5904c34dbe596414d64f6db, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4489356

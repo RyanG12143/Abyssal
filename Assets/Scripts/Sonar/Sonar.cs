@@ -150,7 +150,7 @@ public class Sonar : MonoBehaviour
 
         sonarSizeIncrease = true;
 
-        SonarArrow.GetComponent<BeaconSonar>().StartPoint(beaconsScanned[0], Nightingale);
+        SonarArrow.GetComponent<BeaconSonar>().StartPoint(beaconsScanned[0]);
 
     }
 
