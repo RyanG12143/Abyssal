@@ -13,6 +13,14 @@ public class Health : MonoBehaviour
         currHealth = maxHealth;
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Health
+        }
+    }
+
     public void setFullHealth()
     {
         currHealth = maxHealth;
