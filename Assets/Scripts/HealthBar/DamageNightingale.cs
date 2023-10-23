@@ -9,7 +9,7 @@ public class DamageNightingale : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         health = Healthbar.GetComponent<HealthBar>();
-        if (other.gameObject.tag == "DamageOnHit")
+        if (other.gameObject.tag == "Player")
         health.LowerHealthImage();
     }
 

@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed = 2f;
 
     public bool hitPlayer = false;
+    public bool hitByTorpedo = false;
     private bool isFacingRight = true;
     private bool creatureTurn = false;
     public float moveDistance = 5f;
@@ -55,7 +56,7 @@ public class EnemyController : MonoBehaviour
                 Run();
                 break;
             case EnemyState.Die:
-                // Die();
+                Die();
                 break;
         }
 
@@ -71,13 +72,10 @@ public class EnemyController : MonoBehaviour
         else if (!IsPlayerInRange(range) && currState != EnemyState.Die)
         {
             currState = EnemyState.Wander;
-
         }
-
-        // Checking enemy hit player
-        if (Vector3.Distance(transform.position, player.transform.position) <= 0.7)
+        else if (hitByTorpedo)
         {
-            hitPlayer = true;
+            currState = EnemyState.Die;
         }
 
         // Flipping sprite
@@ -85,6 +83,7 @@ public class EnemyController : MonoBehaviour
     }
 
     // Checking if player is in range
+    
     private bool IsPlayerInRange(float range)
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
@@ -144,12 +143,22 @@ public class EnemyController : MonoBehaviour
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
-        // Use LookAt to make the enemy face the player
-        transform.right = -direction;
+        // Make the enemy face away from the player
+        transform.right = direction;
 
-        myRigidbody.velocity = new Vector2(-direction.x * moveSpeed, -direction.y * moveSpeed);
+        // Invert the direction for running away
+        direction = -direction;
+
+        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
     }
-     
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
+
+   
+
     //flips
     private void flip()
     {
@@ -157,7 +166,7 @@ public class EnemyController : MonoBehaviour
         Vector2 currentPosition = transform.position;
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
-
+        
         if ((isFacingRight && direction.x < -0.1) || (!isFacingRight && direction.x > 0.1))
         {
             isFacingRight = !isFacingRight;
@@ -174,6 +183,12 @@ public class EnemyController : MonoBehaviour
                 transform.localScale = localScale;
             }
         }
+    }
+
+    // Checking enemy hit player
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        hitPlayer = true;
     }
 
 }
