@@ -36,13 +36,9 @@ public class TorpedoFire : MonoBehaviour
 
 
         direction = Nightingale.GetComponent<NightingaleMovement>().getFacing();
-        float angle = Mathf.Atan2(direction.x + 90, direction.y + 45) * Mathf.Rad2Deg ;
+        /*float angle = Mathf.Atan2(direction.x + 90, direction.y + 45) * Mathf.Rad2Deg ;
 
-        
-
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        
+        transform.rotation = Quaternion.Euler(0, 0, angle);*/
 
     }
 
