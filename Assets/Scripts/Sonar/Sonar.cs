@@ -18,6 +18,9 @@ public class Sonar : MonoBehaviour
     // List of interactable objects
     private GameObject[] interactablesScanned;
 
+    // List of Cracked Walls
+    private GameObject[] crackedWallsScanned;
+
     // Nightingale
     private GameObject Nightingale = null;
 
@@ -49,6 +52,7 @@ public class Sonar : MonoBehaviour
         //tilesScanned = GameObject.FindGameObjectsWithTag("Wall");
         interactablesScanned = GameObject.FindGameObjectsWithTag("Interactable");
         beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
+        crackedWallsScanned = GameObject.FindGameObjectsWithTag("CrackedWall");
     }
 
     // Update is called once per frame
@@ -107,13 +111,13 @@ public class Sonar : MonoBehaviour
                 }
             }
 
-          // foreach (var tile in tilesScanned)
+            foreach (var crackedWall in crackedWallsScanned)
             {
 
-           //     if ((Vector2.Distance(SonarSpread.transform.position, tile.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                if ((Vector2.Distance(SonarSpread.transform.position, crackedWall.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
                 {
-                    
-           //         tile.GetComponent<EnvironmentSonarPulse>().StartFade();
+
+                    crackedWall.GetComponent<CrackedWallSonarPulse>().StartFade();
                 }
             }
 

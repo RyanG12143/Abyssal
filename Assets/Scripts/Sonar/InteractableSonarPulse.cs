@@ -7,23 +7,23 @@ using UnityEngine.Rendering.Universal;
 
 public class InteractableSonarPulse : MonoBehaviour
 {
-    // SpriteRenderer of the creature
+    // SpriteRenderer of the object
     private SpriteRenderer SR;
 
-    // Is this creature being scanned(fading in/out)?
+    // Is this object being scanned(fading in/out)?
     private Boolean isFadeRunning = false;
 
-    // SpriteLight of the creature
+    // SpriteLight of the object
     public GameObject SpriteLight;
 
-    // Animations of the creature
+    // Animations of the object
     public GameObject Animated;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        // Sets SR to the SpriteRenderer of the creature
+        // Sets SR to the SpriteRenderer of the object
         if (GetComponent<SpriteRenderer>() != null)
         {
             SR = GetComponent<SpriteRenderer>();
@@ -50,7 +50,7 @@ public class InteractableSonarPulse : MonoBehaviour
     /*
     Leo Dresang
     10/20/2023
-    Creates the Fade in/out effect as the creature gets scanned.
+    Creates the Fade in/out effect as the object gets scanned.
     */
     IEnumerator Fade()
     {
