@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 
-public enum EnemyState
+public enum EnemyAction
 {
     Wander,
     Follow,
@@ -17,7 +17,7 @@ public enum EnemyState
 public class EnemyController : MonoBehaviour
 {
     GameObject player;
-    public EnemyState currState = EnemyState.Wander;
+    public EnemyAction currState = EnemyAction.Wander;
 
     public Transform target;
     Rigidbody2D myRigidbody;
@@ -44,52 +44,53 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (currState)
-        {
-            case EnemyState.Wander:
-                Wander();
-                break;
-            case EnemyState.Follow:
-                Follow();
-                break;
-            case EnemyState.Run:
-                Run();
-                break;
-            case EnemyState.Die:
-                Die();
-                break;
-        }
-
+        stateSwitch();
+        flip();
+    }
+    
+    // Switches the states of the enemy creature
+    private void stateSwitch()
+    {
         // Checks what state to be in
-        if (IsPlayerInRange(range) && currState != EnemyState.Die && hitPlayer == true)
+        if (IsPlayerInRange(range) && currState != EnemyAction.Die && hitPlayer == true)
         {
-            currState = EnemyState.Run;
+            currState = EnemyAction.Run;
         }
-        else if (IsPlayerInRange(range) && currState != EnemyState.Die && currState != EnemyState.Run)
+        else if (IsPlayerInRange(range) && currState != EnemyAction.Die && currState != EnemyAction.Run)
         {
-            currState = EnemyState.Follow;
+            currState = EnemyAction.Follow;
         }
-        else if (!IsPlayerInRange(range) && currState != EnemyState.Die)
+        else if (!IsPlayerInRange(range) && currState != EnemyAction.Die)
         {
-            currState = EnemyState.Wander;
+            currState = EnemyAction.Wander;
         }
         else if (hitByTorpedo)
         {
-            currState = EnemyState.Die;
+            currState = EnemyAction.Die;
         }
 
-        // Flipping sprite
-        flip();
+        // Switches current state based on currState
+        switch (currState)
+        {
+            case EnemyAction.Wander:
+                Wander();
+                break;
+            case EnemyAction.Follow:
+                Follow();
+                break;
+            case EnemyAction.Run:
+                Run();
+                break;
+            case EnemyAction.Die:
+                Die();
+                break;
+        }
     }
 
-    // Checking if player is in range
-    
-    private bool IsPlayerInRange(float range)
-    {
-        return Vector3.Distance(transform.position, player.transform.position) <= range;
-    }
-
-    // Wander method
+    // Different creature state methods
+    //
+    //
+    // Wander creature state
     void Wander()
     {
         if (creatureTurn)
@@ -101,21 +102,8 @@ public class EnemyController : MonoBehaviour
             myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
         }
     }
-    IEnumerator ChangeCreatureTurn()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(turnInterval);
-            creatureTurn = !creatureTurn; // Toggle the value of creatureTurn
-        }
-    }
 
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        transform.localScale = new Vector2(-(Mathf.Sign(myRigidbody.velocity.x)), 1f);
-    }
-
-    // Follow method
+    // Follow creature state
     void Follow()
     {
         Vector2 targetPosition = target.position;
@@ -129,13 +117,7 @@ public class EnemyController : MonoBehaviour
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
     }
 
-    //private bool isTravelingRight()
-    //{
-    //    return transform.localScale.x > 0;
-    //}
-
-    // Run method
-
+    // Run creature state
     void Run()
     {
         Vector2 targetPosition = target.position;
@@ -152,32 +134,34 @@ public class EnemyController : MonoBehaviour
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
     }
 
+    // Die method
     void Die()
     {
         Destroy(gameObject);
     }
 
-   
 
-    //flips
+
+    // Flipping and facing sprite direction
     private void flip()
     {
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
-        
+
         if ((isFacingRight && direction.x < -0.1) || (!isFacingRight && direction.x > 0.1))
         {
             isFacingRight = !isFacingRight;
 
             Vector3 localScale = transform.localScale;
             localScale.y *= -1;
-            
+
             if (hitPlayer == false)
             {
                 transform.localScale = localScale;
-            } else
+            }
+            else
             {
                 //need to impliment running away flipping
                 transform.localScale = localScale;
@@ -185,10 +169,29 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+
+    // Status Checks
+    //
+    //
     // Checking enemy hit player
     private void OnCollisionEnter2D(Collision2D other)
     {
         hitPlayer = true;
     }
 
+    // Checks if player is in range
+    private bool IsPlayerInRange(float range)
+    {
+        return Vector3.Distance(transform.position, player.transform.position) <= range;
+    }
+
+    // Changing Creature Momentum Direction
+    IEnumerator ChangeCreatureTurn()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(turnInterval);
+            creatureTurn = !creatureTurn; // Toggle the value of creatureTurn
+        }
+    }
 }
