@@ -15,14 +15,15 @@ public class Health : MonoBehaviour
 
     public void setFullHealth()
     {
-        notifyOnHealthChanged(currHealth, maxHealth);
+        onHealthChanged(currHealth, maxHealth);
         currHealth = maxHealth;
     }
 
     public void damage()
     {
-        notifyOnHealthChanged(currHealth , currHealth - 1);
-        currHealth--;
+
+        onHealthChanged(currHealth , currHealth - 1);
+        currHealth = currHealth - 1;
     }
 
     public int getMax()
@@ -39,8 +40,4 @@ public class Health : MonoBehaviour
         onHealthChanged += newHealthChanged;
     }
 
-    private void notifyOnHealthChanged(int previousHealth, int newHealth)
-    {
-        onHealthChanged(previousHealth, newHealth);
-    }
 }

@@ -1471,10 +1471,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteList:
-  - {fileID: -104645899, guid: 9b8a7bd466972a34186a3735e6f7d2e7, type: 3}
-  - {fileID: -1577501546, guid: 9b8a7bd466972a34186a3735e6f7d2e7, type: 3}
-  - {fileID: 845811092, guid: 9b8a7bd466972a34186a3735e6f7d2e7, type: 3}
   - {fileID: -900872307, guid: 9b8a7bd466972a34186a3735e6f7d2e7, type: 3}
+  - {fileID: 845811092, guid: 9b8a7bd466972a34186a3735e6f7d2e7, type: 3}
+  - {fileID: -1577501546, guid: 9b8a7bd466972a34186a3735e6f7d2e7, type: 3}
+  - {fileID: -104645899, guid: 9b8a7bd466972a34186a3735e6f7d2e7, type: 3}
 --- !u!1 &6952673269518644177
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,10 @@ public class HealthBar : MonoBehaviour
     private void updateHealthBar(int oldVal, int newVal)
     {
         currHealth = newVal;
-        gameObject.GetComponent<UnityEngine.UI.Image>().sprite = spriteList[currHealth];
+        if (currHealth >= 0)
+        {
+            gameObject.GetComponent<UnityEngine.UI.Image>().sprite = spriteList[currHealth];
+        }
     }
 
 
