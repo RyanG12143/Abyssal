@@ -39,6 +39,7 @@ public class Sonar : MonoBehaviour
     // Sonar sound effect
     public AudioSource sonarBeep;
 
+    // Arrow pointer for beacons
     public GameObject SonarArrow;
 
 
@@ -79,18 +80,18 @@ public class Sonar : MonoBehaviour
 
         /*
         Leo Dresang
-        10/20/2023
+        10/30/2023
         Updates sonar information.
         */
         void UpdateSonar(){
-        if ((SonarSpread.transform.localScale.x < 40f) && sonarSizeIncrease)
+        if ((SonarSpread.transform.localScale.x < 50f) && sonarSizeIncrease)
         {
             if (!isEffectsRunning)
             {
                 StartCoroutine(Effects());
             }
 
-            SonarSpread.transform.localScale += new Vector3(20f, 20f, 0f) * Time.deltaTime;
+            SonarSpread.transform.localScale += new Vector3(25f, 25f, 0f) * Time.deltaTime;
 
             foreach (var creature in creaturesScanned)
             {
@@ -154,7 +155,17 @@ public class Sonar : MonoBehaviour
 
         sonarSizeIncrease = true;
 
-        SonarArrow.GetComponent<BeaconSonar>().StartPoint(beaconsScanned[0]);
+        foreach (var _beacon in beaconsScanned)
+        {
+
+            if(_beacon.GetComponent<Beacon>().currState == BeaconState.Idle)
+            {
+                SonarArrow.GetComponent<BeaconSonar>().StartPoint(_beacon);
+
+            }
+
+        }
+
 
     }
 

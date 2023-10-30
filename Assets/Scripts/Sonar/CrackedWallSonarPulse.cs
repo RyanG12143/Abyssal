@@ -40,7 +40,7 @@ public class CrackedWallSonarPulse : MonoBehaviour
 
     /*
     Leo Dresang
-    10/20/2023
+    10/30/2023
     Creates the Fade in/out effect as the creature gets scanned.
     */
     IEnumerator Fade()
@@ -64,7 +64,7 @@ public class CrackedWallSonarPulse : MonoBehaviour
         }
 
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         for (int i = 26; i >= 0; i--)
         {

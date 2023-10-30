@@ -37,7 +37,7 @@ public class InteractableSonarPulse : MonoBehaviour
     /*
     Leo Dresang
     10/20/2023
-    Beings the Fade effect
+    Begins the Fade effect
     */
     public void StartFade()
     {
@@ -45,11 +45,11 @@ public class InteractableSonarPulse : MonoBehaviour
         {
             StartCoroutine(Fade());
         }
-    } 
+    }
 
     /*
     Leo Dresang
-    10/20/2023
+    10/30/2023
     Creates the Fade in/out effect as the object gets scanned.
     */
     IEnumerator Fade()
@@ -59,33 +59,33 @@ public class InteractableSonarPulse : MonoBehaviour
 
         SpriteLight.GetComponent<Light2D>().intensity = (0f);
 
-        Color scannedColor = Color.blue;
+        Color scannedColor = Color.yellow;
 
-            Color defaultColor = new Color((SR.color.r), (SR.color.g), (SR.color.b));
+        Color defaultColor = new Color((SR.color.r), (SR.color.g), (SR.color.b));
 
-            for (int i = 0; i <= 26; i++)
-            {
+        for (int i = 0; i <= 26; i++)
+        {
 
-                SR.color = scannedColor;
+            SR.color = scannedColor;
 
-                SpriteLight.GetComponent<Light2D>().intensity = (i * 0.04f);
-                yield return new WaitForSeconds(.01f);
+            SpriteLight.GetComponent<Light2D>().intensity = (i * 0.04f);
+            yield return new WaitForSeconds(.01f);
 
-            }
+        }
 
 
-            yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);
 
-            for (int i = 26; i >= 0; i--)
-            {
+        for (int i = 26; i >= 0; i--)
+        {
 
-                SpriteLight.GetComponent<Light2D>().intensity = (i * 0.04f);
-                yield return new WaitForSeconds(.05f);
+            SpriteLight.GetComponent<Light2D>().intensity = (i * 0.04f);
+            yield return new WaitForSeconds(.05f);
 
-            }
+        }
 
-            SR.color = defaultColor;
-       
+        SR.color = defaultColor;
+
 
 
         isFadeRunning = false;
