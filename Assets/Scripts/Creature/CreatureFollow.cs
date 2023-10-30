@@ -4,6 +4,7 @@ using System.ComponentModel;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
 public enum EnemyAction
@@ -45,7 +46,39 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         stateSwitch();
-        flip();
+        //flip();
+
+        Vector2 targetPosition = target.position;
+        Vector2 currentPosition = transform.position;
+
+
+
+        Vector2 direction = (targetPosition - currentPosition).normalized;
+
+
+        transform.up = myRigidbody.velocity;
+
+
+        //// Use LookAt to make the enemy face the player
+        //transform.right = direction;
+        transform.right = myRigidbody.velocity;
+
+
+        float angle;
+        float rotateSpeed = 2;
+
+        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, myRigidbody.velocity));
+
+        //this is just to stop overrotation
+        if (Mathf.Abs(Vector2.Angle(transform.right, myRigidbody.velocity)) < 5f)
+        {
+            angle = 0;
+        }
+
+        if (angle != 0)
+        {
+            myRigidbody.MoveRotation(myRigidbody.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
+        }
     }
     
     // Switches the states of the enemy creature
@@ -109,16 +142,21 @@ public class EnemyController : MonoBehaviour
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
 
+
+
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
-        // Use LookAt to make the enemy face the player
-        transform.right = direction;
+
+        //// Use LookAt to make the enemy face the player
+        //transform.right = direction;
+        transform.right = myRigidbody.velocity;
 
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+
     }
 
-    // Run creature state
-    void Run()
+// Run creature state
+void Run()
     {
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
@@ -126,10 +164,13 @@ public class EnemyController : MonoBehaviour
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
         // Make the enemy face away from the player
-        transform.right = direction;
+        //transform.right = -direction;
 
         // Invert the direction for running away
         direction = -direction;
+
+
+
 
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
     }
@@ -143,31 +184,24 @@ public class EnemyController : MonoBehaviour
 
 
     // Flipping and facing sprite direction
-    private void flip()
-    {
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
+    //private void flip()
+    //{
+    //    Vector2 targetPosition = target.position;
+    //    Vector2 currentPosition = transform.position;
 
-        Vector2 direction = (targetPosition - currentPosition).normalized;
+    //    Vector2 direction = (targetPosition - currentPosition).normalized;
 
-        if ((isFacingRight && direction.x < -0.1) || (!isFacingRight && direction.x > 0.1))
-        {
-            isFacingRight = !isFacingRight;
 
-            Vector3 localScale = transform.localScale;
-            localScale.y *= -1;
 
-            if (hitPlayer == false)
-            {
-                transform.localScale = localScale;
-            }
-            else
-            {
-                //need to impliment running away flipping
-                transform.localScale = localScale;
-            }
-        }
-    }
+    //    if ((isFacingRight && direction.x < -0.01) || (!isFacingRight && direction.x > 0.01))
+    //    {
+    //        isFacingRight = !isFacingRight;
+
+    //        Vector3 localScale = transform.localScale;
+    //        localScale.y *= -1;
+    //        transform.localScale = localScale;
+    //    }
+    //}
 
 
     // Status Checks
@@ -176,7 +210,13 @@ public class EnemyController : MonoBehaviour
     // Checking enemy hit player
     private void OnCollisionEnter2D(Collision2D other)
     {
-        hitPlayer = true;
+        if (!hitPlayer)
+        {
+            hitPlayer = true;
+            Vector3 localScale = transform.localScale;
+            //localScale.y *= -1;
+            transform.localScale = localScale;
+        }
     }
 
     // Checks if player is in range
@@ -188,10 +228,15 @@ public class EnemyController : MonoBehaviour
     // Changing Creature Momentum Direction
     IEnumerator ChangeCreatureTurn()
     {
+        Vector3 localScale = transform.localScale;
         while (true)
         {
             yield return new WaitForSeconds(turnInterval);
             creatureTurn = !creatureTurn; // Toggle the value of creatureTurn
+            //    isFacingRight = !isFacingRight;
+                  localScale.x *= -1f;
+
+
         }
     }
 }
