@@ -5,28 +5,58 @@ using UnityEngine.UI;
 
 public class Oxygen : MonoBehaviour
 {
+    public static Oxygen instance;
 
+    public Image bar;
     public Image mask;
+    public Image container;
     private float originalSize;
-    private float timeLimit = 10;
+    private float timeLimit = 30;
     private float timeLeft;
+
+    public static Oxygen GetInstance() { return instance; }
+
     // Start is called before the first frame update
-    void Start()
-    {
-        originalSize = mask.rectTransform.rect.width;
-        timeLeft = timeLimit;
+    void Awake()
+    { 
+        instance = this;
+
+        originalSize = mask.rectTransform.rect.height;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeLeft -= Time.deltaTime;
-        SetValue(timeLeft / timeLimit);
+        if (gameObject.GetComponent<Image>().IsActive())
+        {
+            timeLeft -= Time.deltaTime;
+            SetValue(timeLeft / timeLimit);
+        }
+        if (timeLeft <= 0)
+        {
+            // implement fail state
+
+        }
     }
 
     public void SetValue(float value)
     {
-        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,
+        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,
             originalSize * value);
+    }
+
+    public void activateOxygen()
+    {
+        timeLeft = timeLimit;
+
+        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, originalSize);
+        bar.enabled = true;
+        container.enabled = true;
+    }
+
+    public void deactivateOxygen()
+    {
+        bar.enabled = false;
+        container.enabled = false;
     }
 }
