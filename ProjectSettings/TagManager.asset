@@ -14,7 +14,6 @@ TagManager:
   - Level
   - Beacon
   - Interactable
-  - CurrentRight
   layers:
   - Default
   - TransparentFX
