@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour
     public bool hitPlayer = false;
     public bool hitByTorpedo = false;
     private bool isFacingRight = true;
+    private bool initalRight = false;
     private bool creatureTurn = false;
     public float moveDistance = 5f;
     public float turnInterval = 2.0f;
@@ -46,39 +47,8 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         stateSwitch();
-        //flip();
+        facingUpdate();
 
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
-
-
-
-        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-
-        transform.up = myRigidbody.velocity;
-
-
-        //// Use LookAt to make the enemy face the player
-        //transform.right = direction;
-        transform.right = myRigidbody.velocity;
-
-
-        float angle;
-        float rotateSpeed = 2;
-
-        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, myRigidbody.velocity));
-
-        //this is just to stop overrotation
-        if (Mathf.Abs(Vector2.Angle(transform.right, myRigidbody.velocity)) < 5f)
-        {
-            angle = 0;
-        }
-
-        if (angle != 0)
-        {
-            myRigidbody.MoveRotation(myRigidbody.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
-        }
     }
     
     // Switches the states of the enemy creature
@@ -126,6 +96,14 @@ public class EnemyController : MonoBehaviour
     // Wander creature state
     void Wander()
     {
+        Vector3 localScale = transform.localScale;
+        if (transform.up.y < 0f)
+        {
+            //FIX THIS
+            localScale.y = -1;
+            Debug.Log("UpsideDown");
+        }
+
         if (creatureTurn)
         {
             myRigidbody.velocity = new Vector2(moveSpeed, 0f);
@@ -142,8 +120,6 @@ public class EnemyController : MonoBehaviour
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
 
-
-
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
 
@@ -153,6 +129,7 @@ public class EnemyController : MonoBehaviour
 
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
 
+        flip();
     }
 
 // Run creature state
@@ -165,7 +142,7 @@ void Run()
 
         // Make the enemy face away from the player
         //transform.right = -direction;
-
+        
         // Invert the direction for running away
         direction = -direction;
 
@@ -173,6 +150,8 @@ void Run()
 
 
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+        
+        flip();
     }
 
     // Die method
@@ -183,25 +162,58 @@ void Run()
 
 
 
-    // Flipping and facing sprite direction
-    //private void flip()
-    //{
-    //    Vector2 targetPosition = target.position;
-    //    Vector2 currentPosition = transform.position;
+    //Flipping sprite at critical points
+    private void flip()
+    {
+        Vector2 targetPosition = target.position;
+        Vector2 currentPosition = transform.position;
 
-    //    Vector2 direction = (targetPosition - currentPosition).normalized;
+        Vector2 direction = (targetPosition - currentPosition).normalized;
+
+        if ((isFacingRight && direction.x < -0.01) || (!isFacingRight && direction.x > 0.01))
+        {
+            isFacingRight = !isFacingRight;
+
+            Vector3 localScale = transform.localScale;
+            localScale.y *= -1;
+            transform.localScale = localScale;
+        }
+    }
+
+    // Updates facing direction of creature based on velocity
+    private void facingUpdate()
+    {
+        // Velocity Based Direction
+        Vector2 targetPosition = target.position;
+        Vector2 currentPosition = transform.position;
 
 
 
-    //    if ((isFacingRight && direction.x < -0.01) || (!isFacingRight && direction.x > 0.01))
-    //    {
-    //        isFacingRight = !isFacingRight;
+        Vector2 direction = (targetPosition - currentPosition).normalized;
 
-    //        Vector3 localScale = transform.localScale;
-    //        localScale.y *= -1;
-    //        transform.localScale = localScale;
-    //    }
-    //}
+
+        transform.up = myRigidbody.velocity;
+
+        //// Use LookAt to make the enemy face the player
+        //transform.right = direction;
+        transform.right = myRigidbody.velocity;
+
+        float angle;
+        float rotateSpeed = 2;
+
+        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, myRigidbody.velocity));
+
+        //this is to stop overrotation
+        if (Mathf.Abs(Vector2.Angle(transform.right, myRigidbody.velocity)) < 5f)
+        {
+            angle = 0;
+        }
+
+        if (angle != 0)
+        {
+            myRigidbody.MoveRotation(myRigidbody.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
+        }
+    }
 
 
     // Status Checks
@@ -229,14 +241,17 @@ void Run()
     IEnumerator ChangeCreatureTurn()
     {
         Vector3 localScale = transform.localScale;
+
         while (true)
         {
             yield return new WaitForSeconds(turnInterval);
             creatureTurn = !creatureTurn; // Toggle the value of creatureTurn
-            //    isFacingRight = !isFacingRight;
-                  localScale.x *= -1f;
-
-
+            localScale.x *= -1f;
         }
     }
+
+    //private bool CheckDirection()
+    //{
+    //    if()
+    //}
 }
