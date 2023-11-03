@@ -15,7 +15,7 @@ public enum EnemyAction
     Die,
 }
 
-public class EnemyController : MonoBehaviour
+public class SeaMonkey : MonoBehaviour
 {
     private GameObject player;
     public GameObject objectToSpawn;
@@ -24,7 +24,6 @@ public class EnemyController : MonoBehaviour
     public Transform target;
     Rigidbody2D myRigidbody;
     
-
     // Editable movement variables
     public float range = 2f;
     public float moveSpeed = 2f;
@@ -42,6 +41,7 @@ public class EnemyController : MonoBehaviour
     private bool buffer = false;
     private bool slowTimeActive = false;
     private bool slowTimeCancel = false;
+    private bool isDead = false;
     
 
     // Start is called before the first frame update
@@ -256,7 +256,7 @@ public class EnemyController : MonoBehaviour
     // Checking if enemy hit player or Torpedo
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Nightingale" && !hitPlayer)
+        if (collision.gameObject.name == "Nightingale" && !hitPlayer && hitByTorpedo)
         {
             hitPlayer = true;
 
@@ -272,7 +272,6 @@ public class EnemyController : MonoBehaviour
             {
                 Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
                 Instantiate(objectToSpawn, transform.position + dropModify, objectToSpawn.transform.rotation);
-
             }
             hitByTorpedo = true;
             myRigidbody.bodyType = RigidbodyType2D.Dynamic;
