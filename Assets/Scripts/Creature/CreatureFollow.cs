@@ -263,12 +263,16 @@ public class EnemyController : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.y *= -1;
             transform.localScale = localScale;
-        } else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
+            Oxygen.GetInstance().activateOxygen();
+
+        } 
+        else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
         {
             if(hitPlayer)
             {
                 Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
                 Instantiate(objectToSpawn, transform.position + dropModify, objectToSpawn.transform.rotation);
+
             }
             hitByTorpedo = true;
             myRigidbody.bodyType = RigidbodyType2D.Dynamic;
