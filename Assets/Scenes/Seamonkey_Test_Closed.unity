@@ -378,9 +378,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3663781290711527478, guid: f47a3676f8499434dbb8d98cb0f813b6, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3663781290711527478, guid: f47a3676f8499434dbb8d98cb0f813b6, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7316498124066588477, guid: f47a3676f8499434dbb8d98cb0f813b6, type: 3}
       propertyPath: m_Name
       value: Sea Monkey
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555750050832403828, guid: f47a3676f8499434dbb8d98cb0f813b6, type: 3}
+      propertyPath: slowTimeInterval
+      value: 0.001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

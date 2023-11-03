@@ -35,11 +35,11 @@ public class EnemyController : MonoBehaviour
 
     // Bool's for creature state changes
     private bool hitPlayer = false;
-    bool hitByTorpedo = false;
+    private bool hitByTorpedo = false;
     private bool isFacingRight = true;
     private bool creatureTurn = false;
     private bool upFlipped = false;
-    public bool buffer = false;
+    private bool buffer = false;
     private bool slowTimeActive = false;
     private bool slowTimeCancel = false;
     
@@ -180,9 +180,9 @@ public class EnemyController : MonoBehaviour
     // Die method
     void Die()
     {
-        if (slowTimeActive = true)
+        if (slowTimeActive == true)
         {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x * 0.99f, myRigidbody.velocity.y * 0.99f);
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x * 0.2f, myRigidbody.velocity.y * 0.2f);
             slowTimeActive = false;
         }
     }
@@ -208,7 +208,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // Corrects Y flip after wander method (Edge Case)
+    // Corrects Y flip after wander method and before die method (Edge Cases)
     private void correctFlip()
     {
         Vector3 localScale = transform.localScale;
@@ -272,9 +272,10 @@ public class EnemyController : MonoBehaviour
             }
             hitByTorpedo = true;
             myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-            myRigidbody.gravityScale = 0.1f;
+            myRigidbody.gravityScale = 0.01f;
             StartCoroutine(deathSlowTime());
             StartCoroutine(deathSlowTimeCancel());
+            correctFlip();
         }
     }
 
@@ -319,7 +320,7 @@ public class EnemyController : MonoBehaviour
     //Cancels the slow time after a given time
     IEnumerator deathSlowTimeCancel()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         slowTimeCancel = true;
     }
 }
