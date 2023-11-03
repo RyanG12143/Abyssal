@@ -47,9 +47,12 @@ public class Oxygen : MonoBehaviour
 
     public void activateOxygen()
     {
-        timeLeft = timeLimit;
+        if (bar.enabled == false)
+        {
+            timeLeft = timeLimit;
+            mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, originalSize);
+        }
 
-        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, originalSize);
         bar.enabled = true;
         container.enabled = true;
     }
