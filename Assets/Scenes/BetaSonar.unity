@@ -1159,7 +1159,7 @@ GameObject:
   - component: {fileID: 290642978}
   - component: {fileID: 290642980}
   m_Layer: 0
-  m_Name: Key
+  m_Name: PickUpAble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1206,7 +1206,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a0d0f726129c1334ebb8f96650635ba2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8857858a6cd1de49b0107195142aa5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1227,7 +1227,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1244,7 +1244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4511f4bbfe13cde4c969be5b806e7829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickedUp: 0
 --- !u!4 &427905069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4258099248019127242, guid: dc346fa0cdb1a1b40b44ae5380a44492, type: 3}
@@ -4981,6 +4980,7 @@ GameObject:
   - component: {fileID: 889736487}
   - component: {fileID: 889736486}
   - component: {fileID: 889736488}
+  - component: {fileID: 889736489}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5031,7 +5031,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.982143
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5215,6 +5215,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &889736489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889736482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_AssetsPPU: 24
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_CropFrame: 0
+  m_GridSnapping: 0
+  m_FilterMode: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!4 &900657204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6367912506319712472, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}

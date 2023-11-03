@@ -50,6 +50,10 @@ public class NightingaleMovement : MonoBehaviour
         {
             rb.velocity += acceleration;
         }
+        if(rb.velocity.magnitude < 0.1)
+        {
+            rb.velocity = new Vector2(0f, 0f);
+        }
     }
 
     private void flip()

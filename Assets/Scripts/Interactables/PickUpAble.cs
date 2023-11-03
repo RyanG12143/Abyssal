@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Key : MonoBehaviour
+public class PickUpAble : MonoBehaviour
 {
     private float FollowSpeed = 5f;
 
@@ -14,7 +14,7 @@ public class Key : MonoBehaviour
 
     private Vector2 currentVelocity;
 
-    public bool pickedUp;
+    private bool pickedUp;
 
     private bool NightingaleFacingRight;
 
@@ -35,6 +35,13 @@ public class Key : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (Nightingale == null)
+        {
+            Nightingale = GameObject.Find("Nightingale");
+        }
+
+
         if (pickedUp)
         {
             Follow();
@@ -43,10 +50,7 @@ public class Key : MonoBehaviour
 
     void Follow()
     {
-        if (Nightingale == null)
-        {
-            Nightingale = GameObject.Find("Nightingale");
-        }
+ 
 
         target = Nightingale.transform;
 
@@ -57,12 +61,12 @@ public class Key : MonoBehaviour
 
         if (NightingaleFacingRight)
         {
-            Vector3 newPos = new Vector3(target.position.x + 1.5f, target.position.y + (currentVelocity.y * -0.5f), 0f);
+            Vector3 newPos = new Vector3(target.position.x + 1.15f, target.position.y + (currentVelocity.y * -0.10f), 0f);
             transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
         }
         else
         {
-            Vector3 newPos = new Vector3(target.position.x - 1.5f, target.position.y + (currentVelocity.y * -0.5f), 0f);
+            Vector3 newPos = new Vector3(target.position.x - 1.15f, target.position.y + (currentVelocity.y * -0.10f), 0f);
             transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
         }
 
@@ -71,6 +75,9 @@ public class Key : MonoBehaviour
 
     void checkPickUp()
     {
-
+        if((Vector2.Distance(Nightingale.transform.position, gameObject.transform.position) < 2f))
+        {
+            pickedUp = true;
+        }
     }
 }
