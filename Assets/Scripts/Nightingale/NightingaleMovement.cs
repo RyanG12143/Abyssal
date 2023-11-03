@@ -25,6 +25,7 @@ public class NightingaleMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //spotlight = GameObject.FindGameObjectWithTag("conelight");
     }
 
     // Update is called once per frame
@@ -42,6 +43,8 @@ public class NightingaleMovement : MonoBehaviour
         move();
     }
 
+    // Ryan Guy
+    // Moves character based on the facing direction (Facing), input direction (direction), and scaled by private speed;
     private void move()
     {
         Vector2 acceleration = new Vector2(facing.x * direction * speed, facing.y * direction * speed);
@@ -52,6 +55,8 @@ public class NightingaleMovement : MonoBehaviour
         }
     }
 
+    // Ryan Guy
+    // Flips the character model if it is facing the wrong direction
     private void flip()
     {
         if ((isFacingRight && facing.x > 0.05) || (!isFacingRight && facing.x < -0.05))
@@ -69,6 +74,8 @@ public class NightingaleMovement : MonoBehaviour
         }
     }
 
+    // Ryan Guy
+    // Gets the position of the mouse and makes the character face towards the mouse
     void faceMouse()
     {
         Vector3 mousePosition = Input.mousePosition;
@@ -82,23 +89,32 @@ public class NightingaleMovement : MonoBehaviour
         facing.Normalize();
         transform.right = facing;
     }
+
+    // Ryan Guy
+    // Gets vector of charcters facing direction
     public Vector2 getFacing()
     {
         return facing;
     }
 
+    // Ryan Guy
+    // Returns true if character is facing right
     public bool getIsFacingRight()
     {
         return isFacingRight;
     }
 
-    public Vector2 getMovementDirection()
+    // Ryan Guy
+    // Return velocity vector
+    public Vector2 getVelocity()
     {
         Vector2 movementDirection = rb.velocity;
         return movementDirection;
     }
 
-    public Vector2 getMovementDirectionNormal()
+    // Ryan Guy
+    // Return normalized veloctiy vector
+    public Vector2 getVelocityNormal()
     {
         Vector2 movementDirection = rb.velocity;
         movementDirection.Normalize();

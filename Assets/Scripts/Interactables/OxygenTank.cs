@@ -65,20 +65,15 @@ public class OxygenTank : MonoBehaviour
         {
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
+        
+        //if (collision.gameObject.name == "Nightingale" && !hitPlayer)
+        //{
+        //    hitPlayer = true;
 
-
-    }
-
-    void Stolen()
-    {
-        if (floatFlip)
-        {
-            myRigidbody.velocity = new Vector2(0f, floatSpeed);
-        }
-        else
-        {
-            myRigidbody.velocity = new Vector2(0f, -floatSpeed);
-        }
+        //    Vector3 localScale = transform.localScale;
+        //    localScale.y *= -1;
+        //    transform.localScale = localScale;
+        //}
 
     }
 
