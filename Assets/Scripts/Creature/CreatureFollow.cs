@@ -23,16 +23,20 @@ public class EnemyController : MonoBehaviour
     public Transform target;
     Rigidbody2D myRigidbody;
 
+    // Editable movement variables
     public float range = 2f;
     public float moveSpeed = 2f;
+    public float moveDistance = 5f;
+    public float turnInterval = 2.0f;
+    public float wanderBufferTime = 2.0f;
 
+    // Bool's for creature state changes
     public bool hitPlayer = false;
     public bool hitByTorpedo = false;
     private bool isFacingRight = true;
-    private bool initalRight = false;
     private bool creatureTurn = false;
-    public float moveDistance = 5f;
-    public float turnInterval = 2.0f;
+    private bool upFlipped = false;
+    public bool buffer = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +52,6 @@ public class EnemyController : MonoBehaviour
     {
         stateSwitch();
         facingUpdate();
-
     }
     
     // Switches the states of the enemy creature
@@ -90,27 +93,36 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+
     // Different creature state methods
     //
     //
     // Wander creature state
     void Wander()
     {
-        Vector3 localScale = transform.localScale;
-        if (transform.up.y < 0f)
-        {
-            //FIX THIS
-            localScale.y = -1;
-            Debug.Log("UpsideDown");
-        }
+        StartCoroutine (wanderBuffer());
 
-        if (creatureTurn)
+        Vector3 localScale = transform.localScale;
+        
+
+
+        if(buffer == false)
         {
-            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
-        }
-        else
-        {
-            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+            if (transform.up.y < 0f)
+            {
+                localScale.y = 1;
+                transform.localScale = localScale;
+                upFlipped = true;
+            }
+
+            if (creatureTurn)
+            {
+                myRigidbody.velocity = new Vector2(moveSpeed, 0f);
+            }
+            else
+            {
+                myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+            }
         }
     }
 
@@ -129,7 +141,9 @@ public class EnemyController : MonoBehaviour
 
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
 
+        buffer = true;
         flip();
+        correctFlip();
     }
 
 // Run creature state
@@ -150,8 +164,10 @@ void Run()
 
 
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
-        
+
+        buffer = true;
         flip();
+        correctFlip();
     }
 
     // Die method
@@ -162,7 +178,10 @@ void Run()
 
 
 
-    //Flipping sprite at critical points
+    // Helper methods
+    //
+    //
+    // Flipping sprite at critical points (Looking Straight Up and Down)
     private void flip()
     {
         Vector2 targetPosition = target.position;
@@ -180,6 +199,19 @@ void Run()
         }
     }
 
+    // Corrects Y flip after wander method (Edge Case)
+    private void correctFlip()
+    {
+        Vector3 localScale = transform.localScale;
+
+        if (upFlipped)
+        {
+            localScale.y *= -1;
+            transform.localScale = localScale;
+            upFlipped = false;
+        }
+    }
+
     // Updates facing direction of creature based on velocity
     private void facingUpdate()
     {
@@ -187,15 +219,8 @@ void Run()
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
 
-
-
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
-
-        transform.up = myRigidbody.velocity;
-
-        //// Use LookAt to make the enemy face the player
-        //transform.right = direction;
         transform.right = myRigidbody.velocity;
 
         float angle;
@@ -226,7 +251,7 @@ void Run()
         {
             hitPlayer = true;
             Vector3 localScale = transform.localScale;
-            //localScale.y *= -1;
+            localScale.y *= -1;
             transform.localScale = localScale;
         }
     }
@@ -240,6 +265,7 @@ void Run()
     // Changing Creature Momentum Direction
     IEnumerator ChangeCreatureTurn()
     {
+
         Vector3 localScale = transform.localScale;
 
         while (true)
@@ -250,8 +276,10 @@ void Run()
         }
     }
 
-    //private bool CheckDirection()
-    //{
-    //    if()
-    //}
+    IEnumerator wanderBuffer()
+    {
+        yield return new WaitForSeconds(wanderBufferTime);
+        buffer = false;
+
+    }
 }
