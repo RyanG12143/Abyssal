@@ -17,11 +17,13 @@ public enum EnemyAction
 
 public class EnemyController : MonoBehaviour
 {
-    GameObject player;
+    private GameObject player;
+    public GameObject objectToSpawn;
     public EnemyAction currState = EnemyAction.Wander;
 
     public Transform target;
     Rigidbody2D myRigidbody;
+    
 
     // Editable movement variables
     public float range = 2f;
@@ -29,14 +31,18 @@ public class EnemyController : MonoBehaviour
     public float moveDistance = 5f;
     public float turnInterval = 2.0f;
     public float wanderBufferTime = 2.0f;
+    public float slowTimeInterval = 0.5f;
 
     // Bool's for creature state changes
-    public bool hitPlayer = false;
-    public bool hitByTorpedo = false;
+    private bool hitPlayer = false;
+    bool hitByTorpedo = false;
     private bool isFacingRight = true;
     private bool creatureTurn = false;
     private bool upFlipped = false;
     public bool buffer = false;
+    private bool slowTimeActive = false;
+    private bool slowTimeCancel = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -51,14 +57,22 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         stateSwitch();
-        facingUpdate();
+
+        if (!slowTimeCancel)
+        {
+            facingUpdate();
+        }
     }
     
     // Switches the states of the enemy creature
     private void stateSwitch()
     {
         // Checks what state to be in
-        if (IsPlayerInRange(range) && currState != EnemyAction.Die && hitPlayer == true)
+        if (hitByTorpedo)
+        {
+            currState = EnemyAction.Die;
+        }
+        else if (IsPlayerInRange(range) && currState != EnemyAction.Die && hitPlayer == true)
         {
             currState = EnemyAction.Run;
         }
@@ -69,10 +83,6 @@ public class EnemyController : MonoBehaviour
         else if (!IsPlayerInRange(range) && currState != EnemyAction.Die)
         {
             currState = EnemyAction.Wander;
-        }
-        else if (hitByTorpedo)
-        {
-            currState = EnemyAction.Die;
         }
 
         // Switches current state based on currState
@@ -147,7 +157,7 @@ public class EnemyController : MonoBehaviour
     }
 
 // Run creature state
-void Run()
+    void Run()
     {
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
@@ -160,9 +170,6 @@ void Run()
         // Invert the direction for running away
         direction = -direction;
 
-
-
-
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
 
         buffer = true;
@@ -173,10 +180,12 @@ void Run()
     // Die method
     void Die()
     {
-        Destroy(gameObject);
+        if (slowTimeActive = true)
+        {
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x * 0.99f, myRigidbody.velocity.y * 0.99f);
+            slowTimeActive = false;
+        }
     }
-
-
 
     // Helper methods
     //
@@ -244,17 +253,30 @@ void Run()
     // Status Checks
     //
     //
-    // Checking enemy hit player
-    private void OnCollisionEnter2D(Collision2D other)
+    // Checking if enemy hit player or Torpedo
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!hitPlayer)
+        if (collision.gameObject.name == "Nightingale" && !hitPlayer)
         {
             hitPlayer = true;
+
             Vector3 localScale = transform.localScale;
             localScale.y *= -1;
             transform.localScale = localScale;
+        } else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
+        {
+            if(hitPlayer)
+            {
+                Instantiate(objectToSpawn, transform.position, objectToSpawn.transform.rotation);
+            }
+            hitByTorpedo = true;
+            myRigidbody.bodyType = RigidbodyType2D.Dynamic;
+            myRigidbody.gravityScale = 0.1f;
+            StartCoroutine(deathSlowTime());
+            StartCoroutine(deathSlowTimeCancel());
         }
     }
+
 
     // Checks if player is in range
     private bool IsPlayerInRange(float range)
@@ -276,10 +298,27 @@ void Run()
         }
     }
 
+    // Buffer timer so creature gets further away
     IEnumerator wanderBuffer()
     {
         yield return new WaitForSeconds(wanderBufferTime);
         buffer = false;
+    }
 
+    // Time to slow down after dying
+    IEnumerator deathSlowTime()
+    {
+        if (!slowTimeCancel)
+        {
+            yield return new WaitForSeconds(slowTimeInterval);
+            slowTimeActive = true;
+        }
+    }
+
+    //Cancels the slow time after a given time
+    IEnumerator deathSlowTimeCancel()
+    {
+        yield return new WaitForSeconds(3);
+        slowTimeCancel = true;
     }
 }
