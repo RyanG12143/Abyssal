@@ -40,7 +40,7 @@ public class OxygenTank : MonoBehaviour
                 Idle();
                 break;
             case TankState.Stolen:
-                Stolen();
+                //Stolen();
                 break;
         }
 

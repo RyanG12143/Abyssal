@@ -267,7 +267,8 @@ public class EnemyController : MonoBehaviour
         {
             if(hitPlayer)
             {
-                Instantiate(objectToSpawn, transform.position, objectToSpawn.transform.rotation);
+                Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
+                Instantiate(objectToSpawn, transform.position + dropModify, objectToSpawn.transform.rotation);
             }
             hitByTorpedo = true;
             myRigidbody.bodyType = RigidbodyType2D.Dynamic;
