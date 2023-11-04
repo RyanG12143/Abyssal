@@ -8,19 +8,17 @@ public class Fire : MonoBehaviour
     private Vector2 torpedoLocation;
     public bool isCooldownActive = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()
     {
+        //Matthew Brodbeck 10/13/2023
         //Places the torpedo on the right side of the sub
         torpedoLocation = new Vector2(transform.position.x + 0.1f, transform.position.y);
         
 
+        //Matthew Brodbeck 10/15/2023
         //Fires the torpedo if you press left shift and the cooldown is over
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isCooldownActive)
         {
@@ -31,6 +29,8 @@ public class Fire : MonoBehaviour
         }
     }
 
+    /*Matthew Brodbeck 10/15/2023
+     * Sets the cooldown for the torpedo*/
     IEnumerator torpedoCooldown()
     {
         isCooldownActive = true;
