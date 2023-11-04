@@ -69,7 +69,7 @@ public class PickUpAble : MonoBehaviour
 
         target = Nightingale.transform;
 
-        currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getMovementDirection();
+        currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
 
         NightingaleFacingRight = Nightingale.GetComponent<NightingaleMovement>().getIsFacingRight();
 
