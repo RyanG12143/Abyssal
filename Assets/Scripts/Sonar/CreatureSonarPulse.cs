@@ -19,6 +19,10 @@ public class CreatureSonarPulse : MonoBehaviour
     // Animations of the creature
     public GameObject Animated;
 
+    public Material lit;
+
+    public Material unlit;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +41,7 @@ public class CreatureSonarPulse : MonoBehaviour
     /*
     Leo Dresang
     10/20/2023
-    Beings the Fade effect
+    Begins the Fade effect
     */
     public void StartFade()
     {
@@ -49,7 +53,7 @@ public class CreatureSonarPulse : MonoBehaviour
 
     /*
     Leo Dresang
-    10/20/2023
+    10/30/2023
     Creates the Fade in/out effect as the creature gets scanned.
     */
     IEnumerator Fade()
@@ -74,7 +78,7 @@ public class CreatureSonarPulse : MonoBehaviour
             }
 
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
 
             for (int i = 26; i >= 0; i--)
             {
