@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class DestroyTorpedo : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //Destroys the torpedo if it hits an object
+    /*Matthew Brodbeck 10/13/2023
+     * Destroys the torpedo when it collides */
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
