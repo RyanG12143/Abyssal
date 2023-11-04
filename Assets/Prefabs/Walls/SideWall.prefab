@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6367912506319712472}
   - component: {fileID: 6892014692796647306}
   - component: {fileID: -8036459397983382679}
-  - component: {fileID: 6516150171396068131}
+  - component: {fileID: 373544043661985438}
   m_Layer: 0
   m_Name: SideWall
   m_TagString: Wall
@@ -101,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteLight: {fileID: 7495498850773253035}
   Animated: {fileID: 7495498850773253035}
---- !u!60 &6516150171396068131
-PolygonCollider2D:
+--- !u!61 &373544043661985438
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,12 +143,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7495498850773253035
 GameObject:
   m_ObjectHideFlags: 0
