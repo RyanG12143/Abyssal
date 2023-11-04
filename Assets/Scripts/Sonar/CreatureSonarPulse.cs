@@ -19,6 +19,10 @@ public class CreatureSonarPulse : MonoBehaviour
     // Animations of the creature
     public GameObject Animated;
 
+    public Material lit;
+
+    public Material unlit;
+
 
     // Start is called before the first frame update
     void Start()

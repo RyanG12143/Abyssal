@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using static UnityEngine.GraphicsBuffer;
 
 public class PickUpAble : MonoBehaviour
@@ -18,9 +20,16 @@ public class PickUpAble : MonoBehaviour
 
     private bool NightingaleFacingRight;
 
+    public AudioSource pickUpSound;
+
+    public Material lit;
+
+    public Material unlit;
+
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<SpriteRenderer>().material = lit;
         pickedUp = false;
     }
 
@@ -44,7 +53,13 @@ public class PickUpAble : MonoBehaviour
 
         if (pickedUp)
         {
+            GetComponent<SpriteRenderer>().material = unlit;
             Follow();
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().material = lit;
+
         }
     }
 
@@ -57,7 +72,6 @@ public class PickUpAble : MonoBehaviour
         currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getMovementDirection();
 
         NightingaleFacingRight = Nightingale.GetComponent<NightingaleMovement>().getIsFacingRight();
-
 
         if (NightingaleFacingRight)
         {
@@ -75,9 +89,10 @@ public class PickUpAble : MonoBehaviour
 
     void checkPickUp()
     {
-        if((Vector2.Distance(Nightingale.transform.position, gameObject.transform.position) < 2f))
+        if((Vector2.Distance(Nightingale.transform.position, gameObject.transform.position) < 1.3f))
         {
             pickedUp = true;
+            pickUpSound.Play();
         }
     }
 }

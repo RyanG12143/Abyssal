@@ -34,6 +34,7 @@ public class NightingaleMovement : MonoBehaviour
         direction = Input.GetAxisRaw("Vertical");
 
         flip();
+
     }
 
     // updates at fixed times
@@ -84,7 +85,7 @@ public class NightingaleMovement : MonoBehaviour
             );
 
         facing.Normalize();
-        transform.right = facing;
+        transform.right = Vector3.Slerp(transform.right, facing, 7.5f * Time.deltaTime);
     }
     public Vector2 getFacing()
     {
