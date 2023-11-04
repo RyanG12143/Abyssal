@@ -32,7 +32,8 @@ public class BeaconLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isLightRunning){
+        if(!isLightRunning && gameObject.GetComponent<Beacon>().currState == BeaconState.Idle)
+        {
             StartCoroutine(Light());
         }
         
