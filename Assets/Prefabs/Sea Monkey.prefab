@@ -92,11 +92,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2458268644357433923}
-  - component: {fileID: 3556609045130136719}
+  - component: {fileID: 6258798549230420397}
   - component: {fileID: 3663781290711527478}
   - component: {fileID: 7555750050832403828}
   - component: {fileID: 4467390810138482106}
-  - component: {fileID: -4293338867734625929}
   m_Layer: 0
   m_Name: Sea Monkey
   m_TagString: Untagged
@@ -121,8 +120,8 @@ Transform:
   - {fileID: 7416237900535023009}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &3556609045130136719
-CapsuleCollider2D:
+--- !u!60 &6258798549230420397
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -153,9 +152,27 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11021474, y: -0.01976322}
-  m_Size: {x: 1.0016509, y: 1.0016508}
-  m_Direction: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.114768416, y: 0.48260313}
+      - {x: -0.33929098, y: 0.25932318}
+      - {x: -0.46955776, y: 0.032638326}
+      - {x: -0.4620685, y: -0.43829033}
+      - {x: -0.05078745, y: -0.37842342}
+      - {x: 0.25447416, y: -0.14670217}
+      - {x: 0.20130491, y: 0.23686242}
+      - {x: 0.51562756, y: 0.2998076}
+  m_UseDelaunayMesh: 0
 --- !u!50 &3663781290711527478
 Rigidbody2D:
   serializedVersion: 4
@@ -164,11 +181,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7316498124066588477}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -203,8 +220,9 @@ MonoBehaviour:
   moveDistance: 5
   turnInterval: 2
   wanderBufferTime: 2
-  slowTimeInterval: 0.1
-  buffer: 0
+  slowTimeInterval: 0.001
+  hitPlayer: 0
+  hitByTorpedo: 0
 --- !u!114 &4467390810138482106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,18 +237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteLight: {fileID: 2354029897078350263}
   Animated: {fileID: 7920679325874925847}
---- !u!114 &-4293338867734625929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7316498124066588477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da39e217f3d0ccf46add0a0a18e32036, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  lit: {fileID: 0}
+  unlit: {fileID: 0}
 --- !u!1 &7920679325874925847
 GameObject:
   m_ObjectHideFlags: 0

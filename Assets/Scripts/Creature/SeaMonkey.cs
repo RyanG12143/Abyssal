@@ -33,8 +33,8 @@ public class SeaMonkey : MonoBehaviour
     public float slowTimeInterval = 0.5f;
 
     // Bool's for creature state changes
-    private bool hitPlayer = false;
-    private bool hitByTorpedo = false;
+    public bool hitPlayer = false;
+    public bool hitByTorpedo = false;
     private bool isFacingRight = true;
     private bool creatureTurn = false;
     private bool upFlipped = false;
@@ -141,7 +141,6 @@ public class SeaMonkey : MonoBehaviour
         Vector2 currentPosition = transform.position;
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
-
 
         //// Use LookAt to make the enemy face the player
         //transform.right = direction;
@@ -254,7 +253,7 @@ public class SeaMonkey : MonoBehaviour
     // Checking if enemy hit player or Torpedo
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Nightingale" && !hitPlayer && hitByTorpedo)
+        if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
         {
             hitPlayer = true;
 
@@ -262,8 +261,7 @@ public class SeaMonkey : MonoBehaviour
             localScale.y *= -1;
             transform.localScale = localScale;
             Oxygen.GetInstance().activateOxygen();
-
-        } 
+        }
         else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
         {
             if(hitPlayer)
