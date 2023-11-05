@@ -217,6 +217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteLight: {fileID: 2354029897078350263}
   Animated: {fileID: 7920679325874925847}
+  lit: {fileID: 0}
+  unlit: {fileID: 0}
 --- !u!114 &-4293338867734625929
 MonoBehaviour:
   m_ObjectHideFlags: 0
