@@ -35,6 +35,7 @@ public class NightingaleMovement : MonoBehaviour
         direction = Input.GetAxisRaw("Vertical");
 
         flip();
+
     }
 
     // updates at fixed times
@@ -52,6 +53,10 @@ public class NightingaleMovement : MonoBehaviour
         if (rb.velocity.magnitude < maxSpeed)
         {
             rb.velocity += acceleration;
+        }
+        if(rb.velocity.magnitude < 0.1)
+        {
+            rb.velocity = new Vector2(0f, 0f);
         }
     }
 
@@ -87,7 +92,7 @@ public class NightingaleMovement : MonoBehaviour
             );
 
         facing.Normalize();
-        transform.right = facing;
+        transform.right = Vector3.Slerp(transform.right, facing, 7.5f * Time.deltaTime);
     }
 
     // Ryan Guy

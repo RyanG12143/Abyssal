@@ -42,10 +42,10 @@ public class Beacon : MonoBehaviour
                 Idle();
                 break;
             case BeaconState.Active:
-                //Active();
+                Active();
                 break;
             case BeaconState.Inactive:
-                // Inactive();
+                Inactive();
                 break;
         }
 
@@ -77,6 +77,16 @@ public class Beacon : MonoBehaviour
         }
 
 
+    }
+
+    void Inactive()
+    {
+        
+    }
+
+    void Active()
+    {
+        
     }
 
     IEnumerator ChangeFloatDirection()
