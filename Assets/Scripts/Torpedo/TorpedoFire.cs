@@ -6,16 +6,15 @@ using UnityEngine;
 
 public class TorpedoFire : MonoBehaviour
 {
-    private float fireSpeed = 4.0f;
+    public float fireSpeed = 4.0f;
     private float horizontalBound;
     private float verticalBound;
     private GameObject Nightingale = null;
     private GameObject mainCamera;
     
     private Vector2 direction;
-    
-    
 
+    
     
     //Initializes the torpedo's direction
     void Start()
@@ -37,14 +36,14 @@ public class TorpedoFire : MonoBehaviour
 
 
         direction = Nightingale.GetComponent<NightingaleMovement>().getFacing();
-        //float angle = Mathf.Atan2(direction.x + 90, direction.y + 90) * Mathf.Rad2Deg;
+        /*float angle = Mathf.Atan2(direction.x + 90, direction.y + 45) * Mathf.Rad2Deg ;
 
-        //transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(0, 0, angle);*/
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         transform.Translate(direction * Time.deltaTime * fireSpeed);
@@ -53,6 +52,8 @@ public class TorpedoFire : MonoBehaviour
         
     }
 
+    /*Matthew Brodbeck 10/11/2023
+     * Sets the bounds of where the torpedo can go*/
     void destroyTorpedo()
     {
         if (transform.position.x < -horizontalBound || transform.position.x > horizontalBound
