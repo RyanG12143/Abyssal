@@ -30,7 +30,6 @@ public class CameraController : MonoBehaviour
 
         currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
 
-
         // These two lines are what effect camera movement
         Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.60f), -10f);
         transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
