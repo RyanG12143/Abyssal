@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3070879959374959670}
   - component: {fileID: 3678024966294403103}
   m_Layer: 0
-  m_Name: Water current horizontal
+  m_Name: Water current horizontal right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
