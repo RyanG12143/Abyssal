@@ -41,8 +41,6 @@ public class SeaMonkey : MonoBehaviour
     private bool buffer = false;
     private bool slowTimeActive = false;
     private bool slowTimeCancel = false;
-    private bool isDead = false;
-    
 
     // Start is called before the first frame update
     void Start()
@@ -281,7 +279,6 @@ public class SeaMonkey : MonoBehaviour
             correctFlip();
         }
     }
-
 
     // Checks if player is in range
     private bool IsPlayerInRange(float range)
