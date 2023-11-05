@@ -7,6 +7,7 @@ public class Fire : MonoBehaviour
     public GameObject torpedoPrefab;
     private Vector2 torpedoLocation;
     public bool isCooldownActive = false;
+    public AudioSource fireSound;
 
     
 
@@ -22,7 +23,7 @@ public class Fire : MonoBehaviour
         //Fires the torpedo if you press left shift and the cooldown is over
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isCooldownActive)
         {
-            
+            fireSound.Play();
             Instantiate(torpedoPrefab, torpedoLocation, torpedoPrefab.transform.rotation);
             StartCoroutine(torpedoCooldown());
             

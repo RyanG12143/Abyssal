@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TorpedoFire : MonoBehaviour
 {
-    private float fireSpeed = 4.0f;
+    public float fireSpeed = 4.0f;
     private float horizontalBound;
     private float verticalBound;
     private GameObject Nightingale = null;
@@ -43,7 +43,7 @@ public class TorpedoFire : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
         transform.Translate(direction * Time.deltaTime * fireSpeed);
