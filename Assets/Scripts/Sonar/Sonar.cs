@@ -49,7 +49,7 @@ public class Sonar : MonoBehaviour
         sonarSizeIncrease = false;
         SonarSpread.transform.localScale = new Vector3(1f, 1f, 1f);
         SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 0f);
-        creaturesScanned = GameObject.FindGameObjectsWithTag("CreatureSonar");
+        creaturesScanned = GameObject.FindGameObjectsWithTag("Enemy");
         //tilesScanned = GameObject.FindGameObjectsWithTag("Wall");
         interactablesScanned = GameObject.FindGameObjectsWithTag("Interactable");
         beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
