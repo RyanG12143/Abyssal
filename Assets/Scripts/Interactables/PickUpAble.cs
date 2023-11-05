@@ -95,4 +95,10 @@ public class PickUpAble : MonoBehaviour
             pickUpSound.Play();
         }
     }
+
+    public bool isPickedUp()
+    {
+        return pickedUp;
+    }
+
 }
