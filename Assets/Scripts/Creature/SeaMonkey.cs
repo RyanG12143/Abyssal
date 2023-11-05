@@ -142,8 +142,7 @@ public class SeaMonkey : MonoBehaviour
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
-        //// Use LookAt to make the enemy face the player
-        //transform.right = direction;
+        //// Use LookAt to make the enemy face the player;
         transform.right = myRigidbody.velocity;
 
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
@@ -153,16 +152,13 @@ public class SeaMonkey : MonoBehaviour
         correctFlip();
     }
 
-// Run creature state
+    // Run creature state
     void Run()
     {
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        // Make the enemy face away from the player
-        //transform.right = -direction;
         
         // Invert the direction for running away
         direction = -direction;
@@ -234,7 +230,7 @@ public class SeaMonkey : MonoBehaviour
 
         angle = Mathf.Sign(Vector2.SignedAngle(transform.up, myRigidbody.velocity));
 
-        //this is to stop overrotation
+        // This is to stop overrotation
         if (Mathf.Abs(Vector2.Angle(transform.right, myRigidbody.velocity)) < 5f)
         {
             angle = 0;
@@ -293,7 +289,7 @@ public class SeaMonkey : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(turnInterval);
-            creatureTurn = !creatureTurn; // Toggle the value of creatureTurn
+            creatureTurn = !creatureTurn;
             localScale.x *= -1f;
         }
     }
