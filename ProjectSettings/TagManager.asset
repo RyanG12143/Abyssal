@@ -15,6 +15,7 @@ TagManager:
   - Beacon
   - Interactable
   - CrackedWall
+  - Enemy
   layers:
   - Default
   - TransparentFX

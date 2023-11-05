@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 3663781290711527478}
   - component: {fileID: 7555750050832403828}
   - component: {fileID: 4467390810138482106}
+  - component: {fileID: -4293338867734625929}
   m_Layer: 0
   m_Name: Sea Monkey
   m_TagString: Untagged
@@ -216,6 +217,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteLight: {fileID: 2354029897078350263}
   Animated: {fileID: 7920679325874925847}
+--- !u!114 &-4293338867734625929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316498124066588477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da39e217f3d0ccf46add0a0a18e32036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7920679325874925847
 GameObject:
   m_ObjectHideFlags: 0
