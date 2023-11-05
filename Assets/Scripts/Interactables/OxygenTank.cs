@@ -3,58 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public enum TankState
-{
-    Idle,
-    Stolen,
-}
-
 public class OxygenTank : MonoBehaviour
 {
-    public Transform target;
-    GameObject player;
-    public TankState currState = TankState.Idle;
     Rigidbody2D myRigidbody;
     public float floatInterval = 1f;
     public float floatSpeed = 0.05f;
-    public float range = 2f;
     private bool floatFlip;
-    public bool playerInteract = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         myRigidbody = GetComponent<Rigidbody2D>();
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartCoroutine(ChangeFloatDirection());
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (currState)
-        {
-            case TankState.Idle:
-                Idle();
-                break;
-            case TankState.Stolen:
-                //Stolen();
-                break;
-        }
-
-        //// Checks what state to be in
-        //if (!IsPlayerInRange(range) && currState != TankState.Inactive)
-        //{
-        //    currState = TankState.Idle;
-        //}
-        //else (IsPlayerInRange(range) && currState != TankState.Inactive)
-        //{
-        //    //currState = TankState.Stolen;
-        //}
+        Idle();
     }
 
+    // Idle floats up and down
     void Idle()
     {
         if (floatFlip)
@@ -66,17 +36,20 @@ public class OxygenTank : MonoBehaviour
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
         
-        //if (collision.gameObject.name == "Nightingale" && !hitPlayer)
-        //{
-        //    hitPlayer = true;
-
-        //    Vector3 localScale = transform.localScale;
-        //    localScale.y *= -1;
-        //    transform.localScale = localScale;
-        //}
 
     }
 
+    // Collision
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Nightingale")
+        {
+            Oxygen.GetInstance().deactivateOxygen();
+            Destroy(gameObject);
+        }
+    }
+
+    // Changing Floating up and down
     IEnumerator ChangeFloatDirection()
     {
         while (true)
