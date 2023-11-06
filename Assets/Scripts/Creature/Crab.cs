@@ -7,13 +7,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
-public class BetaFish : MonoBehaviour
+public class Crab : MonoBehaviour
 {
     public enum EnemyAction
     {
         Wander,
-        Run,
-        Die,
     }
 
     private GameObject player;
@@ -68,15 +66,7 @@ public class BetaFish : MonoBehaviour
     private void stateSwitch()
     {
         // Checks what state to be in
-        if (hitByTorpedo)
-        {
-            currState = EnemyAction.Die;
-        }
-        else if (IsPlayerInRange(range) && currState != EnemyAction.Die)
-        {
-            currState = EnemyAction.Run;
-        }
-        else if (!IsPlayerInRange(range) && currState != EnemyAction.Die && !buffer)
+        if (!IsPlayerInRange(range) && !buffer)
         {
             currState = EnemyAction.Wander;
         }
@@ -86,12 +76,6 @@ public class BetaFish : MonoBehaviour
         {
             case EnemyAction.Wander:
                 Wander();
-                break;
-            case EnemyAction.Run:
-                Run();
-                break;
-            case EnemyAction.Die:
-                Die();
                 break;
         }
     }
@@ -123,32 +107,22 @@ public class BetaFish : MonoBehaviour
     }
 
     // Run creature state
-    void Run()
-    {
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
+    //void Run()
+    //{
+    //    Vector2 targetPosition = target.position;
+    //    Vector2 currentPosition = transform.position;
 
-        Vector2 direction = (targetPosition - currentPosition).normalized;
+    //    Vector2 direction = (targetPosition - currentPosition).normalized;
         
-        // Invert the direction for running away
-        direction = -direction;
+    //    // Invert the direction for running away
+    //    direction = -direction;
 
-        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+    //    myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
 
-        buffer = true;
-        rotationFlip();
-        correctFlip();
-    }
-
-    // Die method
-    void Die()
-    {
-        if (slowTimeActive == true)
-        {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x * 0.2f, myRigidbody.velocity.y * 0.2f);
-            slowTimeActive = false;
-        }
-    }
+    //    buffer = true;
+    //    rotationFlip();
+    //    correctFlip();
+    //}
 
     // Helper methods
     //
@@ -223,19 +197,19 @@ public class BetaFish : MonoBehaviour
         {
             hitPlayer = true;
         }
-        else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
-        {
-            if(hitPlayer)
-            {
-                Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
-            }
-            hitByTorpedo = true;
-            myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-            myRigidbody.gravityScale = 0.01f;
-            StartCoroutine(deathSlowTime());
-            StartCoroutine(deathSlowTimeCancel());
-            correctFlip();
-        }
+        //else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
+        //{
+        //    if(hitPlayer)
+        //    {
+        //        Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
+        //    }
+        //    hitByTorpedo = true;
+        //    myRigidbody.bodyType = RigidbodyType2D.Dynamic;
+        //    myRigidbody.gravityScale = 0.01f;
+        //    StartCoroutine(deathSlowTime());
+        //    StartCoroutine(deathSlowTimeCancel());
+        //    correctFlip();
+        //}
     }
 
     // Checks if player is in range
