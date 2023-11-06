@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f8d441f19187d748b733075de265605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireSpeed: 4
 --- !u!114 &1213188285436969477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,3 +198,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19ecf7aeb904ff4990653f1d523a3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  torpedo: {fileID: 5618860476881002139}
