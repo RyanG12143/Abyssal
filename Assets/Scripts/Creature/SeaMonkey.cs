@@ -7,16 +7,16 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
-public enum EnemyAction
-{
-    Wander,
-    Follow,
-    Run,
-    Die,
-}
-
 public class SeaMonkey : MonoBehaviour
 {
+    public enum EnemyAction
+    {
+        Wander,
+        Follow,
+        Run,
+        Die,
+    }
+
     private GameObject player;
     public GameObject objectToSpawn;
     public EnemyAction currState = EnemyAction.Wander;
@@ -33,8 +33,8 @@ public class SeaMonkey : MonoBehaviour
     public float slowTimeInterval = 0.5f;
 
     // Bool's for creature state changes
-    private bool hitPlayer = false;
-    private bool hitByTorpedo = false;
+    public bool hitPlayer = false;
+    public bool hitByTorpedo = false;
     private bool isFacingRight = true;
     private bool creatureTurn = false;
     private bool upFlipped = false;
@@ -142,9 +142,7 @@ public class SeaMonkey : MonoBehaviour
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
-
-        //// Use LookAt to make the enemy face the player
-        //transform.right = direction;
+        //// Use LookAt to make the enemy face the player;
         transform.right = myRigidbody.velocity;
 
         myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
@@ -154,16 +152,13 @@ public class SeaMonkey : MonoBehaviour
         correctFlip();
     }
 
-// Run creature state
+    // Run creature state
     void Run()
     {
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        // Make the enemy face away from the player
-        //transform.right = -direction;
         
         // Invert the direction for running away
         direction = -direction;
@@ -235,7 +230,7 @@ public class SeaMonkey : MonoBehaviour
 
         angle = Mathf.Sign(Vector2.SignedAngle(transform.up, myRigidbody.velocity));
 
-        //this is to stop overrotation
+        // This is to stop overrotation
         if (Mathf.Abs(Vector2.Angle(transform.right, myRigidbody.velocity)) < 5f)
         {
             angle = 0;
@@ -254,7 +249,7 @@ public class SeaMonkey : MonoBehaviour
     // Checking if enemy hit player or Torpedo
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Nightingale" && !hitPlayer && hitByTorpedo)
+        if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
         {
             hitPlayer = true;
 
@@ -262,8 +257,7 @@ public class SeaMonkey : MonoBehaviour
             localScale.y *= -1;
             transform.localScale = localScale;
             Oxygen.GetInstance().activateOxygen();
-
-        } 
+        }
         else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
         {
             if(hitPlayer)
@@ -295,7 +289,7 @@ public class SeaMonkey : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(turnInterval);
-            creatureTurn = !creatureTurn; // Toggle the value of creatureTurn
+            creatureTurn = !creatureTurn;
             localScale.x *= -1f;
         }
     }

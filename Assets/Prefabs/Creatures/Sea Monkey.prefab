@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -4293338867734625929}
   m_Layer: 0
   m_Name: Sea Monkey
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7316498124066588477}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -195,16 +195,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65ac5c470a25ad4aaa785ac1742a9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 8647918077967304447, guid: e2cc0686487ac4341ac5805c4e41e52f, type: 3}
+  objectToSpawn: {fileID: 0}
   currState: 0
   target: {fileID: 0}
   range: 5
-  moveSpeed: 3
+  moveSpeed: 2
   moveDistance: 5
   turnInterval: 2
   wanderBufferTime: 2
-  slowTimeInterval: 0.1
-  buffer: 0
+  slowTimeInterval: 0.5
+  hitPlayer: 0
+  hitByTorpedo: 0
 --- !u!114 &4467390810138482106
 MonoBehaviour:
   m_ObjectHideFlags: 0

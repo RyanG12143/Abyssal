@@ -10,6 +10,10 @@ public class CurrentForce : MonoBehaviour
      * Forces the object in a horizontal direction*/
     private void OnTriggerStay2D(Collider2D other)
     {
-        other.GetComponent<Rigidbody2D>().AddForce(transform.right * force);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<Rigidbody2D>().AddForce(transform.right * force);
+        }
+        
     }
 }
