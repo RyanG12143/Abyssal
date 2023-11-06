@@ -10,6 +10,10 @@ public class CurrentVertical : MonoBehaviour
      * Forces the object in a vertical direction*/
     private void OnTriggerStay2D(Collider2D other)
     {
-        other.GetComponent<Rigidbody2D>().AddForce(transform.up * force);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<Rigidbody2D>().AddForce(transform.up * force);
+        }
+        
     }
 }

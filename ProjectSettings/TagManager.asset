@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Falling rocks
   - Torpedo
+  - CreatureSonar
   - Destroy
   - DamageOnHit
   - Wall
@@ -15,6 +16,8 @@ TagManager:
   - Interactable
   - CrackedWall
   - Enemy
+  - CurrentHorizontal
+  - CurrentVertical
   layers:
   - Default
   - TransparentFX

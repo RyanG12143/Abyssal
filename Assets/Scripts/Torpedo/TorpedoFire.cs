@@ -34,11 +34,10 @@ public class TorpedoFire : MonoBehaviour
         horizontalBound = Mathf.Abs(mainCamera.transform.position.x) + 10;
         verticalBound = Mathf.Abs(mainCamera.transform.position.y) + 5;
 
+        direction = new Vector2(1, 0);
 
-        direction = Nightingale.GetComponent<NightingaleMovement>().getFacing();
-        /*float angle = Mathf.Atan2(direction.x + 90, direction.y + 45) * Mathf.Rad2Deg ;
-
-        transform.rotation = Quaternion.Euler(0, 0, angle);*/
+        transform.localRotation = Nightingale.transform.rotation;
+        
 
     }
 
@@ -49,6 +48,7 @@ public class TorpedoFire : MonoBehaviour
         transform.Translate(direction * Time.deltaTime * fireSpeed);
 
         destroyTorpedo();
+        
         
     }
 
