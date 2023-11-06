@@ -12,7 +12,7 @@ public class BeaconSonar : MonoBehaviour
     private GameObject _Beacon;
 
     // Nightingale
-    public GameObject _Nightingale;
+    private GameObject _Nightingale;
 
 
     // Start is called before the first frame update
@@ -25,8 +25,13 @@ public class BeaconSonar : MonoBehaviour
     void Update()
     {
 
+        if (_Nightingale == null)
+        {
+            _Nightingale = GameObject.Find("Nightingale");
+        }
+
         // Runs as at the same time as Point to update the arrow direction
-        if(isPointing){
+        if (isPointing){
             Vector3 target = new Vector3(_Beacon.transform.position.x, _Beacon.transform.position.y , 0f);
         
             Vector3 objectPos = _Nightingale.transform.position;
