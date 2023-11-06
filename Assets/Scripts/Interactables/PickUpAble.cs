@@ -99,6 +99,6 @@ public class PickUpAble : MonoBehaviour
     public bool isPickedUp()
     {
         return pickedUp;
-    }
 
+    }
 }

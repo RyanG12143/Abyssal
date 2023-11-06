@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3366004199385193116, guid: 0a70b9ea510dbb047b1dcda4fceadbe3, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 487729360}
     - target: {fileID: 3632774269000463264, guid: 0a70b9ea510dbb047b1dcda4fceadbe3, type: 3}
       propertyPath: m_Name
       value: Crystal (3)
@@ -264,6 +268,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3366004199385193116, guid: 0a70b9ea510dbb047b1dcda4fceadbe3, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 487729360}
     - target: {fileID: 3632774269000463264, guid: 0a70b9ea510dbb047b1dcda4fceadbe3, type: 3}
       propertyPath: m_Name
       value: Crystal (2)
@@ -461,6 +469,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2116683315331328771, guid: 2750905d1ec139b47b922791cf121f03, type: 3}
   m_PrefabInstance: {fileID: 1215435599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &487729360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2356097091713251705, guid: dc2ccb20157cff644ac6c72918f4f3fa, type: 3}
+  m_PrefabInstance: {fileID: 3017208179231865425}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &489455769
 PrefabInstance:
@@ -18599,6 +18612,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3366004199385193116, guid: 0a70b9ea510dbb047b1dcda4fceadbe3, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 487729360}
     - target: {fileID: 3632774269000463264, guid: 0a70b9ea510dbb047b1dcda4fceadbe3, type: 3}
       propertyPath: m_Name
       value: Crystal (1)
@@ -18715,6 +18732,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4d4067380a3ec64984b75db4086e9c0, type: 3}
+--- !u!1 &965590673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2356097091713251705, guid: dc2ccb20157cff644ac6c72918f4f3fa, type: 3}
+  m_PrefabInstance: {fileID: 1786327194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &986304582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18767,6 +18789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal Wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7970566737899382283, guid: dc2ccb20157cff644ac6c72918f4f3fa, type: 3}
+      propertyPath: nextWall
+      value: 
+      objectReference: {fileID: 965590673}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19445,6 +19471,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3366004199385193116, guid: 0a70b9ea510dbb047b1dcda4fceadbe3, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 487729360}
     - target: {fileID: 3632774269000463264, guid: 0a70b9ea510dbb047b1dcda4fceadbe3, type: 3}
       propertyPath: m_Name
       value: Crystal
@@ -19869,6 +19899,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal Wall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7970566737899382283, guid: dc2ccb20157cff644ac6c72918f4f3fa, type: 3}
+      propertyPath: nextWall
+      value: 
+      objectReference: {fileID: 2143461323}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20205,11 +20239,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -62.7
+      value: -21.85
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.8
+      value: 10.96
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20318,6 +20352,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+--- !u!1 &2112368156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2356097091713251705, guid: dc2ccb20157cff644ac6c72918f4f3fa, type: 3}
+  m_PrefabInstance: {fileID: 986304582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2143461323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2356097091713251705, guid: dc2ccb20157cff644ac6c72918f4f3fa, type: 3}
+  m_PrefabInstance: {fileID: 1449006166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &254933587885116205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20427,6 +20471,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 7970566737899382283, guid: dc2ccb20157cff644ac6c72918f4f3fa, type: 3}
+      propertyPath: nextWall
+      value: 
+      objectReference: {fileID: 2112368156}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

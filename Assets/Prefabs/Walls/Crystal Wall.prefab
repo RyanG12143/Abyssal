@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 890672353091463201}
   - component: {fileID: 8435178066708006891}
+  - component: {fileID: 7970566737899382283}
   m_Layer: 0
   m_Name: Crystal Wall
   m_TagString: CrystalWall
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7970566737899382283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2356097091713251705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f7e5a19dc119540943a0c2b6f84366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
