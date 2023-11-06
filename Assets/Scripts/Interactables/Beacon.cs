@@ -20,7 +20,8 @@ public class Beacon : MonoBehaviour
     public float floatSpeed = 0.05f;
     public float range = 2f;
     private bool floatFlip;
-    public bool playerInteract = false;
+    //public bool playerInteract = false;
+    public GameObject nextBeacon;
     
 
     // Start is called before the first frame update
@@ -50,18 +51,13 @@ public class Beacon : MonoBehaviour
         }
 
         // Checks what state to be in
-        if (!IsPlayerInRange(range) && currState != BeaconState.Inactive)
-        {
-            currState = BeaconState.Idle;
-        }
-        else if (IsPlayerInRange(range) && currState != BeaconState.Inactive)
+        if (!IsPlayerInRange(range) && currState == BeaconState.Idle)
         {
             currState = BeaconState.Active;
         }
-        else if (!IsPlayerInRange(range) && playerInteract == true)
+        else if (!IsPlayerInRange(range) && currState == BeaconState.Active)
         {
             currState = BeaconState.Inactive;
-
         }
     }
 
@@ -81,12 +77,20 @@ public class Beacon : MonoBehaviour
 
     void Inactive()
     {
-        
+        if (floatFlip)
+        {
+            myRigidbody.velocity = new Vector2(0f, floatSpeed);
+        }
+        else
+        {
+            myRigidbody.velocity = new Vector2(0f, -floatSpeed);
+        }
+
     }
 
     void Active()
     {
-        
+        nextBeacon.GetComponent<Beacon>().currState = BeaconState.Idle;
     }
 
     IEnumerator ChangeFloatDirection()
