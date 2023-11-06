@@ -3,12 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Falling rocks
+  - Torpedo
+  - Destroy
+  - DamageOnHit
+  - Wall
+  - Animation
+  - Level
+  - Beacon
+  - Interactable
+  - CrackedWall
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Torpedo
   - Water
   - UI
   - 
