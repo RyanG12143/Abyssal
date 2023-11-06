@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8453766496575405023}
   - component: {fileID: 6850390411039134850}
   - component: {fileID: 6156018252896436173}
+  - component: {fileID: 6620671361690036268}
   - component: {fileID: 9096598801545382379}
   m_Layer: 0
   m_Name: Crab
@@ -120,6 +121,27 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &6620671361690036268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2434645889738624196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ebda6e56f3e444ca3913ee2bbb7525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currState: 0
+  target: {fileID: 0}
+  range: 5
+  moveSpeed: 2
+  turnInterval: 2
+  wanderBufferTime: 2
+  slowTimeInterval: 0.5
+  hitPlayer: 0
+  hitByTorpedo: 0
 --- !u!114 &9096598801545382379
 MonoBehaviour:
   m_ObjectHideFlags: 0

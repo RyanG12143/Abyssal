@@ -34,7 +34,7 @@ public class Crab : MonoBehaviour
     private bool creatureTurn = false;
     private bool upFlipped = true;
     private bool buffer = false;
-    private bool slowTimeActive = false;
+    //private bool slowTimeActive = false;
     private bool slowTimeCancel = false;
 
     // Start is called before the first frame update
@@ -245,7 +245,7 @@ public class Crab : MonoBehaviour
         if (!slowTimeCancel)
         {
             yield return new WaitForSeconds(slowTimeInterval);
-            yield return slowTimeActive = true;
+            //yield return slowTimeActive = true;
         }
     }
 
