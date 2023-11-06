@@ -18,7 +18,7 @@ public class Beacon : MonoBehaviour
     Rigidbody2D myRigidbody;
     public float floatInterval = 1f;
     public float floatSpeed = 0.05f;
-    public float range = 2f;
+   // public float range = 2f;
     private bool floatFlip;
     //public bool playerInteract = false;
     public GameObject nextBeacon;
@@ -51,11 +51,12 @@ public class Beacon : MonoBehaviour
         }
 
         // Checks what state to be in
-        if (!IsPlayerInRange(range) && currState == BeaconState.Idle)
+        if ((Vector2.Distance(player.transform.position, gameObject.transform.position) < 1.3f) && currState == BeaconState.Idle)
         {
             currState = BeaconState.Active;
+            Debug.Log("called");
         }
-        else if (!IsPlayerInRange(range) && currState == BeaconState.Active)
+        else if ((Vector2.Distance(player.transform.position, gameObject.transform.position) > 1.3f) && currState == BeaconState.Active)
         {
             currState = BeaconState.Inactive;
         }
@@ -90,7 +91,10 @@ public class Beacon : MonoBehaviour
 
     void Active()
     {
-        nextBeacon.GetComponent<Beacon>().currState = BeaconState.Idle;
+        if (nextBeacon != null)
+        {
+            nextBeacon.GetComponent<Beacon>().currState = BeaconState.Idle;
+        }
     }
 
     IEnumerator ChangeFloatDirection()
@@ -101,10 +105,10 @@ public class Beacon : MonoBehaviour
             floatFlip = !floatFlip; // Toggle the value of creatureTurn
         }
     }
-    private bool IsPlayerInRange(float range)
-    {
-        return Vector3.Distance(transform.position, player.transform.position) <= range;
-    }
+    //private bool IsPlayerInRange(float range)
+    //{
+    //    return Vector3.Distance(transform.position, player.transform.position) <= range;
+    //}
 
 
 }
