@@ -402,13 +402,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 584342577625551856, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
-      propertyPath: force
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 3001611779389842729, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_Name
       value: Water current vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 3001611779389842729, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_TagString
+      value: CurrentVertical
       objectReference: {fileID: 0}
     - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_LocalPosition.x
