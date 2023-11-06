@@ -16,6 +16,8 @@ TagManager:
   - Interactable
   - CrackedWall
   - Enemy
+  - CurrentHorizontal
+  - CurrentVertical
   layers:
   - Default
   - TransparentFX
