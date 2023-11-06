@@ -7,18 +7,16 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
-public class SeaMonkey : MonoBehaviour
+public class BetaFish : MonoBehaviour
 {
     public enum EnemyAction
     {
         Wander,
-        Follow,
         Run,
         Die,
     }
 
     private GameObject player;
-    public GameObject objectToSpawn;
     public EnemyAction currState = EnemyAction.Wander;
 
     public Transform target;
@@ -27,7 +25,6 @@ public class SeaMonkey : MonoBehaviour
     // Editable movement variables
     public float range = 2f;
     public float moveSpeed = 2f;
-    public float moveDistance = 5f;
     public float turnInterval = 2.0f;
     public float wanderBufferTime = 2.0f;
     public float slowTimeInterval = 0.5f;
@@ -38,7 +35,7 @@ public class SeaMonkey : MonoBehaviour
     private bool isFacingRight = true;
     private bool creatureTurn = false;
     private bool upFlipped = false;
-    private bool buffer = false;
+    public bool buffer = false;
     private bool slowTimeActive = false;
     private bool slowTimeCancel = false;
 
@@ -60,6 +57,11 @@ public class SeaMonkey : MonoBehaviour
         {
             facingUpdate();
         }
+
+        if (buffer && !IsPlayerInRange(range))
+        {
+            StartCoroutine(wanderBuffer());
+        }
     }
     
     // Switches the states of the enemy creature
@@ -70,15 +72,11 @@ public class SeaMonkey : MonoBehaviour
         {
             currState = EnemyAction.Die;
         }
-        else if (IsPlayerInRange(range) && currState != EnemyAction.Die && hitPlayer == true)
+        else if (IsPlayerInRange(range) && currState != EnemyAction.Die)
         {
             currState = EnemyAction.Run;
         }
-        else if (IsPlayerInRange(range) && currState != EnemyAction.Die && currState != EnemyAction.Run)
-        {
-            currState = EnemyAction.Follow;
-        }
-        else if (!IsPlayerInRange(range) && currState != EnemyAction.Die)
+        else if (!IsPlayerInRange(range) && currState != EnemyAction.Die && !buffer)
         {
             currState = EnemyAction.Wander;
         }
@@ -88,9 +86,6 @@ public class SeaMonkey : MonoBehaviour
         {
             case EnemyAction.Wander:
                 Wander();
-                break;
-            case EnemyAction.Follow:
-                Follow();
                 break;
             case EnemyAction.Run:
                 Run();
@@ -108,14 +103,10 @@ public class SeaMonkey : MonoBehaviour
     // Wander creature state
     void Wander()
     {
-        StartCoroutine (wanderBuffer());
 
         Vector3 localScale = transform.localScale;
         
-
-
-        if(buffer == false)
-        {
+        // Waits for buffer to be over to start wander
             if (transform.up.y < 0f)
             {
                 localScale.y = 1;
@@ -131,25 +122,6 @@ public class SeaMonkey : MonoBehaviour
             {
                 myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
             }
-        }
-    }
-
-    // Follow creature state
-    void Follow()
-    {
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
-
-        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        //// Use LookAt to make the enemy face the player;
-        transform.right = myRigidbody.velocity;
-
-        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
-
-        buffer = true;
-        flip();
-        correctFlip();
     }
 
     // Run creature state
@@ -252,18 +224,12 @@ public class SeaMonkey : MonoBehaviour
         if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
         {
             hitPlayer = true;
-
-            Vector3 localScale = transform.localScale;
-            localScale.y *= -1;
-            transform.localScale = localScale;
-            Oxygen.GetInstance().activateOxygen();
         }
         else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
         {
             if(hitPlayer)
             {
                 Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
-                Instantiate(objectToSpawn, transform.position + dropModify, objectToSpawn.transform.rotation);
             }
             hitByTorpedo = true;
             myRigidbody.bodyType = RigidbodyType2D.Dynamic;
@@ -307,7 +273,7 @@ public class SeaMonkey : MonoBehaviour
         if (!slowTimeCancel)
         {
             yield return new WaitForSeconds(slowTimeInterval);
-            slowTimeActive = true;
+            yield return slowTimeActive = true;
         }
     }
 
