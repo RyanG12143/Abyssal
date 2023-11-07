@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Rendering.Universal;
@@ -17,6 +19,8 @@ public class NightingaleMovement : MonoBehaviour
     // refrence to game object to flip rotation
     public GameObject spotlight;
 
+    private Vector3 originalFace;
+
     // max velocity of object
     [SerializeField] private float maxSpeed;
     // rigid body of object
@@ -26,12 +30,14 @@ public class NightingaleMovement : MonoBehaviour
     void Start()
     {
         //spotlight = GameObject.FindGameObjectWithTag("conelight");
+        originalFace = transform.right;
     }
 
     // Update is called once per frame
     void Update()
     {
         faceMouse();
+
         direction = Input.GetAxisRaw("Vertical");
 
         flip();
@@ -64,7 +70,7 @@ public class NightingaleMovement : MonoBehaviour
     // Flips the character model if it is facing the wrong direction
     private void flip()
     {
-        if ((isFacingRight && facing.x > 0.05) || (!isFacingRight && facing.x < -0.05))
+        if ((isFacingRight && facing.x > 0.0) || (!isFacingRight && facing.x < 0.0))
         {
             isFacingRight = !isFacingRight;
 
@@ -84,15 +90,15 @@ public class NightingaleMovement : MonoBehaviour
     void faceMouse()
     {
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        facing = new Vector2(
-            mousePosition.x - transform.position.x,
-            mousePosition.y - transform.position.y
-            );
-
+        facing = mousePosition - transform.position;
         facing.Normalize();
-        transform.right = Vector3.Slerp(transform.right, facing, 7.5f * Time.deltaTime);
+
+        float RotationZ = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.Euler(0f, 0f, RotationZ), Time.deltaTime * 7.5f);
+
+        //transform.right = Vector3.Slerp(transform.right, facing, 7.5f * Time.deltaTime);
     }
 
     // Ryan Guy
