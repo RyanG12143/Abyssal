@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class Beacon : MonoBehaviour
     private bool floatFlip;
     //public bool playerInteract = false;
     public GameObject nextBeacon;
+    private bool inRange = false;
     
 
     // Start is called before the first frame update
@@ -51,16 +53,34 @@ public class Beacon : MonoBehaviour
         }
 
         // Checks what state to be in
-        if ((Vector2.Distance(player.transform.position, gameObject.transform.position) < 1.3f) && currState == BeaconState.Idle)
+        if (inRange && currState == BeaconState.Idle)
         {
             currState = BeaconState.Active;
-            Debug.Log("called");
+
         }
-        else if ((Vector2.Distance(player.transform.position, gameObject.transform.position) > 1.3f) && currState == BeaconState.Active)
+        else if (!inRange && currState == BeaconState.Active)
         {
             currState = BeaconState.Inactive;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            inRange = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            inRange = false;
+        }
+    }
+
+
+
 
     void Idle()
     {

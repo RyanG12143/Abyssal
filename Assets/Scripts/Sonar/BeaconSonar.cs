@@ -31,7 +31,7 @@ public class BeaconSonar : MonoBehaviour
         }
 
         // Runs as at the same time as Point to update the arrow direction
-        if (isPointing){
+        if (isPointing && _Beacon.GetComponent<Beacon>().currState == BeaconState.Idle){
             Vector3 target = new Vector3(_Beacon.transform.position.x, _Beacon.transform.position.y , 0f);
         
             Vector3 objectPos = _Nightingale.transform.position;

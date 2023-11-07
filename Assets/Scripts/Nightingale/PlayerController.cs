@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     bool invinc = false;
+
+    private List<GameObject> crystals = new List<GameObject>();
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -16,6 +18,16 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(i());
             }
         }
+    }
+
+    public void addCrystal(GameObject crystal)
+    {
+        crystals.Add(crystal);
+    }
+
+    public List<GameObject> getCrystals()
+    {
+        return crystals;
     }
 
     IEnumerator i()

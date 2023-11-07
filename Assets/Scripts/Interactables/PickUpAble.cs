@@ -36,10 +36,7 @@ public class PickUpAble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!pickedUp)
-        {
-            checkPickUp();
-        }
+
     }
 
     private void FixedUpdate()
@@ -87,18 +84,20 @@ public class PickUpAble : MonoBehaviour
       
     }
 
-    void checkPickUp()
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if((Vector2.Distance(Nightingale.transform.position, gameObject.transform.position) < 1.3f))
+        if (collision.gameObject.tag == "Player" && !pickedUp)
         {
             pickedUp = true;
             pickUpSound.Play();
+            collision.gameObject.GetComponent<PlayerController>().addCrystal(gameObject);
         }
     }
 
     public bool isPickedUp()
-    {
-        return pickedUp;
+{
+    return pickedUp;
 
-    }
+}
 }

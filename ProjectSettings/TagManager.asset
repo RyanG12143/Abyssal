@@ -17,6 +17,7 @@ TagManager:
   - Enemy
   - CreatureSonar
   - CrystalWall
+  - Crystal
   layers:
   - Default
   - TransparentFX

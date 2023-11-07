@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: -2009170504700224608}
   - component: {fileID: 9021062924139443107}
   - component: {fileID: 5144231404597558251}
+  - component: {fileID: 5207787593860429044}
   m_Layer: 0
   m_Name: Beacon
   m_TagString: Beacon
@@ -196,8 +197,7 @@ MonoBehaviour:
   currState: 0
   floatInterval: 1
   floatSpeed: 0.05
-  range: 0.05
-  playerInteract: 0
+  nextBeacon: {fileID: 0}
 --- !u!114 &5144231404597558251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +212,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteLight: {fileID: 2984343981420863231}
   Animated: {fileID: 3991324876894717139}
+--- !u!70 &5207787593860429044
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655628710756093395}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 4, y: 4}
+  m_Direction: 0
 --- !u!1 &3991324876894717139
 GameObject:
   m_ObjectHideFlags: 0

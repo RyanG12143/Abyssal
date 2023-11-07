@@ -21,6 +21,8 @@ public class Sonar : MonoBehaviour
     // List of Cracked Walls
     private GameObject[] crackedWallsScanned;
 
+    private GameObject[] crystalsScanned;
+
     // Nightingale
     private GameObject Nightingale = null;
 
@@ -54,6 +56,7 @@ public class Sonar : MonoBehaviour
         interactablesScanned = GameObject.FindGameObjectsWithTag("Interactable");
         beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
         crackedWallsScanned = GameObject.FindGameObjectsWithTag("CrackedWall");
+        crystalsScanned = GameObject.FindGameObjectsWithTag("Crystal");
     }
 
     // Update is called once per frame
@@ -102,16 +105,6 @@ public class Sonar : MonoBehaviour
                 }
             }
 
-            foreach (var interactable in interactablesScanned)
-            {
-
-                if ((Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
-                {
-                    
-                    interactable.GetComponent<InteractableSonarPulse>().StartFade();
-                }
-            }
-
             foreach (var crackedWall in crackedWallsScanned)
             {
 
@@ -119,6 +112,26 @@ public class Sonar : MonoBehaviour
                 {
 
                     crackedWall.GetComponent<CrackedWallSonarPulse>().StartFade();
+                }
+            }
+
+            foreach (var crystal in crystalsScanned)
+            {
+
+                if ((Vector2.Distance(SonarSpread.transform.position, crystal.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                {
+
+                    crystal.GetComponent<InteractableSonarPulse>().StartFade();
+                }
+            }
+
+            foreach (var interactable in interactablesScanned)
+            {
+
+                if ((Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                {
+
+                    interactable.GetComponent<InteractableSonarPulse>().StartFade();
                 }
             }
 
