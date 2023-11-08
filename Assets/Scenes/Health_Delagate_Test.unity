@@ -5337,6 +5337,11 @@ Transform:
   - {fileID: 241751163}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1290715599 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5636167500696651310, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
+  m_PrefabInstance: {fileID: 635062526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1352296821 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6367912506319712472, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
@@ -5570,6 +5575,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2427713785180136264, guid: 1289f1328ef924647845097412ba7562, type: 3}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 1290715599}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -6411,6 +6420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49af9d4e5bc2977428e32e7219fccde8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ByeWall: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

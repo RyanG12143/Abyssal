@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     bool invinc = false;
-    private GameObject gameOver;
+    public GameObject gameOver;
 
     private void Awake()
     {
-        gameOver = GameObject.Find("Game Over");
+        //gameOver = GameObject.Find("Game Over");
         this.gameObject.GetComponent<Health>().addOnFail(failureState);
     }
     private void OnCollisionEnter2D(Collision2D other)
