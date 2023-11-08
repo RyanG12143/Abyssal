@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public static Health instance;
+    public static Health GetInstance() { return instance; }
+
     [SerializeField] private int maxHealth;
     private int currHealth;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         currHealth = maxHealth;

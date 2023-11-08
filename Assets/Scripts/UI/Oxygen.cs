@@ -22,6 +22,8 @@ public class Oxygen : MonoBehaviour
         instance = this;
 
         originalSize = mask.rectTransform.rect.height;
+
+        timeLeft = timeLimit;
     }
 
     // Update is called once per frame
@@ -35,7 +37,7 @@ public class Oxygen : MonoBehaviour
         if (timeLeft <= 0)
         {
             // implement fail state
-
+            Health.GetInstance().kill();
         }
     }
 

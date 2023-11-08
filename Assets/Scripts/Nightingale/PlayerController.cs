@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         //gameOver = GameObject.Find("Game Over");
-        this.gameObject.GetComponent<Health>().addOnFail(failureState);
+        Health.GetInstance().addOnFail(failureState);
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -35,7 +35,9 @@ public class PlayerController : MonoBehaviour
     {
         if(gameOver != null)
         {
+            Time.timeScale = 0;
             gameOver.GetComponent<ShowHide>().Show();
+            Destroy(gameObject);
         }
     }
 }

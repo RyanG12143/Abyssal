@@ -1476,10 +1476,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7879157405843146266, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5284,6 +5280,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1096880251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5636167500696651310, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
+  m_PrefabInstance: {fileID: 635062526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1144023751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6367912506319712472, guid: c6a55ea702af7b347a859b2b22145ffe, type: 3}
@@ -5570,6 +5571,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2427713785180136264, guid: 1289f1328ef924647845097412ba7562, type: 3}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 1096880251}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
