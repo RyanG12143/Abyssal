@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TorpedoFire : MonoBehaviour
 {
-    public float fireSpeed = 4.0f;
+    public float fireSpeed = 5.0f;
     private float horizontalBound;
     private float verticalBound;
     private GameObject Nightingale = null;

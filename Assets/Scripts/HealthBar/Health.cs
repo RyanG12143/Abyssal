@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
+    public static Health instance;
+    public static Health GetInstance() { return instance; }
 
+    [SerializeField] private int maxHealth;
     private int currHealth;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         currHealth = maxHealth;
@@ -21,9 +27,19 @@ public class Health : MonoBehaviour
 
     public void damage()
     {
-
         onHealthChanged(currHealth , currHealth - 1);
         currHealth = currHealth - 1;
+        if (currHealth < 1)
+        {
+            onFail();
+        }
+    }
+
+    public void kill()
+    {
+        onHealthChanged(currHealth, 0); 
+        currHealth = 0;
+        onFail();
     }
 
     public int getMax()
@@ -32,12 +48,19 @@ public class Health : MonoBehaviour
     }
 
     public delegate void ValueChanged(int oldValue, int newValue);
-
     private ValueChanged onHealthChanged;
 
     public void addOnHealthChanged(ValueChanged newHealthChanged)
     { 
         onHealthChanged += newHealthChanged;
+    }
+
+    public delegate void Failed();
+    private Failed onFail;
+
+    public void addOnFail(Failed newFail)
+    {
+        onFail += newFail;
     }
 
 }

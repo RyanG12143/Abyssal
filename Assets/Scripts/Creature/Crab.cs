@@ -7,18 +7,14 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
-public class SeaMonkey : MonoBehaviour
+public class Crab : MonoBehaviour
 {
     public enum EnemyAction
     {
         Wander,
-        Follow,
-        Run,
-        Die,
     }
 
     private GameObject player;
-    public GameObject objectToSpawn;
     public EnemyAction currState = EnemyAction.Wander;
 
     public Transform target;
@@ -27,7 +23,6 @@ public class SeaMonkey : MonoBehaviour
     // Editable movement variables
     public float range = 2f;
     public float moveSpeed = 2f;
-    public float moveDistance = 5f;
     public float turnInterval = 2.0f;
     public float wanderBufferTime = 2.0f;
     public float slowTimeInterval = 0.5f;
@@ -37,9 +32,9 @@ public class SeaMonkey : MonoBehaviour
     public bool hitByTorpedo = false;
     private bool isFacingRight = true;
     private bool creatureTurn = false;
-    private bool upFlipped = false;
+    private bool upFlipped = true;
     private bool buffer = false;
-    private bool slowTimeActive = false;
+    //private bool slowTimeActive = false;
     private bool slowTimeCancel = false;
 
     // Start is called before the first frame update
@@ -60,25 +55,18 @@ public class SeaMonkey : MonoBehaviour
         {
             facingUpdate();
         }
+
+        if (buffer && !IsPlayerInRange(range))
+        {
+            StartCoroutine(wanderBuffer());
+        }
     }
     
     // Switches the states of the enemy creature
     private void stateSwitch()
     {
         // Checks what state to be in
-        if (hitByTorpedo)
-        {
-            currState = EnemyAction.Die;
-        }
-        else if (IsPlayerInRange(range) && currState != EnemyAction.Die && hitPlayer == true)
-        {
-            currState = EnemyAction.Run;
-        }
-        else if (IsPlayerInRange(range) && currState != EnemyAction.Die && currState != EnemyAction.Run)
-        {
-            currState = EnemyAction.Follow;
-        }
-        else if (!IsPlayerInRange(range) && currState != EnemyAction.Die)
+        if (!IsPlayerInRange(range) && !buffer)
         {
             currState = EnemyAction.Wander;
         }
@@ -88,15 +76,6 @@ public class SeaMonkey : MonoBehaviour
         {
             case EnemyAction.Wander:
                 Wander();
-                break;
-            case EnemyAction.Follow:
-                Follow();
-                break;
-            case EnemyAction.Run:
-                Run();
-                break;
-            case EnemyAction.Die:
-                Die();
                 break;
         }
     }
@@ -108,83 +87,48 @@ public class SeaMonkey : MonoBehaviour
     // Wander creature state
     void Wander()
     {
-        StartCoroutine (wanderBuffer());
-
         Vector3 localScale = transform.localScale;
         
-
-
-        if(buffer == false)
+        if (transform.up.y < 0f)
         {
-            if (transform.up.y < 0f)
-            {
-                localScale.y = 1;
-                transform.localScale = localScale;
-                upFlipped = true;
-            }
-
-            if (creatureTurn)
-            {
-                myRigidbody.velocity = new Vector2(moveSpeed, 0f);
-            }
-            else
-            {
-                myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
-            }
+            localScale.y = 1;
+            transform.localScale = localScale;
+            upFlipped = true;
         }
-    }
 
-    // Follow creature state
-    void Follow()
-    {
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
-
-        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        //// Use LookAt to make the enemy face the player;
-        transform.right = myRigidbody.velocity;
-
-        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
-
-        buffer = true;
-        flip();
-        correctFlip();
+        if (creatureTurn)
+        {
+            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
+        }
+        else
+        {
+            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+        }
     }
 
     // Run creature state
-    void Run()
-    {
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
+    //void Run()
+    //{
+    //    Vector2 targetPosition = target.position;
+    //    Vector2 currentPosition = transform.position;
 
-        Vector2 direction = (targetPosition - currentPosition).normalized;
+    //    Vector2 direction = (targetPosition - currentPosition).normalized;
         
-        // Invert the direction for running away
-        direction = -direction;
+    //    // Invert the direction for running away
+    //    direction = -direction;
 
-        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+    //    myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
 
-        buffer = true;
-        flip();
-        correctFlip();
-    }
-
-    // Die method
-    void Die()
-    {
-        if (slowTimeActive == true)
-        {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x * 0.2f, myRigidbody.velocity.y * 0.2f);
-            slowTimeActive = false;
-        }
-    }
+    //    buffer = true;
+    //    rotationFlip();
+    //    correctFlip();
+    //}
 
     // Helper methods
     //
     //
     // Flipping sprite at critical points (Looking Straight Up and Down)
-    private void flip()
+    private void rotationFlip()
     {
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
@@ -252,26 +196,20 @@ public class SeaMonkey : MonoBehaviour
         if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
         {
             hitPlayer = true;
-
-            Vector3 localScale = transform.localScale;
-            localScale.y *= -1;
-            transform.localScale = localScale;
-            Oxygen.GetInstance().activateOxygen();
         }
-        else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
-        {
-            if(hitPlayer)
-            {
-                Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
-                Instantiate(objectToSpawn, transform.position + dropModify, objectToSpawn.transform.rotation);
-            }
-            hitByTorpedo = true;
-            myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-            myRigidbody.gravityScale = 0.01f;
-            StartCoroutine(deathSlowTime());
-            StartCoroutine(deathSlowTimeCancel());
-            correctFlip();
-        }
+        //else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
+        //{
+        //    if(hitPlayer)
+        //    {
+        //        Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
+        //    }
+        //    hitByTorpedo = true;
+        //    myRigidbody.bodyType = RigidbodyType2D.Dynamic;
+        //    myRigidbody.gravityScale = 0.01f;
+        //    StartCoroutine(deathSlowTime());
+        //    StartCoroutine(deathSlowTimeCancel());
+        //    correctFlip();
+        //}
     }
 
     // Checks if player is in range
@@ -307,7 +245,7 @@ public class SeaMonkey : MonoBehaviour
         if (!slowTimeCancel)
         {
             yield return new WaitForSeconds(slowTimeInterval);
-            slowTimeActive = true;
+            //yield return slowTimeActive = true;
         }
     }
 
