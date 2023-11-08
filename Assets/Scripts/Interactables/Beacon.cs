@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,9 +19,11 @@ public class Beacon : MonoBehaviour
     Rigidbody2D myRigidbody;
     public float floatInterval = 1f;
     public float floatSpeed = 0.05f;
-    public float range = 2f;
+   // public float range = 2f;
     private bool floatFlip;
-    public bool playerInteract = false;
+    //public bool playerInteract = false;
+    public GameObject nextBeacon;
+    private bool inRange = false;
     
 
     // Start is called before the first frame update
@@ -50,20 +53,34 @@ public class Beacon : MonoBehaviour
         }
 
         // Checks what state to be in
-        if (!IsPlayerInRange(range) && currState != BeaconState.Inactive)
-        {
-            currState = BeaconState.Idle;
-        }
-        else if (IsPlayerInRange(range) && currState != BeaconState.Inactive)
+        if (inRange && currState == BeaconState.Idle)
         {
             currState = BeaconState.Active;
-        }
-        else if (!IsPlayerInRange(range) && playerInteract == true)
-        {
-            currState = BeaconState.Inactive;
 
         }
+        else if (!inRange && currState == BeaconState.Active)
+        {
+            currState = BeaconState.Inactive;
+        }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            inRange = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            inRange = false;
+        }
+    }
+
+
+
 
     void Idle()
     {
@@ -81,12 +98,23 @@ public class Beacon : MonoBehaviour
 
     void Inactive()
     {
-        
+        if (floatFlip)
+        {
+            myRigidbody.velocity = new Vector2(0f, floatSpeed);
+        }
+        else
+        {
+            myRigidbody.velocity = new Vector2(0f, -floatSpeed);
+        }
+
     }
 
     void Active()
     {
-        
+        if (nextBeacon != null)
+        {
+            nextBeacon.GetComponent<Beacon>().currState = BeaconState.Idle;
+        }
     }
 
     IEnumerator ChangeFloatDirection()
@@ -97,10 +125,10 @@ public class Beacon : MonoBehaviour
             floatFlip = !floatFlip; // Toggle the value of creatureTurn
         }
     }
-    private bool IsPlayerInRange(float range)
-    {
-        return Vector3.Distance(transform.position, player.transform.position) <= range;
-    }
+    //private bool IsPlayerInRange(float range)
+    //{
+    //    return Vector3.Distance(transform.position, player.transform.position) <= range;
+    //}
 
 
 }
