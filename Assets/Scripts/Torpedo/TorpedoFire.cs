@@ -62,4 +62,13 @@ public class TorpedoFire : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("CrackedWall"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
 }
