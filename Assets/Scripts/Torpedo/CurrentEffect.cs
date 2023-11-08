@@ -5,15 +5,25 @@ using UnityEngine;
 
 public class CurrentEffect : MonoBehaviour
 {
-    private float currentForce = 0.05f;
+    private float currentForce = 0.25f;
+
+    
 
     /*Matthew Brodbeck 10/27/2023
      * Raises the torpedo when it touches the current*/
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.tag.StartsWith("Current"))
+        if (other.gameObject.CompareTag("CurrentVertical"))
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + currentForce);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("CurrentVertical"))
+        {
+            transform.position = other.transform.position;
         }
     }
 
