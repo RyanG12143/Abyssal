@@ -118,9 +118,8 @@ public class Sonar : MonoBehaviour
             foreach (var crystal in crystalsScanned)
             {
 
-                if ((Vector2.Distance(SonarSpread.transform.position, crystal.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                if ((Vector2.Distance(SonarSpread.transform.position, crystal.transform.position) < (SonarSpread.transform.localScale.x * 0.5)) && (!crystal.GetComponent<PickUpAble>().isPickedUp()))
                 {
-
                     crystal.GetComponent<InteractableSonarPulse>().StartFade();
                 }
             }
