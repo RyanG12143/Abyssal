@@ -19,12 +19,12 @@ public class Fire : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //Matthew Brodbeck 10/13/2023
         //Places the torpedo on the right side of the sub
-        torpedoLocation = new Vector2(transform.position.x, transform.position.y - 0.5f);
-        readyLight.transform.position = new Vector2(transform.position.x, transform.position.y - 0.5f);
+        torpedoLocation = new Vector2(transform.position.x, transform.position.y - 0.4f);
+        
         
 
 
@@ -55,16 +55,9 @@ public class Fire : MonoBehaviour
         
     }
 
-    void lightOn()
+    private void FixedUpdate()
     {
-        if (!isCooldownActive)
-        {
-            Instantiate(readyLight, lightLocation, transform.rotation);
-        }
-        else
-        {
-            Destroy(readyLight);
-        }
+        readyLight.transform.position = new Vector2(transform.position.x, transform.position.y - 0.4f);
     }
 
 }

@@ -12,7 +12,7 @@ public class CurrentVertical : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<Rigidbody2D>().AddForce(transform.up * force);
+            other.GetComponent<Rigidbody2D>().AddForce(transform.right * force);
         }
         
     }
