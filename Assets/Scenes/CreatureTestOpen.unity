@@ -344,6 +344,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1898401287960764559, guid: 374c58c61b25db949bf14fc27ca0e5b1, type: 3}
+      propertyPath: moveSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3836059175037309058, guid: 374c58c61b25db949bf14fc27ca0e5b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.8856354
@@ -707,6 +711,10 @@ PrefabInstance:
     - target: {fileID: 7867835952123348304, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639768623103566507, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.999939
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -18,7 +18,7 @@ public class Monstrosquid : MonoBehaviour
     }
 
     private GameObject player;
-    private Animator myAnimator;
+    //private Animator myAnimator;
     public EnemyAction currState = EnemyAction.Appear;
 
     public Transform target;
@@ -26,7 +26,7 @@ public class Monstrosquid : MonoBehaviour
 
     // Editable movement variables
     public float range = 2f;
-    public float moveSpeed = 2f;
+    public float moveSpeed = 0f;
     public float moveDistance = 5f;
     public float turnInterval = 2.0f;
     public float wanderBufferTime = 2.0f;
@@ -35,17 +35,13 @@ public class Monstrosquid : MonoBehaviour
     // Bool's for creature state changes
     public bool hitPlayer = false;
     public bool hitByTorpedo = false;
-    private bool isFacingRight = true;
     private bool creatureTurn = false;
-    private bool upFlipped = false;
-    private bool buffer = false;
-    private bool slowTimeActive = false;
-    private bool slowTimeCancel = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        myAnimator = GetComponent<Animator>();
+        //myAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         myRigidbody = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -103,7 +99,7 @@ public class Monstrosquid : MonoBehaviour
 
     void Appear()
     {
-        myAnimator.SetTrigger(name: "jumpScare");
+        //myAnimator.SetTrigger(name: "jumpScare");
         currState = EnemyAction.Idle;
     }
 
@@ -118,7 +114,6 @@ public class Monstrosquid : MonoBehaviour
             {
                 localScale.y = 1;
                 transform.localScale = localScale;
-                upFlipped = true;
             }
 
             if (creatureTurn)
