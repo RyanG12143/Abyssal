@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water current vertical (1) Variant down
       objectReference: {fileID: 0}
+    - target: {fileID: 3001611779389842729, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_TagString
+      value: CurrentVertical
+      objectReference: {fileID: 0}
     - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 44.56

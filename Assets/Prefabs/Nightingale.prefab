@@ -344,8 +344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   torpedoPrefab: {fileID: 5618860476881002139, guid: 592ebd0937163d9459e96f7c3b4108c4, type: 3}
-  isCooldownActive: 0
   fireSound: {fileID: 7923326996719245162}
+  readyLight: {fileID: 6574166710954606354, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
 --- !u!82 &7923326996719245162
 AudioSource:
   m_ObjectHideFlags: 0

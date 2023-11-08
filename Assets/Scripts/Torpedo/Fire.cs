@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    public GameObject torpedoPrefab;
-    private Vector2 torpedoLocation;
-    public bool isCooldownActive = false;
-    public AudioSource fireSound;
-
     
+    private Vector2 torpedoLocation;
+    private Vector2 lightLocation;
+    private bool isCooldownActive = false;
+
+    public GameObject torpedoPrefab;
+    public AudioSource fireSound;
+    public GameObject readyLight;
+
+    void Start()
+    {
+        readyLight.SetActive(true);
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Matthew Brodbeck 10/13/2023
         //Places the torpedo on the right side of the sub
-        torpedoLocation = new Vector2(transform.position.x + 0.1f, transform.position.y);
+        torpedoLocation = new Vector2(transform.position.x, transform.position.y - 0.5f);
+        readyLight.transform.position = new Vector2(transform.position.x, transform.position.y - 0.5f);
         
+
 
         //Matthew Brodbeck 10/15/2023
         //Fires the torpedo if you press left shift and the cooldown is over
@@ -28,15 +37,34 @@ public class Fire : MonoBehaviour
             StartCoroutine(torpedoCooldown());
             
         }
+
+      //lightOn();
+
+
     }
 
     /*Matthew Brodbeck 10/15/2023
      * Sets the cooldown for the torpedo*/
     IEnumerator torpedoCooldown()
     {
+        readyLight.SetActive(false);
         isCooldownActive = true;
         yield return new WaitForSeconds(2);
         isCooldownActive = false;
+        readyLight.SetActive(true);
         
     }
+
+    void lightOn()
+    {
+        if (!isCooldownActive)
+        {
+            Instantiate(readyLight, lightLocation, transform.rotation);
+        }
+        else
+        {
+            Destroy(readyLight);
+        }
+    }
+
 }
