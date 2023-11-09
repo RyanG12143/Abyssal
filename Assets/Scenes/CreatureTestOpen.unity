@@ -336,11 +336,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!95 &1129628480 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6448331753207056086, guid: 374c58c61b25db949bf14fc27ca0e5b1, type: 3}
-  m_PrefabInstance: {fileID: 1265819178}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1215124905
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,10 +426,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1898401287960764559, guid: 374c58c61b25db949bf14fc27ca0e5b1, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1129628480}
     - target: {fileID: 3836059175037309058, guid: 374c58c61b25db949bf14fc27ca0e5b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.58

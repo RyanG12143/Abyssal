@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fca1ff2df73fca44a5585de74909085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 6448331753207056086}
   currState: 0
   target: {fileID: 0}
   range: 2
