@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
+    public static Health instance;
+    public static Health GetInstance() { return instance; }
 
+    [SerializeField] private int maxHealth;
     private int currHealth;
 
     public AudioSource damageSound;
@@ -14,6 +16,10 @@ public class Health : MonoBehaviour
 
     private bool isDamageFXrunning = false;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         currHealth = maxHealth;
@@ -33,6 +39,17 @@ public class Health : MonoBehaviour
         if (!isDamageFXrunning) {
             StartCoroutine(damageFX());
         }
+        if (currHealth < 1)
+        {
+            onFail();
+        }
+    }
+
+    public void kill()
+    {
+        onHealthChanged(currHealth, 0); 
+        currHealth = 0;
+        onFail();
     }
 
     public int getMax()
@@ -41,7 +58,6 @@ public class Health : MonoBehaviour
     }
 
     public delegate void ValueChanged(int oldValue, int newValue);
-
     private ValueChanged onHealthChanged;
 
     public void addOnHealthChanged(ValueChanged newHealthChanged)
@@ -73,6 +89,12 @@ public class Health : MonoBehaviour
 
 
         isDamageFXrunning = false;
+    public delegate void Failed();
+    private Failed onFail;
+
+    public void addOnFail(Failed newFail)
+    {
+        onFail += newFail;
     }
 
 }

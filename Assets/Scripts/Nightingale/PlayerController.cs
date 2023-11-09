@@ -7,6 +7,13 @@ public class PlayerController : MonoBehaviour
     bool invinc = false;
 
     private List<GameObject> crystals = new List<GameObject>();
+    public GameObject gameOver;
+
+    private void Awake()
+    {
+        //gameOver = GameObject.Find("Game Over");
+        Health.GetInstance().addOnFail(failureState);
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -35,5 +42,15 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
         invinc = false;
+    }
+
+    public void failureState()
+    {
+        if(gameOver != null)
+        {
+            Time.timeScale = 0;
+            gameOver.GetComponent<ShowHide>().Show();
+            Destroy(gameObject);
+        }
     }
 }

@@ -82,6 +82,7 @@ public class WallOpen : MonoBehaviour
         yield return new WaitForSeconds(timing);
         gameObject.GetComponent<BoxCollider2D>().size -= new Vector2(0, 1.5f);
         gameObject.GetComponent<BoxCollider2D>().offset -= new Vector2(0, 0.75f);
+        yield return new WaitForSeconds(timing);
         Destroy(Wall3);
         Destroy(gameObject);
 

@@ -8,13 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 584342577625551856, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
-      propertyPath: force
-      value: -10
-      objectReference: {fileID: 0}
     - target: {fileID: 3001611779389842729, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_Name
       value: Water current vertical (1) Variant down
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389060351020586845, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -54,19 +54,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247334962201283001, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9529412
       objectReference: {fileID: 0}
     - target: {fileID: 8247334962201283001, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0.8018868
       objectReference: {fileID: 0}
     - target: {fileID: 8247334962201283001, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_Color.g
-      value: 0.16078424
+      value: 0.13163044
       objectReference: {fileID: 0}
     - target: {fileID: 8247334962201283001, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.7026542
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
