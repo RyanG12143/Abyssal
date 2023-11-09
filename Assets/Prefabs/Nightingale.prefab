@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spotlight: {fileID: 4964165570310397334}
-  maxSpeed: 5
+  maxSpeed: 15
   rb: {fileID: 1202467531740560110}
 --- !u!114 &9083185665963598300
 MonoBehaviour:
