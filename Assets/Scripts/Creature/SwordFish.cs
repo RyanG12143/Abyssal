@@ -19,7 +19,7 @@ public class SwordFish : MonoBehaviour
 
     private GameObject player;
     public EnemyAction currState = EnemyAction.Wander;
-
+    public Vector2 oneDirection;
     public Transform target;
     Rigidbody2D myRigidbody;
     
@@ -31,7 +31,6 @@ public class SwordFish : MonoBehaviour
     public float dashCooldownTimer = 7f;
     private float turnInterval = 5.0f;
     private float slowTimeInterval = 0.5f;
-    private Vector2 oneDirection;
 
     // Bool's for creature state changes
     private bool hitPlayer = false;
@@ -43,7 +42,8 @@ public class SwordFish : MonoBehaviour
     private bool slowTimeCancel = false;
     public bool dashPrimed = false;
     public bool dashOnCooldown = true;
-    private bool directionTaken = false;
+    public bool directionTaken = false;
+    public bool dashActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +60,7 @@ public class SwordFish : MonoBehaviour
     {
         stateSwitch();
 
-        if (!slowTimeCancel)
+        if (!slowTimeCancel && currState != EnemyAction.Dash)
         {
             FacingUpdate();
         }
@@ -74,15 +74,15 @@ public class SwordFish : MonoBehaviour
         {
             currState = EnemyAction.Die;
         }
-        else if (IsPlayerInRange(range) && dashPrimed && !dashOnCooldown && currState == EnemyAction.Prime)
+        else if (dashPrimed && !dashOnCooldown)
         {
             currState = EnemyAction.Dash;
         }
-        else if (IsPlayerInRange(range) && !dashOnCooldown)
+        else if (IsPlayerInRange(range) && !dashOnCooldown && !dashActive)
         {
             currState = EnemyAction.Prime;
         }
-        else
+        else if (currState != EnemyAction.Prime)
         {
             currState = EnemyAction.Wander;
         }
@@ -111,7 +111,7 @@ public class SwordFish : MonoBehaviour
     // Wander creature state
     void Wander()
     {
-        directionTaken = false;
+        dashPrimed = false;
         Vector3 localScale = transform.localScale;
         
         if (transform.up.y < 0f)
@@ -134,7 +134,6 @@ public class SwordFish : MonoBehaviour
     // Follow creature state
     void Prime()
     {
-        directionTaken = false;
         Vector2 targetPosition = target.position;
         Vector2 currentPosition = transform.position;
 
@@ -143,9 +142,7 @@ public class SwordFish : MonoBehaviour
         transform.right = myRigidbody.velocity;
 
         myRigidbody.velocity = new Vector2(direction.x * 0.1f, direction.y * 0.1f);
-
         StartCoroutine(DashCharge());
-        StartCoroutine(DashCooldown());
         Flip();
         CorrectFlip();
     }
@@ -155,9 +152,10 @@ public class SwordFish : MonoBehaviour
     {
         // Single direction at time of dash
         OneDirection();
-        Vector2 direction = oneDirection;
-
-        myRigidbody.velocity = new Vector2(direction.x * dashSpeed, direction.y * dashSpeed);
+        directionTaken = true;
+        dashActive = true;
+        //myRigidbody.velocity = new Vector2(oneDirection.x * dashSpeed, oneDirection.y * dashSpeed);
+        myRigidbody.velocity = new Vector2(oneDirection.x * dashSpeed, oneDirection.y * dashSpeed);
     }
 
     // Die method
@@ -245,7 +243,6 @@ public class SwordFish : MonoBehaviour
             myRigidbody.velocity = new Vector2(0, 0);
             Vector3 localScale = transform.localScale;
             transform.localScale = localScale;
-            StartCoroutine(DashCooldown());
         }
         else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
         {
@@ -260,11 +257,14 @@ public class SwordFish : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else
+        
+        dashPrimed = false;
+        if (dashActive)
         {
             StartCoroutine(DashCooldown());
+            dashActive = false;
+            directionTaken = false;
         }
-
     }
 
     // Gets one direction
@@ -276,7 +276,6 @@ public class SwordFish : MonoBehaviour
             Vector2 currentPosition = transform.position;
 
             oneDirection = (targetPosition - currentPosition).normalized;
-            directionTaken = true;
         }
     }
 
@@ -309,6 +308,7 @@ public class SwordFish : MonoBehaviour
 
     IEnumerator DashCooldown()
     {
+        dashOnCooldown = true;
         yield return new WaitForSeconds(dashCooldownTimer);
         dashOnCooldown = false;
     }
