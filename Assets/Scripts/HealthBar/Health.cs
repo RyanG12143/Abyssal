@@ -27,11 +27,10 @@ public class Health : MonoBehaviour
 
     public void damage()
     {
-        damageSound.Play();
         onHealthChanged(currHealth , currHealth - 1);
         currHealth = currHealth - 1;
 
-        if (!isDamageFXrunning ) {
+        if (!isDamageFXrunning) {
             StartCoroutine(damageFX());
         }
     }
@@ -54,18 +53,23 @@ public class Health : MonoBehaviour
     {
         isDamageFXrunning = true;
 
+        damageSound.Play();
+
         Color current = SR.color;
+
+        yield return new WaitForSeconds(0.05f);
 
         for (int i = 0; i < 3; i++)
         {
             SR.color = Color.red;
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.25f);
 
             SR.color = current;
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.25f);
         }
+
 
 
         isDamageFXrunning = false;

@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator i()
     {
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2.5f);
         invinc = false;
     }
 }
