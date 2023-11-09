@@ -220,16 +220,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41793ce9f1c710488147344f88b1c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 6448331753207056086}
   currState: 0
   target: {fileID: 0}
   range: 2
-  moveSpeed: 2
+  moveSpeed: 0
   moveDistance: 5
   turnInterval: 2
   wanderBufferTime: 2
   slowTimeInterval: 0.5
   hitPlayer: 0
   hitByTorpedo: 0
+  creatureTurn: 0
+  jumpscare: 0
+  postAttack: 0
 --- !u!114 &1514062185663001142
 MonoBehaviour:
   m_ObjectHideFlags: 0

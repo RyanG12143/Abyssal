@@ -18,7 +18,7 @@ public class Monstrosquid : MonoBehaviour
     }
 
     private GameObject player;
-    //private Animator myAnimator;
+    public Animator animator;
     public EnemyAction currState = EnemyAction.Appear;
 
     public Transform target;
@@ -35,7 +35,9 @@ public class Monstrosquid : MonoBehaviour
     // Bool's for creature state changes
     public bool hitPlayer = false;
     public bool hitByTorpedo = false;
-    private bool creatureTurn = false;
+    public bool creatureTurn = false;
+    public bool jumpscare = false;
+    public bool postAttack = false;
 
 
     // Start is called before the first frame update
@@ -51,6 +53,13 @@ public class Monstrosquid : MonoBehaviour
     void Update()
     {
         stateSwitch();
+        animationUpdates();
+    }
+    private void animationUpdates()
+    {
+        animator.SetBool("Attack", hitPlayer);
+        animator.SetBool("Jumpscare", jumpscare);
+        animator.SetBool("idleReturn", postAttack);
     }
 
     // Switches the states of the enemy creature
