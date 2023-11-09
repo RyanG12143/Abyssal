@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     public void failureState()
     {
+
         if(gameOver != null)
         {
             Time.timeScale = 0;

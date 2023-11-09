@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
 
     private bool isDamageFXrunning = false;
 
+    public AudioSource deathSound;
+
     private void Awake()
     {
         instance = this;
@@ -41,6 +43,7 @@ public class Health : MonoBehaviour
         }
         if (currHealth < 1)
         {
+            deathSound.Play();
             onFail();
         }
     }
@@ -89,6 +92,8 @@ public class Health : MonoBehaviour
 
 
         isDamageFXrunning = false;
+    }
+
     public delegate void Failed();
     private Failed onFail;
 
