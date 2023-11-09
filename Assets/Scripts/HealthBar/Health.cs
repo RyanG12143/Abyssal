@@ -10,6 +10,14 @@ public class Health : MonoBehaviour
     [SerializeField] private int maxHealth;
     private int currHealth;
 
+    public AudioSource damageSound;
+
+    public SpriteRenderer SR;
+
+    private bool isDamageFXrunning = false;
+
+    public AudioSource deathSound;
+
     private void Awake()
     {
         instance = this;
@@ -29,8 +37,13 @@ public class Health : MonoBehaviour
     {
         onHealthChanged(currHealth , currHealth - 1);
         currHealth = currHealth - 1;
+
+        if (!isDamageFXrunning) {
+            StartCoroutine(damageFX());
+        }
         if (currHealth < 1)
         {
+            deathSound.Play();
             onFail();
         }
     }
@@ -53,6 +66,32 @@ public class Health : MonoBehaviour
     public void addOnHealthChanged(ValueChanged newHealthChanged)
     { 
         onHealthChanged += newHealthChanged;
+    }
+
+    IEnumerator damageFX()
+    {
+        isDamageFXrunning = true;
+
+        damageSound.Play();
+
+        Color current = SR.color;
+
+        yield return new WaitForSeconds(0.05f);
+
+        for (int i = 0; i < 3; i++)
+        {
+            SR.color = Color.red;
+
+            yield return new WaitForSeconds(0.25f);
+
+            SR.color = current;
+
+            yield return new WaitForSeconds(0.25f);
+        }
+
+
+
+        isDamageFXrunning = false;
     }
 
     public delegate void Failed();
