@@ -249,7 +249,7 @@ public class SeaMonkey : MonoBehaviour
     // Checking if enemy hit player or Torpedo
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
+        if (collision.gameObject.tag == "Player" && !hitByTorpedo)
         {
             hitPlayer = true;
 
@@ -257,8 +257,9 @@ public class SeaMonkey : MonoBehaviour
             localScale.y *= -1;
             transform.localScale = localScale;
             Oxygen.GetInstance().activateOxygen();
+
         }
-        else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
+        else if (collision.gameObject.name == "Torpedo2(Clone)" && !hitByTorpedo)
         {
             if(hitPlayer)
             {
