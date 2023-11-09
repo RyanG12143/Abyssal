@@ -8,6 +8,12 @@ public class Health : MonoBehaviour
 
     private int currHealth;
 
+    public AudioSource damageSound;
+
+    public SpriteRenderer SR;
+
+    private bool isDamageFXrunning = false;
+
     void Start()
     {
         currHealth = maxHealth;
@@ -21,9 +27,13 @@ public class Health : MonoBehaviour
 
     public void damage()
     {
-
+        damageSound.Play();
         onHealthChanged(currHealth , currHealth - 1);
         currHealth = currHealth - 1;
+
+        if (!isDamageFXrunning ) {
+            StartCoroutine(damageFX());
+        }
     }
 
     public int getMax()
@@ -38,6 +48,27 @@ public class Health : MonoBehaviour
     public void addOnHealthChanged(ValueChanged newHealthChanged)
     { 
         onHealthChanged += newHealthChanged;
+    }
+
+    IEnumerator damageFX()
+    {
+        isDamageFXrunning = true;
+
+        Color current = SR.color;
+
+        for (int i = 0; i < 3; i++)
+        {
+            SR.color = Color.red;
+
+            yield return new WaitForSeconds(0.3f);
+
+            SR.color = current;
+
+            yield return new WaitForSeconds(0.3f);
+        }
+
+
+        isDamageFXrunning = false;
     }
 
 }
