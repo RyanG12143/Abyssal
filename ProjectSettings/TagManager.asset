@@ -18,6 +18,9 @@ TagManager:
   - CreatureSonar
   - CrystalWall
   - Crystal
+  - CurrentVertical
+  - CurrentHorizontal
+  - SwordFish
   layers:
   - Default
   - TransparentFX
