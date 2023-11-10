@@ -21,6 +21,7 @@ TagManager:
   - CurrentVertical
   - CurrentHorizontal
   - SwordFish
+  - CurrentDown
   layers:
   - Default
   - TransparentFX
