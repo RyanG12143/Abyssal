@@ -14,7 +14,7 @@ public class TorpedoFire : MonoBehaviour
     
     private Vector2 direction;
 
-    
+
     
     //Initializes the torpedo's direction
     void Start()
@@ -63,12 +63,6 @@ public class TorpedoFire : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("CrackedWall"))
-        {
-            Destroy(other.gameObject);
-        }
-    }
+  
 
 }
