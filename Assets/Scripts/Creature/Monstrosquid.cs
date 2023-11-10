@@ -136,8 +136,15 @@ public class Monstrosquid : MonoBehaviour
     private bool isCreatureInRange(float range)
     {
         //Need Charging Fish
-        Vector3 enemyPosition = GameObject.FindGameObjectWithTag("SwordFish").transform.position;
-        return Vector3.Distance(transform.position, enemyPosition) <= range;
+        if (!grabCreature)
+        {
+            Vector3 enemyPosition = GameObject.Find("SwordFish").transform.position;
+            return Vector3.Distance(transform.position, enemyPosition) <= range;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     IEnumerator jumpscareActivate()

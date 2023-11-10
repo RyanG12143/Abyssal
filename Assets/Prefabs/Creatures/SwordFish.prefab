@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5230859301329313891}
   m_Layer: 0
   m_Name: SwordFish
-  m_TagString: SwordFish
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   currState: 0
   oneDirection: {x: 0, y: 0}
   target: {fileID: 0}
-  range: 7
+  range: 10
   moveSpeed: 2
   dashSpeed: 8
   dashChargeTimer: 2
