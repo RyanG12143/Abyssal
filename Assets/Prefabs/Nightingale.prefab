@@ -508,6 +508,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edbfc27ea2a967e4b8221de7aaf42777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteList:
+  - {fileID: 21300000, guid: ba686e011f81f3049a6fc1d1afb18fcb, type: 3}
+  - {fileID: 21300000, guid: cce825963ee9d854a86fe9f8c01cb926, type: 3}
+  - {fileID: 21300000, guid: 433886b7f8dbba340aebf474c3987415, type: 3}
+  spriteRenderer: {fileID: 3807067947529759256}
   gameOver: {fileID: 0}
 --- !u!114 &4484613574808365691
 MonoBehaviour:

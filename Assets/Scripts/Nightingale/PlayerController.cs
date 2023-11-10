@@ -5,14 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     bool invinc = false;
+    public Sprite[] spriteList = new Sprite[3];
+    public SpriteRenderer spriteRenderer;
 
     private List<GameObject> crystals = new List<GameObject>();
     public GameObject gameOver;
 
     private void Awake()
     {
-        //gameOver = GameObject.Find("Game Over");
         Health.GetInstance().addOnFail(failureState);
+        Health.GetInstance().addOnHealthChanged(onHealthChange);
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -49,9 +51,17 @@ public class PlayerController : MonoBehaviour
 
         if(gameOver != null)
         {
+            Debug.LogWarning("Timescale = 0");
             Time.timeScale = 0;
             gameOver.GetComponent<ShowHide>().Show();
-            Destroy(gameObject);
+        }
+    }
+
+    public void onHealthChange(int oldValue, int newValue)
+    {
+        if (newValue > 0)
+        {
+            spriteRenderer.sprite = spriteList[newValue - 1];
         }
     }
 }

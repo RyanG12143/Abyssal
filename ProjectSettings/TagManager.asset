@@ -22,6 +22,7 @@ TagManager:
   - CurrentHorizontal
   - SwordFish
   - CurrentDown
+  - EnemyNoDamage
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Torpedo
   - Water
   - UI
-  - Fish
+  - Tilemap
   - 
   - 
   - 

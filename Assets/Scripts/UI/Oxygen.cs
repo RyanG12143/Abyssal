@@ -29,16 +29,17 @@ public class Oxygen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (gameObject.GetComponent<Image>().IsActive())
         {
             timeLeft -= Time.deltaTime;
             SetValue(timeLeft / timeLimit);
         }
-        if (timeLeft <= 0)
+        if (timeLeft <= 0 && Health.GetInstance().getCurrHealth() > 0)
         {
             // implement fail state
             Health.GetInstance().kill();
-        }
+        } 
     }
 
     public void SetValue(float value)
