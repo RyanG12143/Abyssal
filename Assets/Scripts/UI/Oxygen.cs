@@ -39,7 +39,7 @@ public class Oxygen : MonoBehaviour
         {
             // implement fail state
             Health.GetInstance().kill();
-        }
+        } 
     }
 
     public void SetValue(float value)
