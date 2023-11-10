@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EventHandler : MonoBehaviour
@@ -8,7 +9,7 @@ public class EventHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        displayText("There was a mission before us, we should go deeper to try and find them, they may have left behind a trail. We can use our sonar to detect beacons(Space)");
     }
 
     // Update is called once per frame
@@ -17,8 +18,18 @@ public class EventHandler : MonoBehaviour
         
     }
 
-    public void walls()
+    private IEnumerator timeTillFade()
     {
+        Debug.Log("weeeee before");
+        yield return new WaitForSeconds(10);
+        Debug.Log("weeeee");
+        uiText.SetActive(false);
+    }
 
+    public void displayText(string text)
+    {
+        uiText.GetComponent<TextMeshProUGUI>().SetText(text);
+        uiText.SetActive(true);
+        StartCoroutine(timeTillFade());
     }
 }
