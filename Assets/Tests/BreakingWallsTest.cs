@@ -21,12 +21,12 @@ public class BreakingWallsTest
     {
         SceneManager.LoadScene("Water_Current_Test");
         GameObject nightingale = GameObject.FindGameObjectWithTag("Player");
+        nightingale = MonoBehaviour.Instantiate(nightingale);
         GameObject destroyableWall = GameObject.FindGameObjectWithTag("CrackedWall");
+        destroyableWall = MonoBehaviour.Instantiate(destroyableWall);
         Fire fire = nightingale.GetComponent<Fire>();
-        if (destroyableWall.activeSelf)
-        {
-            Assert.True(true);
-        }
+        destroyableWall.transform.position = new Vector2(5.32f, 2.46f);
+        Assert.That(destroyableWall.transform.position, Is.EqualTo(new Vector2(5.32f, 2.46f)));
 
         yield return null;
     }
