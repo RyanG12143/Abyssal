@@ -5,7 +5,7 @@ using UnityEngine;
 public class DropRocks : MonoBehaviour
 {
     public GameObject spawner;
-    public GameObject collider;
+    public GameObject container;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +22,10 @@ public class DropRocks : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") /* && some bool to check player picked up crystal */)
         {
-            if (spawner != null && collider != null)
+            if (spawner != null && container != null)
             {
                 spawner.SetActive(true);
-                collider.SetActive(true);
+                container.SetActive(true);
             }
         }
     }
