@@ -7,7 +7,6 @@ using UnityEngine.TestTools;
 
 public class BreakingWallsTest
 {
-    
     // A Test behaves as an ordinary method
     [Test]
     public void BreakingWallsTestSimplePasses()
@@ -20,14 +19,14 @@ public class BreakingWallsTest
     [UnityTest]
     public IEnumerator BreakingWallsTestWithEnumeratorPasses()
     {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
-
         SceneManager.LoadScene("Water_Current_Test");
-        GameObject Player = GameObject.FindGameObjectWithTag("Player");
-        GameObject wall = GameObject.FindGameObjectWithTag("CrackedWall");
-        Fire fireScript = Player.GetComponent<Fire>();
-        
+        GameObject nightingale = GameObject.FindGameObjectWithTag("Player");
+        GameObject destroyableWall = GameObject.FindGameObjectWithTag("CrackedWall");
+        Fire fire = nightingale.GetComponent<Fire>();
+        if (destroyableWall.activeSelf)
+        {
+            Assert.True(true);
+        }
 
         yield return null;
     }
