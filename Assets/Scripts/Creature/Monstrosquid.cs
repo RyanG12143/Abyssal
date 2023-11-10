@@ -59,7 +59,7 @@ public class Monstrosquid : MonoBehaviour
     private void stateSwitch()
     {
         // Checks what state to be in
-        if (isCreatureInRange(creatureRange))
+        if (grabCreature)
         {
             currState = EnemyAction.Leave;
         }
@@ -124,7 +124,6 @@ public class Monstrosquid : MonoBehaviour
 
     void leave()
     {
-        grabCreature = true;
         StartCoroutine(Leaving());
     }
 
@@ -149,7 +148,7 @@ public class Monstrosquid : MonoBehaviour
         //Need Charging Fish
         if (!grabCreature)
         {
-            Vector3 enemyPosition = GameObject.Find("SwordFish").transform.position;
+            Vector3 enemyPosition = GameObject.FindGameObjectWithTag("Enemy").transform.position;
             return Vector3.Distance(transform.position, enemyPosition) <= range;
         }
         else

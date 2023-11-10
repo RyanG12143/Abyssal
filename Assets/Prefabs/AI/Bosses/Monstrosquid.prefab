@@ -343,7 +343,7 @@ MonoBehaviour:
   target: {fileID: 0}
   scareRange: 13
   playerRange: 4.5
-  creatureRange: 5
+  creatureRange: 6
   grabPlayer: 0
   grabCreature: 0
 --- !u!114 &1514062185663001142
