@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] private int maxHealth;
     private int currHealth;
+    public int getCurrHealth() { return currHealth; }
 
     public AudioSource damageSound;
 
