@@ -24,11 +24,11 @@ public class SwordFish : MonoBehaviour
     Rigidbody2D myRigidbody;
     
     // Editable movement variables
-    public float range = 5f;
+    public float range = 6f;
     public float moveSpeed = 2f;
     public float dashSpeed = 8f;
-    public float dashChargeTimer = 3f;
-    public float dashCooldownTimer = 7f;
+    public float dashChargeTimer = 2f;
+    public float dashCooldownTimer = 5f;
     private float turnInterval = 5.0f;
     private float slowTimeInterval = 0.5f;
 

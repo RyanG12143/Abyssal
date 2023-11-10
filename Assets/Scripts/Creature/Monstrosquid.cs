@@ -29,9 +29,9 @@ public class Monstrosquid : MonoBehaviour
     Rigidbody2D myRigidbody;
 
     // Editable movement variables
-    public float scareRange = 10f;
-    public float playerRange = 4f;
-    public float creatureRange = 4f;
+    public float scareRange = 13f;
+    public float playerRange = 4.5f;
+    public float creatureRange = 5f;
 
     // Bool's for creature state changes
     public bool grabPlayer = false;
@@ -106,10 +106,10 @@ public class Monstrosquid : MonoBehaviour
         //getCamera.GetComponent<CameraController>().resetCameraSize();
         //getCamera.GetComponent<CameraController>().getCameraSize();
 
-        getCamera.GetComponent<CameraController>().setCameraSize(6.5f);
+        getCamera.GetComponent<CameraController>().setCameraSize(8f);
 
         StartCoroutine(jumpscareActivate());
-        myRigidbody.velocity = new Vector2(0f, 4f);
+        myRigidbody.velocity = new Vector2(4f, 4f);
     }
 
     void idle()
@@ -174,11 +174,11 @@ public class Monstrosquid : MonoBehaviour
         {
             attacking = false;
             animator.SetBool("Attack", true);
-            myRigidbody.velocity = new Vector2(-4f, 0f);
+            myRigidbody.velocity = new Vector2(-4f, 4f);
             yield return new WaitForSeconds(0.1f);
             animationClear();
-            yield return new WaitForSeconds(0.5f);
-            myRigidbody.velocity = new Vector2(2f, 0f);
+            yield return new WaitForSeconds(0.4f);
+            myRigidbody.velocity = new Vector2(2f, -2f);
             yield return new WaitForSeconds(1);
             myRigidbody.velocity = new Vector2(0f, 0f);
             attacking = true;
@@ -192,24 +192,27 @@ public class Monstrosquid : MonoBehaviour
             leaveTrack = false;
             //attack part
             animator.SetBool("Attack", true);
-            myRigidbody.velocity = new Vector2(-4f, 0f);
+            myRigidbody.velocity = new Vector2(-4f, 4f);
             yield return new WaitForSeconds(0.1f);
             animationClear();
             yield return new WaitForSeconds(0.5f);
-            myRigidbody.velocity = new Vector2(2f, 0f);
+            myRigidbody.velocity = new Vector2(2f, -2f);
             yield return new WaitForSeconds(1);
             myRigidbody.velocity = new Vector2(0f, 0f);
 
 
             //leaving part
             animator.SetBool("grabFish", true);
-            myRigidbody.velocity = new Vector2(0f, -1f);
+            myRigidbody.velocity = new Vector2(1f, -10f);
             animator.SetBool("Attack", true);
             yield return new WaitForSeconds(0f);
             animator.SetBool("Attack", false);
             yield return new WaitForSeconds(1);
             myRigidbody.velocity = new Vector2(0f, 0f);
             getCamera.GetComponent<CameraController>().resetCameraSize();
+
+
+            gameObject.SetActive(false);
         }
         
     }

@@ -282,12 +282,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.52228445, y: 2.127422}
-      - {x: -0.23699069, y: 2.1400468}
+    - - {x: 2.5973969, y: 3.9310243}
+      - {x: 0.034519434, y: 1.8491418}
       - {x: -0.8207091, y: 1.1562228}
-      - {x: -0.9600992, y: 0.6301905}
-      - {x: -1.3992779, y: 0.23569915}
-      - {x: -2.0103126, y: -0.24380076}
+      - {x: -1.2122154, y: 0.76594603}
+      - {x: -1.6513941, y: 0.35206077}
+      - {x: -3.8527026, y: -1.5043827}
       - {x: -1.5766511, y: -1.5734924}
       - {x: -1.017216, y: -2.0187364}
       - {x: -0.29324317, y: -2.1430798}
@@ -337,11 +337,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fca1ff2df73fca44a5585de74909085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getCamera: {fileID: 0}
   animator: {fileID: 6448331753207056086}
   currState: 0
   target: {fileID: 0}
-  scareRange: 10
-  playerRange: 4
+  scareRange: 13
+  playerRange: 4.5
   creatureRange: 5
   grabPlayer: 0
   grabCreature: 0
