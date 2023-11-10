@@ -18,6 +18,7 @@ TagManager:
   - Enemy
   - CurrentHorizontal
   - CurrentVertical
+  - CurrentDown
   layers:
   - Default
   - TransparentFX
