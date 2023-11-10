@@ -103,7 +103,7 @@ public class Sonar : MonoBehaviour
                 foreach (var creature in creaturesScanned)
                 {
 
-                    if ((Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    if ((creature != null) && (Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
                     {
                         creature.GetComponent<CreatureSonarPulse>().StartFade();
                     }
@@ -115,7 +115,7 @@ public class Sonar : MonoBehaviour
                 foreach (var creature in creaturesNoDamageScanned)
                 {
 
-                    if ((Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    if ((creature != null) && (Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
                     {
                         creature.GetComponent<CreatureSonarPulse>().StartFade();
                     }
@@ -127,7 +127,7 @@ public class Sonar : MonoBehaviour
                 foreach (var crackedWall in crackedWallsScanned)
                 {
 
-                    if ((Vector2.Distance(SonarSpread.transform.position, crackedWall.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    if ((crackedWall != null) && (Vector2.Distance(SonarSpread.transform.position, crackedWall.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
                     {
 
                         crackedWall.GetComponent<CrackedWallSonarPulse>().StartFade();
@@ -140,7 +140,7 @@ public class Sonar : MonoBehaviour
                 foreach (var crystal in crystalsScanned)
                 {
 
-                    if ((Vector2.Distance(SonarSpread.transform.position, crystal.transform.position) < (SonarSpread.transform.localScale.x * 0.5)) && (!crystal.GetComponent<PickUpAble>().isPickedUp()))
+                    if ((crystal != null) && (Vector2.Distance(SonarSpread.transform.position, crystal.transform.position) < (SonarSpread.transform.localScale.x * 0.5)) && (!crystal.GetComponent<PickUpAble>().isPickedUp()))
                     {
                         crystal.GetComponent<InteractableSonarPulse>().StartFade();
                     }
@@ -152,7 +152,7 @@ public class Sonar : MonoBehaviour
                 foreach (var interactable in interactablesScanned)
                 {
 
-                    if ((Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    if ((interactable != null) && (Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
                     {
 
                         interactable.GetComponent<InteractableSonarPulse>().StartFade();

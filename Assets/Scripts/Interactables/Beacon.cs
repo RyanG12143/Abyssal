@@ -115,6 +115,16 @@ public class Beacon : MonoBehaviour
         {
             nextBeacon.GetComponent<Beacon>().currState = BeaconState.Idle;
         }
+
+        if (floatFlip)
+        {
+            myRigidbody.velocity = new Vector2(0f, floatSpeed);
+        }
+        else
+        {
+            myRigidbody.velocity = new Vector2(0f, -floatSpeed);
+        }
+
     }
 
     IEnumerator ChangeFloatDirection()
