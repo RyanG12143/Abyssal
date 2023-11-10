@@ -55,6 +55,9 @@ public class BeaconSonar : MonoBehaviour
             directionAtoB.Normalize();
             transform.position = (_Nightingale.transform.position + (directionAtoB * -1.5f));
 
+           transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
+
+
 
         }
 

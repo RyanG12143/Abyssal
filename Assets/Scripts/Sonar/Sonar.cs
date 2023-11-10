@@ -8,6 +8,7 @@ public class Sonar : MonoBehaviour
 {
     // List of scannable creatures
     private GameObject[] creaturesScanned;
+    private GameObject[] creaturesNoDamageScanned;
 
     // List of scannable environment tiles
     private GameObject[] tilesScanned;
@@ -52,6 +53,7 @@ public class Sonar : MonoBehaviour
         SonarSpread.transform.localScale = new Vector3(1f, 1f, 1f);
         SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 0f);
         creaturesScanned = GameObject.FindGameObjectsWithTag("Enemy");
+        creaturesNoDamageScanned = GameObject.FindGameObjectsWithTag("EnemyNoDamage");
         //tilesScanned = GameObject.FindGameObjectsWithTag("Wall");
         interactablesScanned = GameObject.FindGameObjectsWithTag("Interactable");
         beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
@@ -96,41 +98,65 @@ public class Sonar : MonoBehaviour
 
             SonarSpread.transform.localScale += new Vector3(25f, 25f, 0f) * Time.deltaTime;
 
-            foreach (var creature in creaturesScanned)
+            if (creaturesScanned.Length > 0)
             {
-
-                if ((Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                foreach (var creature in creaturesScanned)
                 {
-                    creature.GetComponent<CreatureSonarPulse>().StartFade();
+
+                    if ((creature != null) && (Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    {
+                        creature.GetComponent<CreatureSonarPulse>().StartFade();
+                    }
                 }
             }
 
-            foreach (var crackedWall in crackedWallsScanned)
+            if (creaturesNoDamageScanned.Length > 0)
             {
-
-                if ((Vector2.Distance(SonarSpread.transform.position, crackedWall.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                foreach (var creature in creaturesNoDamageScanned)
                 {
 
-                    crackedWall.GetComponent<CrackedWallSonarPulse>().StartFade();
+                    if ((creature != null) && (Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    {
+                        creature.GetComponent<CreatureSonarPulse>().StartFade();
+                    }
                 }
             }
 
-            foreach (var crystal in crystalsScanned)
+            if (crackedWallsScanned.Length > 0)
             {
-
-                if ((Vector2.Distance(SonarSpread.transform.position, crystal.transform.position) < (SonarSpread.transform.localScale.x * 0.5)) && (!crystal.GetComponent<PickUpAble>().isPickedUp()))
+                foreach (var crackedWall in crackedWallsScanned)
                 {
-                    crystal.GetComponent<InteractableSonarPulse>().StartFade();
+
+                    if ((crackedWall != null) && (Vector2.Distance(SonarSpread.transform.position, crackedWall.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    {
+
+                        crackedWall.GetComponent<CrackedWallSonarPulse>().StartFade();
+                    }
                 }
             }
 
-            foreach (var interactable in interactablesScanned)
+            if (crystalsScanned.Length > 0)
             {
-
-                if ((Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                foreach (var crystal in crystalsScanned)
                 {
 
-                    interactable.GetComponent<InteractableSonarPulse>().StartFade();
+                    if ((crystal != null) && (Vector2.Distance(SonarSpread.transform.position, crystal.transform.position) < (SonarSpread.transform.localScale.x * 0.5)) && (!crystal.GetComponent<PickUpAble>().isPickedUp()))
+                    {
+                        crystal.GetComponent<InteractableSonarPulse>().StartFade();
+                    }
+                }
+            }
+
+            if (interactablesScanned.Length > 0)
+            {
+                foreach (var interactable in interactablesScanned)
+                {
+
+                    if ((interactable != null) && (Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    {
+
+                        interactable.GetComponent<InteractableSonarPulse>().StartFade();
+                    }
                 }
             }
 
