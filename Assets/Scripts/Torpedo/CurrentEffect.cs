@@ -17,6 +17,13 @@ public class CurrentEffect : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + torpedoForce);
         }
+        else
+        {
+            if (other.gameObject.CompareTag("CurrentDown"))
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y - torpedoForce);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
