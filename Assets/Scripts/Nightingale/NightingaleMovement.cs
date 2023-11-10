@@ -70,6 +70,7 @@ public class NightingaleMovement : MonoBehaviour
     // Flips the character model if it is facing the wrong direction
     private void flip()
     {
+        if (Time.timeScale == 0) { return; }
         if ((isFacingRight && facing.x > 0.0) || (!isFacingRight && facing.x < 0.0))
         {
             isFacingRight = !isFacingRight;
