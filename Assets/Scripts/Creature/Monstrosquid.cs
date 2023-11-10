@@ -9,6 +9,9 @@ using UnityEngine.UIElements.Experimental;
 
 public class Monstrosquid : MonoBehaviour
 {
+    
+    
+
     public enum EnemyAction
     {
         Appear,
@@ -17,6 +20,7 @@ public class Monstrosquid : MonoBehaviour
         Leave,
     }
 
+    public GameObject getCamera;
     private GameObject player;
     public Animator animator;
     public EnemyAction currState = EnemyAction.Idle;
@@ -97,6 +101,13 @@ public class Monstrosquid : MonoBehaviour
     // Jumpskare and moving into level
     void appear()
     {
+
+        //getCamera.GetComponent<CameraController>().setCameraSize(6.5f);
+        //getCamera.GetComponent<CameraController>().resetCameraSize();
+        //getCamera.GetComponent<CameraController>().getCameraSize();
+
+        getCamera.GetComponent<CameraController>().setCameraSize(6.5f);
+
         StartCoroutine(jumpscareActivate());
         myRigidbody.velocity = new Vector2(0f, 4f);
     }
@@ -198,6 +209,7 @@ public class Monstrosquid : MonoBehaviour
             animator.SetBool("Attack", false);
             yield return new WaitForSeconds(1);
             myRigidbody.velocity = new Vector2(0f, 0f);
+            getCamera.GetComponent<CameraController>().resetCameraSize();
         }
         
     }
