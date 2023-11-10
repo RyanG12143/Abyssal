@@ -659,6 +659,7 @@ GameObject:
   - component: {fileID: 2244815458825849123}
   - component: {fileID: 5788140559639742420}
   - component: {fileID: 6347199106590825549}
+  - component: {fileID: 1764279302826262014}
   m_Layer: 0
   m_Name: Square
   m_TagString: Interactable
@@ -793,6 +794,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteLight: {fileID: 8288625275720387969}
   Animated: {fileID: 8288625275720387969}
+--- !u!114 &1764279302826262014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5525323755835372281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49af9d4e5bc2977428e32e7219fccde8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ByeWall: {fileID: 5005911330068157586}
 --- !u!1 &8288625275720387969
 GameObject:
   m_ObjectHideFlags: 0

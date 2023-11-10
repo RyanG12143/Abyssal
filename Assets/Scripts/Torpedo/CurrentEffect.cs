@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CurrentEffect : MonoBehaviour
 {
-    private float currentForce = 0.25f;
+    public float torpedoForce = 0.25f;
 
     
 
@@ -15,7 +15,14 @@ public class CurrentEffect : MonoBehaviour
     {
         if (other.gameObject.CompareTag("CurrentVertical"))
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y + currentForce);
+            transform.position = new Vector2(transform.position.x, transform.position.y + torpedoForce);
+        }
+        else
+        {
+            if (other.gameObject.CompareTag("CurrentDown"))
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y - torpedoForce);
+            }
         }
     }
 

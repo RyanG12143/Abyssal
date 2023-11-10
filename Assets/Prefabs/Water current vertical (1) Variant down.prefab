@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water current vertical (1) Variant down
       objectReference: {fileID: 0}
+    - target: {fileID: 3001611779389842729, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_TagString
+      value: CurrentDown
+      objectReference: {fileID: 0}
     - target: {fileID: 4389060351020586845, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_IsTrigger
       value: 1
