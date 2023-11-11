@@ -45,7 +45,10 @@ public class Health : MonoBehaviour
         if (currHealth < 1)
         {
             //deathSound.Play();
-            onFail();
+            if (onFail !=  null)
+            {
+                onFail();
+            }
         }
     }
 
