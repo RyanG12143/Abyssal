@@ -24,6 +24,8 @@ public class Beacon : MonoBehaviour
     //public bool playerInteract = false;
     public GameObject nextBeacon;
     private bool inRange = false;
+
+    public AudioSource soundQue;
     
 
     // Start is called before the first frame update
@@ -58,6 +60,9 @@ public class Beacon : MonoBehaviour
             currState = BeaconState.Active;
             if (gameObject.GetComponent<TextHolder>().Text.Length > 0)
             {
+                if(soundQue != null){
+                soundQue.Play();
+                }
                 GameObject.Find("EventHandler").GetComponent<EventHandler>().displayText(gameObject.GetComponent<TextHolder>().Text);
             }
         }

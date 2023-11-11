@@ -19,6 +19,9 @@ public class NightingaleMovement : MonoBehaviour
     // refrence to game object to flip rotation
     public GameObject spotlight;
 
+    public AudioSource EngineSound;
+    private bool isEngineSoundRunning = false;
+
     private Vector3 originalFace;
 
     // max velocity of object
@@ -132,4 +135,5 @@ public class NightingaleMovement : MonoBehaviour
         movementDirection.Normalize();
         return movementDirection;
     }
-}
+    
+    }
