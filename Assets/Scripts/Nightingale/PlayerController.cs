@@ -69,8 +69,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        Health.GetInstance().damage();
-    }
 }
