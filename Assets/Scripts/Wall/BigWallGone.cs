@@ -20,6 +20,7 @@ public class BigWallGone : MonoBehaviour
     void Update()
     {
         blowUp();
+        dropPackage();
     }
 
 
@@ -31,4 +32,13 @@ public class BigWallGone : MonoBehaviour
             
         }
     }
+
+    void dropPackage()
+    {
+        if(Vector2.Distance(package.transform.position, gameObject.transform.position) < 1.3f && package.GetComponent<PickUpAble>().isPickedUp())
+        {
+            package.GetComponent<PickUpAble>().setPickedUp(false);
+        }
+    }
+
 }

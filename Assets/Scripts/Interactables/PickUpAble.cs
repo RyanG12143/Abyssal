@@ -100,4 +100,10 @@ public class PickUpAble : MonoBehaviour
     return pickedUp;
 
 }
+
+    public void setPickedUp(bool pickedup)
+    {
+        this.pickedUp = pickedup;
+    }
+
 }

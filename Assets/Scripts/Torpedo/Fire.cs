@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Fire : MonoBehaviour
 {
@@ -30,15 +31,13 @@ public class Fire : MonoBehaviour
 
         //Matthew Brodbeck 10/15/2023
         //Fires the torpedo if you press left shift and the cooldown is over
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isCooldownActive)
+        if (Input.GetMouseButtonDown(0) && !isCooldownActive)
         {
             fireSound.Play();
             Instantiate(torpedoPrefab, torpedoLocation, torpedoPrefab.transform.rotation);
             StartCoroutine(torpedoCooldown());
             
         }
-
-      //lightOn();
 
 
     }
@@ -57,7 +56,7 @@ public class Fire : MonoBehaviour
 
     private void FixedUpdate()
     {
-        readyLight.transform.position = new Vector2(transform.position.x, transform.position.y - 0.4f);
+        readyLight.transform.position = new Vector2(transform.position.x, transform.position.y - 0.1f);
     }
 
 }
