@@ -20,9 +20,7 @@ public class EventHandler : MonoBehaviour
 
     private IEnumerator timeTillFade()
     {
-        Debug.Log("weeeee before");
         yield return new WaitForSeconds(10);
-        Debug.Log("weeeee");
         uiText.SetActive(false);
     }
 

@@ -1396,6 +1396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas UI
       objectReference: {fileID: 0}
+    - target: {fileID: 4752410703377872621, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4892355981873728084, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
       propertyPath: m_Name
       value: Exit
@@ -6424,6 +6428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49af9d4e5bc2977428e32e7219fccde8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ByeWall: {fileID: 0}
+  completeSound: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

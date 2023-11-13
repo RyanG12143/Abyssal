@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private List<GameObject> crystals = new List<GameObject>();
     public GameObject gameOver;
 
-    private void Awake()
+    private void Start()
     {
         Health.GetInstance().addOnFail(failureState);
         Health.GetInstance().addOnHealthChanged(onHealthChange);

@@ -13,7 +13,7 @@ public class NightingaleMovement : MonoBehaviour
     // direction of vehicle facing
     private Vector2 facing;
     // speed of acceleration
-    private float speed = 0.1f;
+    private float speed = 5.0f;
     // which way object is facing for flip
     private bool isFacingRight;
     // refrence to game object to flip rotation
@@ -54,7 +54,7 @@ public class NightingaleMovement : MonoBehaviour
     // Moves character based on the facing direction (Facing), input direction (direction), and scaled by private speed;
     private void move()
     {
-        Vector2 acceleration = new Vector2(facing.x * direction * speed, facing.y * direction * speed);
+        Vector2 acceleration = new Vector2(facing.x * direction * speed * Time.fixedDeltaTime, facing.y * direction * speed * Time.fixedDeltaTime);
 
         if (rb.velocity.magnitude < maxSpeed)
         {

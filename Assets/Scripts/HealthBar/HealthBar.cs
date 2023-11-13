@@ -14,8 +14,8 @@ public class HealthBar : MonoBehaviour
     {
         //state1 = this.gameObject.GetComponent<SpriteRenderer>();
         //LowerHealthImage();
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().addOnHealthChanged(updateHealthBar);
-        currHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().getMax();
+        Health.GetInstance().addOnHealthChanged(updateHealthBar);
+        currHealth = Health.GetInstance().getMax();
     }
 
     private void updateHealthBar(int oldVal, int newVal)
