@@ -6,11 +6,23 @@ TagManager:
   tags:
   - Falling rocks
   - Torpedo
-  - CreatureSonar
   - Destroy
   - DamageOnHit
   - Wall
   - Animation
+  - Level
+  - Beacon
+  - Interactable
+  - CrackedWall
+  - Enemy
+  - CreatureSonar
+  - CrystalWall
+  - Crystal
+  - CurrentVertical
+  - CurrentHorizontal
+  - SwordFish
+  - CurrentDown
+  - EnemyNoDamage
   layers:
   - Default
   - TransparentFX
@@ -18,7 +30,7 @@ TagManager:
   - Torpedo
   - Water
   - UI
-  - 
+  - Tilemap
   - 
   - 
   - 

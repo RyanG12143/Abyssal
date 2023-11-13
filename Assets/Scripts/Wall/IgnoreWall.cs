@@ -15,7 +15,7 @@ public class IgnoreWall : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1);
-        gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
+        gameObject.GetComponent<PolygonCollider2D>().isTrigger = false;
         yield return new WaitForSeconds(5);
         Destroy(GetComponent<Rigidbody2D>());
     }
@@ -23,7 +23,7 @@ public class IgnoreWall : MonoBehaviour
     {
 
         if(other.gameObject.tag == "Wall" && happened == false) {
-           gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
+           gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
             StartCoroutine(wait());
             happened = true;  
         }
