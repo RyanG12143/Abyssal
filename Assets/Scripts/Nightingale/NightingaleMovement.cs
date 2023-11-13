@@ -58,12 +58,10 @@ public class NightingaleMovement : MonoBehaviour
         
         Vector2 acceleration = new Vector2(facing.x * direction * speed * Time.fixedDeltaTime, facing.y * direction * speed * Time.fixedDeltaTime);
         if (rb.velocity.magnitude < maxSpeed)
+        {
             rb.AddForce(acceleration);
+        }
 
-        //if (rb.velocity.magnitude < maxSpeed)
-        //{
-        //    rb.velocity += acceleration;
-        //}
         if(rb.velocity.magnitude < 0.1)
         {
             rb.velocity = new Vector2(0f, 0f);
@@ -124,16 +122,16 @@ public class NightingaleMovement : MonoBehaviour
     // Return velocity vector
     public Vector2 getVelocity()
     {
-        Vector2 movementDirection = rb.velocity;
-        return movementDirection;
+        Vector2 velocity = rb.velocity;
+        return velocity;
     }
 
     // Ryan Guy
     // Return normalized veloctiy vector
     public Vector2 getVelocityNormal()
     {
-        Vector2 movementDirection = rb.velocity;
-        movementDirection.Normalize();
-        return movementDirection;
+        Vector2 velocity = rb.velocity;
+        velocity.Normalize();
+        return velocity;
     }
 }
