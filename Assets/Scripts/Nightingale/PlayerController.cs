@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    bool invinc = false;
+    PlayerController instance;
+
+    private bool invinc = false;
+    public bool getInvince()
+    {
+        return invinc;
+    }
     public Sprite[] spriteList = new Sprite[3];
     public SpriteRenderer spriteRenderer;
 
     private List<GameObject> crystals = new List<GameObject>();
     public GameObject gameOver;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         Health.GetInstance().addOnFail(failureState);
         Health.GetInstance().addOnHealthChanged(onHealthChange);
-    }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            if (!invinc)
-            {
-                this.gameObject.GetComponent<Health>().damage();
-                invinc = true;
-                StartCoroutine(i());
-            }
-        }
     }
 
     public void addCrystal(GameObject crystal)
@@ -62,6 +61,11 @@ public class PlayerController : MonoBehaviour
         if (newValue > 0)
         {
             spriteRenderer.sprite = spriteList[newValue - 1];
+        }
+        if (newValue < oldValue)
+        {
+            invinc = true;
+            StartCoroutine(i());
         }
     }
 }
