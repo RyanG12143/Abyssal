@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using System.IO;
+using static UnityEditor.Rendering.InspectorCurveEditor;
+using System;
 
 public class HatchetFishAI : MonoBehaviour
 {
-
+    // A* variables
     public Transform target;
 
     public float speed = 200f;
@@ -20,6 +22,36 @@ public class HatchetFishAI : MonoBehaviour
 
     Seeker seeker;
     Rigidbody2D rb;
+    
+    // Variables
+    public float detectionRange = 5.0f;
+    public float turnInterval = 2.0f;
+    public float wanderBufferTime = 2.0f;
+    public float slowTimeInterval = 0.5f;
+    public float wanderSpeed = 2.0f;
+
+    // Bool's for creature state change
+    public bool hitPlayer = false;
+    public bool hitByTorpedo = false;
+    private bool isFacingRight = true;
+    private bool creatureTurn = false;
+    private bool upFlipped = true;
+    private bool buffer = false;
+    private bool slowTimeActive = false;
+    private bool slowTimeCancel = false;
+
+    // State Enum
+    public enum EnemyAction
+    {
+        Wander,
+        Seek,
+        Die,
+    }
+
+    public EnemyAction currState = EnemyAction.Wander;
+
+    //player declaration
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +60,13 @@ public class HatchetFishAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
+
+        // Declaring player
+        player = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        // Starting creature turning
+        StartCoroutine(ChangeCreatureTurn());
     }
     
     void UpdatePath()
@@ -45,13 +84,20 @@ public class HatchetFishAI : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    // Update
     void FixedUpdate()
+    {
+        stateSwitch();
+        AAI();
+    }
+
+    // Core AI
+    private void AAI()
     {
         if (path == null)
             return;
 
-        if(currentWaypoint >= path.vectorPath.Count)
+        if (currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
@@ -72,7 +118,7 @@ public class HatchetFishAI : MonoBehaviour
         {
             currentWaypoint++;
         }
-        
+
         if (force.x >= 0.01f)
         {
             enemyGFX.localScale = new Vector3(1f, 1f, 1f);
@@ -81,6 +127,117 @@ public class HatchetFishAI : MonoBehaviour
         {
             enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
         }
+    }
 
+    private void stateSwitch()
+    {
+        // Checks what state to be in
+        if (hitByTorpedo)
+        {
+            currState = EnemyAction.Die;
+        }
+        else if (IsPlayerInRange(detectionRange) && currState != EnemyAction.Die)
+        {
+            currState = EnemyAction.Seek;
+        }
+        else if (!IsPlayerInRange(detectionRange) && currState != EnemyAction.Die && !buffer)
+        {
+            currState = EnemyAction.Wander;
+        }
+
+        // Switches current state based on currState
+        switch (currState)
+        {
+            case EnemyAction.Wander:
+                Wander();
+                break;
+            case EnemyAction.Seek:
+                Seek();
+                break;
+            case EnemyAction.Die:
+                Die();
+                break;
+        }
+    }
+
+    // Wander
+    void Wander()
+    {
+        Vector3 localScale = transform.localScale;
+
+        if (transform.up.y < 0f)
+        {
+            localScale.y = 1;
+            transform.localScale = localScale;
+            upFlipped = true;
+        }
+
+        if (creatureTurn)
+        {
+            rb.velocity = new Vector2(wanderSpeed, 0f);
+        }
+        else
+        {
+            rb.velocity = new Vector2(-wanderSpeed, 0f);
+        }
+    }
+
+    // Seek
+    void Seek()
+    {
+        AAI();
+    }
+
+    // Die
+    void Die()
+    {
+        if (slowTimeActive == true)
+        {
+            rb.velocity = new Vector2(rb.velocity.x * 0.2f, rb.velocity.y * 0.2f);
+            slowTimeActive = false;
+        }
+    }
+
+    // Changing Creature Momentum Direction
+    IEnumerator ChangeCreatureTurn()
+    {
+        Vector3 localScale = transform.localScale;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(turnInterval);
+            creatureTurn = !creatureTurn;
+            localScale.x *= -1f;
+        }
+    }
+
+    // Buffer timer so creature gets further away
+    IEnumerator wanderBuffer()
+    {
+        yield return new WaitForSeconds(wanderBufferTime);
+        buffer = false;
+    }
+
+    // Time to slow down after dying
+    IEnumerator deathSlowTime()
+    {
+        if (!slowTimeCancel)
+        {
+            yield return new WaitForSeconds(slowTimeInterval);
+            yield return slowTimeActive = true;
+        }
+    }
+
+    // Cancels the slow time after a given time
+    IEnumerator deathSlowTimeCancel()
+    {
+        yield return new WaitForSeconds(4);
+        slowTimeCancel = true;
+    }
+
+    // Checks if the player
+    private bool IsPlayerInRange(float range)
+    {
+        return Vector3.Distance(transform.position, player.transform.position) <= range;
     }
 }
