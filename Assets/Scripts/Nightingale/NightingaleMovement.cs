@@ -132,4 +132,5 @@ public class NightingaleMovement : MonoBehaviour
         movementDirection.Normalize();
         return movementDirection;
     }
-}
+    
+    }
