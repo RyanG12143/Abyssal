@@ -113,9 +113,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 400
+  speed: 200
   nextWaypointDistance: 1
   enemyGFX: {fileID: 2451932035082844621}
+  detectionRange: 5
+  turnInterval: 2
+  wanderBufferTime: 2
+  slowTimeInterval: 0.5
+  wanderSpeed: 2
+  hitPlayer: 0
+  hitByTorpedo: 0
+  currState: 0
 --- !u!50 &5558966272975042315
 Rigidbody2D:
   serializedVersion: 4

@@ -35,8 +35,8 @@ public class HatchetFishAI : MonoBehaviour
     public bool hitByTorpedo = false;
     private bool isFacingRight = true;
     private bool creatureTurn = false;
-    private bool upFlipped = true;
-    private bool buffer = false;
+    // Fix FLIPPING
+    private bool upFlipped = false;
     private bool slowTimeActive = false;
     private bool slowTimeCancel = false;
 
@@ -89,6 +89,7 @@ public class HatchetFishAI : MonoBehaviour
     {
         stateSwitch();
         AAI();
+        FacingUpdate();
     }
 
     // Core AI
@@ -119,14 +120,6 @@ public class HatchetFishAI : MonoBehaviour
             currentWaypoint++;
         }
 
-        if (force.x >= 0.01f)
-        {
-            enemyGFX.localScale = new Vector3(1f, 1f, 1f);
-        }
-        else if (force.x <= -0.01f)
-        {
-            enemyGFX.localScale = new Vector3(-1f, 1f, 1f);
-        }
     }
 
     private void stateSwitch()
@@ -140,7 +133,7 @@ public class HatchetFishAI : MonoBehaviour
         {
             currState = EnemyAction.Seek;
         }
-        else if (!IsPlayerInRange(detectionRange) && currState != EnemyAction.Die && !buffer)
+        else if (!IsPlayerInRange(detectionRange) && currState != EnemyAction.Die)
         {
             currState = EnemyAction.Wander;
         }
@@ -165,12 +158,7 @@ public class HatchetFishAI : MonoBehaviour
     {
         Vector3 localScale = transform.localScale;
 
-        if (transform.up.y < 0f)
-        {
-            localScale.y = 1;
-            transform.localScale = localScale;
-            upFlipped = true;
-        }
+        correctFlip();
 
         if (creatureTurn)
         {
@@ -186,6 +174,7 @@ public class HatchetFishAI : MonoBehaviour
     void Seek()
     {
         AAI();
+        correctFlip();
     }
 
     // Die
@@ -198,6 +187,18 @@ public class HatchetFishAI : MonoBehaviour
         }
     }
 
+    private void correctFlip()
+    {
+        Vector3 localScale = transform.localScale;
+
+        if (transform.up.y < 0f && !upFlipped)
+        {
+            localScale.y = localScale.y * -1;
+            transform.localScale = localScale;
+            upFlipped = true;
+        }
+    }
+
     // Changing Creature Momentum Direction
     IEnumerator ChangeCreatureTurn()
     {
@@ -207,15 +208,30 @@ public class HatchetFishAI : MonoBehaviour
         {
             yield return new WaitForSeconds(turnInterval);
             creatureTurn = !creatureTurn;
-            localScale.x *= -1f;
+            //localScale.x *= -1f;
         }
+
     }
 
-    // Buffer timer so creature gets further away
-    IEnumerator wanderBuffer()
+    private void FacingUpdate()
     {
-        yield return new WaitForSeconds(wanderBufferTime);
-        buffer = false;
+        transform.right = rb.velocity;
+
+        float angle;
+        float rotateSpeed = 2;
+
+        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, rb.velocity));
+
+        // This is to stop overrotation
+        if (Mathf.Abs(Vector2.Angle(transform.right, rb.velocity)) < 5f)
+        {
+            angle = 0;
+        }
+
+        if (angle != 0)
+        {
+            rb.MoveRotation(rb.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
+        }
     }
 
     // Time to slow down after dying
