@@ -165,6 +165,7 @@ MonoBehaviour:
   floatSpeed: 0.05
   nextBeacon: {fileID: 0}
   SpriteLight: {fileID: 2984343981420863231}
+  animator: {fileID: 6298845347247573995}
   soundQue: {fileID: 0}
 --- !u!70 &5207787593860429044
 CapsuleCollider2D:
@@ -255,7 +256,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1054937520, guid: 2ca62ce15d2f1f34ea4e30194af58563, type: 3}
+  m_Sprite: {fileID: -414437113, guid: 92e1b8b09158617468af73779934e6b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -276,7 +277,7 @@ Animator:
   m_GameObject: {fileID: 3655628710756093395}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2dbf354fef6ae6642a8cc8e9c09b68cf, type: 2}
+  m_Controller: {fileID: 9100000, guid: e771a9704c0322b48baac0753525d69d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

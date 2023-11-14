@@ -27,6 +27,7 @@ public class Beacon : MonoBehaviour
     public GameObject nextBeacon;
     private bool inRange = false;
     public GameObject SpriteLight;
+    public Animator animator;
 
     public AudioSource soundQue;
     
@@ -37,6 +38,7 @@ public class Beacon : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         myRigidbody = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        gameObject.GetComponent<Animator>().enabled = true;
         StartCoroutine(ChangeFloatDirection());
 
     }
@@ -104,10 +106,9 @@ public class Beacon : MonoBehaviour
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
 
+        animator.SetBool("inactive", false);
         SpriteLight.GetComponent<Light2D>().intensity = (1f);
-
-        gameObject.GetComponent<Animator>().enabled = true;
-        gameObject.GetComponent<Animator>().speed = 2f;
+        gameObject.GetComponent<Animator>().speed = 0.7f;
 
     }
 
@@ -122,9 +123,8 @@ public class Beacon : MonoBehaviour
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
 
+        animator.SetBool("inactive", true);
         SpriteLight.GetComponent<Light2D>().intensity = (0f);
-
-        gameObject.GetComponent<Animator>().enabled = false;
 
     }
 
@@ -144,10 +144,9 @@ public class Beacon : MonoBehaviour
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
 
+        animator.SetBool("inactive", false);
         SpriteLight.GetComponent<Light2D>().intensity = (1f);
-
-        gameObject.GetComponent<Animator>().enabled = true;
-        gameObject.GetComponent<Animator>().speed = 2f;
+        gameObject.GetComponent<Animator>().speed = 0.7f;
 
     }
 
