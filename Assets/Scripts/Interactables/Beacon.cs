@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using System.Data;
 using static UnityEngine.GraphicsBuffer;
 
 public enum BeaconState
@@ -24,6 +26,7 @@ public class Beacon : MonoBehaviour
     //public bool playerInteract = false;
     public GameObject nextBeacon;
     private bool inRange = false;
+    public GameObject SpriteLight;
 
     public AudioSource soundQue;
     
@@ -101,6 +104,10 @@ public class Beacon : MonoBehaviour
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
 
+        SpriteLight.GetComponent<Light2D>().intensity = (1f);
+
+        gameObject.GetComponent<Animator>().enabled = true;
+        gameObject.GetComponent<Animator>().speed = 2f;
 
     }
 
@@ -114,6 +121,10 @@ public class Beacon : MonoBehaviour
         {
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
+
+        SpriteLight.GetComponent<Light2D>().intensity = (0f);
+
+        gameObject.GetComponent<Animator>().enabled = false;
 
     }
 
@@ -132,6 +143,11 @@ public class Beacon : MonoBehaviour
         {
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
+
+        SpriteLight.GetComponent<Light2D>().intensity = (1f);
+
+        gameObject.GetComponent<Animator>().enabled = true;
+        gameObject.GetComponent<Animator>().speed = 2f;
 
     }
 
