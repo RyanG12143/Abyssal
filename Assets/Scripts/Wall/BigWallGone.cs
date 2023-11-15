@@ -26,7 +26,7 @@ public class BigWallGone : MonoBehaviour
 
     void blowUp()
     {
-        if((Vector2.Distance(package.transform.position, gameObject.transform.position) < 1.3f) && package.GetComponent<StrongExplosion>().checkExplode())
+        if((Vector2.Distance(package.transform.position, gameObject.transform.position) < 0.75f) && package.GetComponent<StrongExplosion>().checkExplode())
         {
             gameObject.SetActive(false);
             
@@ -35,7 +35,7 @@ public class BigWallGone : MonoBehaviour
 
     void dropPackage()
     {
-        if(Vector2.Distance(package.transform.position, gameObject.transform.position) < 1.3f && package.GetComponent<PickUpAble>().isPickedUp())
+        if(Vector2.Distance(package.transform.position, gameObject.transform.position) < 0.75f && package.GetComponent<PickUpAble>().isPickedUp())
         {
             package.GetComponent<PickUpAble>().setPickedUp(false);
         }
