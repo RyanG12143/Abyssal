@@ -58,7 +58,7 @@ public class Beacon : MonoBehaviour
             currState = BeaconState.Active;
             if (gameObject.GetComponent<TextHolder>().Text.Length > 0)
             {
-                GameObject.Find("EventHandler").GetComponent<EventHandler>().displayText(gameObject.GetComponent<TextHolder>().Text);
+                EventHandler.getInstance().displayText(gameObject.GetComponent<TextHolder>().Text, 10);
             }
         }
         else if (!inRange && currState == BeaconState.Active)

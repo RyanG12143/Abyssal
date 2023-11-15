@@ -5,11 +5,19 @@ using UnityEngine;
 
 public class EventHandler : MonoBehaviour
 {
+    private static EventHandler instance;
+    public static EventHandler getInstance() { return instance; }
+
     public GameObject uiText;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        displayText("There was a mission before us, we should go deeper to try and find them, they may have left behind a trail. We can use our sonar to detect beacons(Space)");
+
     }
 
     // Update is called once per frame
@@ -18,16 +26,16 @@ public class EventHandler : MonoBehaviour
         
     }
 
-    private IEnumerator timeTillFade()
+    private IEnumerator timeTillFade(float timeOnScreen)
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(timeOnScreen);
         uiText.SetActive(false);
     }
 
-    public void displayText(string text)
+    public void displayText(string text, float timeOnScreen)
     {
         uiText.GetComponent<TextMeshProUGUI>().SetText(text);
         uiText.SetActive(true);
-        StartCoroutine(timeTillFade());
+        StartCoroutine(timeTillFade(timeOnScreen));
     }
 }
