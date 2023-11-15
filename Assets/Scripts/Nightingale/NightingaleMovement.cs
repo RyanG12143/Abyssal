@@ -13,7 +13,7 @@ public class NightingaleMovement : MonoBehaviour
     // direction of vehicle facing
     private Vector2 facing;
     // speed of acceleration
-    private float speed = 5.0f;
+    public float speed;
     // which way object is facing for flip
     private bool isFacingRight;
     // refrence to game object to flip rotation
@@ -54,12 +54,14 @@ public class NightingaleMovement : MonoBehaviour
     // Moves character based on the facing direction (Facing), input direction (direction), and scaled by private speed;
     private void move()
     {
-        Vector2 acceleration = new Vector2(facing.x * direction * speed * Time.fixedDeltaTime, facing.y * direction * speed * Time.fixedDeltaTime);
 
+        
+        Vector2 acceleration = new Vector2(facing.x * direction * speed * Time.fixedDeltaTime, facing.y * direction * speed * Time.fixedDeltaTime);
         if (rb.velocity.magnitude < maxSpeed)
         {
-            rb.velocity += acceleration;
+            rb.AddForce(acceleration);
         }
+
         if(rb.velocity.magnitude < 0.1)
         {
             rb.velocity = new Vector2(0f, 0f);
@@ -120,16 +122,16 @@ public class NightingaleMovement : MonoBehaviour
     // Return velocity vector
     public Vector2 getVelocity()
     {
-        Vector2 movementDirection = rb.velocity;
-        return movementDirection;
+        Vector2 velocity = rb.velocity;
+        return velocity;
     }
 
     // Ryan Guy
     // Return normalized veloctiy vector
     public Vector2 getVelocityNormal()
     {
-        Vector2 movementDirection = rb.velocity;
-        movementDirection.Normalize();
-        return movementDirection;
+        Vector2 velocity = rb.velocity;
+        velocity.Normalize();
+        return velocity;
     }
 }
