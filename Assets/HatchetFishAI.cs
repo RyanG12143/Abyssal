@@ -36,7 +36,7 @@ public class HatchetFishAI : MonoBehaviour
     private bool isFacingRight = true;
     private bool creatureTurn = false;
     // Fix FLIPPING
-    private bool upFlipped = false;
+    public bool upFlipped = true;
     private bool slowTimeActive = false;
     private bool slowTimeCancel = false;
 
@@ -89,7 +89,10 @@ public class HatchetFishAI : MonoBehaviour
     {
         stateSwitch();
         AAI();
-        FacingUpdate();
+        if (!slowTimeCancel)
+        {
+            FacingUpdate();
+        }
     }
 
     // Core AI
@@ -191,11 +194,11 @@ public class HatchetFishAI : MonoBehaviour
     {
         Vector3 localScale = transform.localScale;
 
-        if (transform.up.y < 0f && !upFlipped)
+        if (upFlipped)
         {
-            localScale.y = localScale.y * -1;
+            localScale.y *= -1;
             transform.localScale = localScale;
-            upFlipped = true;
+            upFlipped = false;
         }
     }
 
