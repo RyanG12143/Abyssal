@@ -56,7 +56,8 @@ public class Fire : MonoBehaviour
 
     private void FixedUpdate()
     {
-        readyLight.transform.position = new Vector2(transform.position.x, transform.position.y - 0.1f);
+        readyLight.transform.rotation = gameObject.transform.rotation;
+        readyLight.transform.position = new Vector2(transform.position.x, transform.position.y - 0.25f);
     }
 
 }
