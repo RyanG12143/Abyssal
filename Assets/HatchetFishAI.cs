@@ -89,10 +89,7 @@ public class HatchetFishAI : MonoBehaviour
     {
         stateSwitch();
         AAI();
-        if (!slowTimeCancel)
-        {
-            FacingUpdate();
-        }
+        FacingUpdate();
     }
 
     // Core AI
@@ -161,8 +158,6 @@ public class HatchetFishAI : MonoBehaviour
     {
         Vector3 localScale = transform.localScale;
 
-        correctFlip();
-
         if (creatureTurn)
         {
             rb.velocity = new Vector2(wanderSpeed, 0f);
@@ -176,8 +171,23 @@ public class HatchetFishAI : MonoBehaviour
     // Seek
     void Seek()
     {
+        Vector3 localScale = transform.localScale;
+        
+        bool test1 = transform.eulerAngles.z > 90f && transform.eulerAngles.z < 270f;
+        Debug.Log("Test value : " + test1 + "  Flipped: " + upFlipped);
+
+        Debug.Log("Flipped" + transform.eulerAngles.z);
+
+        if (test1 != upFlipped)
+        {
+            localScale.y *= -1;
+            transform.localScale = localScale;
+            upFlipped = !upFlipped;
+            
+        }
+
         AAI();
-        correctFlip();
+
     }
 
     // Die
@@ -187,18 +197,6 @@ public class HatchetFishAI : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x * 0.2f, rb.velocity.y * 0.2f);
             slowTimeActive = false;
-        }
-    }
-
-    private void correctFlip()
-    {
-        Vector3 localScale = transform.localScale;
-
-        if (upFlipped)
-        {
-            localScale.y *= -1;
-            transform.localScale = localScale;
-            upFlipped = false;
         }
     }
 
