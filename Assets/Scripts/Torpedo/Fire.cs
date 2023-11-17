@@ -30,7 +30,7 @@ public class Fire : MonoBehaviour
 
         //Matthew Brodbeck 10/15/2023
         //Fires the torpedo if you press left shift and the cooldown is over
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isCooldownActive)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isCooldownActive)
         {
             fireSound.Play();
             Instantiate(torpedoPrefab, torpedoLocation, torpedoPrefab.transform.rotation);

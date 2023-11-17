@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Finished Assets/Background/BackGroundFolder/Twilight zone.prefab.meta
-guid: 95bdf114baad60b43b02103420766c29
+<<<<<<<< HEAD:Assets/Prefabs/AI/Bosses/Monstrosquid.prefab.meta
+guid: 374c58c61b25db949bf14fc27ca0e5b1
 ========
-guid: 08cf24264e5e02c4f87ad545587393c2
->>>>>>>> Ryan_Test:Assets/Placeholder Assets/Environment/Pallets/Test.prefab.meta
+guid: 95bdf114baad60b43b02103420766c29
+>>>>>>>> Leo_Test:Assets/Finished Assets/Background/BackGroundFolder/Twilight zone.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

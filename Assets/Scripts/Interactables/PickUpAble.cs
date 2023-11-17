@@ -70,14 +70,17 @@ public class PickUpAble : MonoBehaviour
 
         NightingaleFacingRight = Nightingale.GetComponent<NightingaleMovement>().getIsFacingRight();
 
+        List<GameObject> crystals = Nightingale.GetComponent<PlayerController>().getCrystals();
+        float index = crystals.IndexOf(gameObject);
+
         if (NightingaleFacingRight)
         {
-            Vector3 newPos = new Vector3(target.position.x + 1.15f, target.position.y + (currentVelocity.y * -0.10f), 0f);
+            Vector3 newPos = new Vector3(target.position.x + 1.0f + index/1.5f, target.position.y + (currentVelocity.y * -0.10f * (index)), 0f);
             transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
         }
         else
         {
-            Vector3 newPos = new Vector3(target.position.x - 1.15f, target.position.y + (currentVelocity.y * -0.10f), 0f);
+            Vector3 newPos = new Vector3(target.position.x - 1.0f - index/1.5f, target.position.y + (currentVelocity.y * -0.10f * (index)), 0f);
             transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
         }
 

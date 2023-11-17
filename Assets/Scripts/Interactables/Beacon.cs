@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using System.Data;
 using static UnityEngine.GraphicsBuffer;
 
 public enum BeaconState
@@ -24,6 +26,10 @@ public class Beacon : MonoBehaviour
     //public bool playerInteract = false;
     public GameObject nextBeacon;
     private bool inRange = false;
+    public GameObject SpriteLight;
+    public Animator animator;
+
+    public AudioSource soundQue;
     
 
     // Start is called before the first frame update
@@ -32,6 +38,7 @@ public class Beacon : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         myRigidbody = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        gameObject.GetComponent<Animator>().enabled = true;
         StartCoroutine(ChangeFloatDirection());
 
     }
@@ -96,6 +103,9 @@ public class Beacon : MonoBehaviour
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
 
+        animator.SetBool("inactive", false);
+        SpriteLight.GetComponent<Light2D>().intensity = (1f);
+        gameObject.GetComponent<Animator>().speed = 0.7f;
 
     }
 
@@ -109,6 +119,9 @@ public class Beacon : MonoBehaviour
         {
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
+
+        animator.SetBool("inactive", true);
+        SpriteLight.GetComponent<Light2D>().intensity = (0f);
 
     }
 
@@ -127,6 +140,10 @@ public class Beacon : MonoBehaviour
         {
             myRigidbody.velocity = new Vector2(0f, -floatSpeed);
         }
+
+        animator.SetBool("inactive", false);
+        SpriteLight.GetComponent<Light2D>().intensity = (1f);
+        gameObject.GetComponent<Animator>().speed = 0.7f;
 
     }
 
