@@ -36425,6 +36425,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4800017401099447133, guid: 80c340fff765f6a409d5776402b50ce7, type: 3}
   m_PrefabInstance: {fileID: 894709306}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &679841370
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1252805303}
+    m_Modifications:
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 158.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889801202373796478, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_Name
+      value: Sting_Ray_Plant_Animated (14)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+--- !u!4 &679841371 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+  m_PrefabInstance: {fileID: 679841370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &680466947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36696,6 +36758,76 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2308522763205838344, guid: 1e768a8387b6bd24c8c2e7448d4175d3, type: 3}
   m_PrefabInstance: {fileID: 524511114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &723466234
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1252805303}
+    m_Modifications:
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 159.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -13.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889801202373796478, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_Name
+      value: Sting_Ray_Plant_Animated (12)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+--- !u!4 &723466235 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+  m_PrefabInstance: {fileID: 723466234}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &723956780
 PrefabInstance:
@@ -37835,6 +37967,76 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c340fff765f6a409d5776402b50ce7, type: 3}
+--- !u!1001 &897658676
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1252805303}
+    m_Modifications:
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 157.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -14.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889801202373796478, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+      propertyPath: m_Name
+      value: Sting_Ray_Plant_Animated (13)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+--- !u!4 &897658677 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6583383054885071549, guid: 9fb9f45c8284cc746b8b9a74fb450c01, type: 3}
+  m_PrefabInstance: {fileID: 897658676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &917032380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40959,6 +41161,9 @@ Transform:
   - {fileID: 1862600628}
   - {fileID: 443313429}
   - {fileID: 1711893556}
+  - {fileID: 723466235}
+  - {fileID: 897658677}
+  - {fileID: 679841371}
   - {fileID: 35643027}
   - {fileID: 1214258480}
   - {fileID: 1327509941}
