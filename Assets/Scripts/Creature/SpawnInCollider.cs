@@ -7,6 +7,7 @@ public class SpawnInCollider : MonoBehaviour
 {
     public PolygonCollider2D polyCollider;
     public int numSpawn = 1;
+    public GameObject[] toSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +25,9 @@ public class SpawnInCollider : MonoBehaviour
 
             if (rndPointInside.x == rndPoint2D.x && rndPointInside.y == rndPoint2D.y)
             {
-                GameObject spawn = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                spawn.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                GameObject spawn = toSpawn[Random.Range(0, toSpawn.Length - 1)];
+                Instantiate(spawn);
+                spawn.transform.localScale = new Vector3(1f,1f,1f);
                 spawn.transform.position = rndPoint2D;
                 i++;
             }
