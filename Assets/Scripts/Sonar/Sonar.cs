@@ -71,7 +71,7 @@ public class Sonar : MonoBehaviour
         }
 
         // Activates sonar if space is pressed and it is off cooldown.
-        if (Input.GetKeyDown(KeyCode.Space) && !isCooldownActive)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !isCooldownActive)
         {
             sonarBeep.Play();
             SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 1f);

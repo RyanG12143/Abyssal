@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/AI/A_.prefab.meta
 guid: be5673fc570bb234c91ce712784a25a6
+========
+guid: 0b9c68ddd67ee5b9e8aeca86ac0fbc03
+>>>>>>>> Leo_Test:Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot_render.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Placeholder Assets/Environment/Pallets/Test.prefab.meta
 guid: 08cf24264e5e02c4f87ad545587393c2
+========
+guid: 0b9c68ddd67ee5b9e8aeca86ac0fbc03
+>>>>>>>> Ryan_Test:Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot_render.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/AI/Bosses/MonstrosquidDead.prefab.meta
 guid: 52d91fe30a44e1e49b92269c46600b61
+========
+guid: 08cf24264e5e02c4f87ad545587393c2
+>>>>>>>> Leo_Test:Assets/Placeholder Assets/Environment/Pallets/Test.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
