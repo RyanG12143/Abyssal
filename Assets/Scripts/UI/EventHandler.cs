@@ -9,6 +9,7 @@ public class EventHandler : MonoBehaviour
     public static EventHandler getInstance() { return instance; }
 
     public GameObject uiText;
+    private bool TextOnDisplay;
 
     private void Awake()
     {
@@ -28,6 +29,9 @@ public class EventHandler : MonoBehaviour
 
     private IEnumerator timeTillFade(string[] text, float timeOnScreen)
     {
+        yield return new WaitWhile(IsTextOnDispaly);
+
+        TextOnDisplay = true;
         foreach (string s in text)
         {
             uiText.GetComponent<TextMeshProUGUI>().SetText(s);
@@ -35,10 +39,16 @@ public class EventHandler : MonoBehaviour
             yield return new WaitForSeconds(timeOnScreen);
         }
         uiText.SetActive(false);
+        TextOnDisplay = false;
     }
 
     public void displayText(string[] text, float timeOnScreen)
     {
         StartCoroutine(timeTillFade(text, timeOnScreen));
+    }
+
+    public bool IsTextOnDispaly()
+    {
+        return TextOnDisplay;
     }
 }
