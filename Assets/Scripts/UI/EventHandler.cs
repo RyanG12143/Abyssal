@@ -10,6 +10,8 @@ public class EventHandler : MonoBehaviour
 
     public GameObject uiText;
     private bool TextOnDisplay;
+    private Queue<string[]> textQueue = new Queue<string[]>();
+    private Queue<float> timeQueue = new Queue<float>();
 
     private void Awake()
     {
@@ -24,14 +26,15 @@ public class EventHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (textQueue.Count > 0 && !TextOnDisplay) 
+        { 
+            displayText(textQueue.Dequeue(), timeQueue.Dequeue());
+        }
     }
 
     private IEnumerator timeTillFade(string[] text, float timeOnScreen)
     {
-        yield return new WaitWhile(IsTextOnDispaly);
-
-        TextOnDisplay = true;
+        
         foreach (string s in text)
         {
             uiText.GetComponent<TextMeshProUGUI>().SetText(s);
@@ -44,11 +47,13 @@ public class EventHandler : MonoBehaviour
 
     public void displayText(string[] text, float timeOnScreen)
     {
+        if (TextOnDisplay)
+        {
+            textQueue.Enqueue(text);
+            timeQueue.Enqueue(timeOnScreen);
+            return;
+        }
+        TextOnDisplay = true;
         StartCoroutine(timeTillFade(text, timeOnScreen));
-    }
-
-    public bool IsTextOnDispaly()
-    {
-        return TextOnDisplay;
     }
 }
