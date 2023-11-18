@@ -7,6 +7,7 @@ public class TextToDisplay : MonoBehaviour
     public string[] textToDisplay;
     public float timeToDisplay;
     public GameObject prevEvent;
+    private bool triggered = false;
 
 
     // Start is called before the first frame update
@@ -25,10 +26,14 @@ public class TextToDisplay : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            EventHandler.getInstance().displayText(textToDisplay, timeToDisplay);
-            if (prevEvent != null)
+            if (!triggered)
             {
-                Destroy(prevEvent);
+                triggered = true;
+                EventHandler.getInstance().displayText(textToDisplay, timeToDisplay);
+                if (prevEvent != null)
+                {
+                    Destroy(prevEvent);
+                }
             }
         }
     }
