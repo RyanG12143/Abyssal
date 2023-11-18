@@ -6,7 +6,6 @@ public class StrongExplosion : MonoBehaviour
 {
     private bool isExploded;
     private GameObject package = null;
-    private GameObject strongWall;
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +15,8 @@ public class StrongExplosion : MonoBehaviour
             package = GameObject.Find("Explosive package");
         }
 
-        if (strongWall == null)
-        {
-            
-        }
+        gameObject.GetComponent<Animator>().enabled = false;
+        gameObject.GetComponent<Animator>().speed = 1f;
 
 
         isExploded = false;
@@ -30,6 +27,7 @@ public class StrongExplosion : MonoBehaviour
     private void explode()
     {
         isExploded = true;
+        gameObject.GetComponent<Animator>().enabled = true;
         gameObject.SetActive(false);
     }
 

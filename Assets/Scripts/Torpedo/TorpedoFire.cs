@@ -11,7 +11,7 @@ public class TorpedoFire : MonoBehaviour
     private Vector2 bubbleLocation;
     private GameObject Nightingale = null;
     private GameObject mainCamera;
-    [SerializeField] private GameObject bubbles;
+    //[SerializeField] private GameObject bubbles;
     
     private Vector2 direction;
 
@@ -41,7 +41,7 @@ public class TorpedoFire : MonoBehaviour
 
         transform.localRotation = Nightingale.transform.rotation;
 
-        Instantiate(bubbles, bubbleLocation, bubbles.transform.rotation);
+        //Instantiate(bubbles, bubbleLocation, bubbles.transform.rotation);
         
 
     }

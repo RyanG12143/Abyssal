@@ -174,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 9083185665963598300, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: readyLight
       value: 
-      objectReference: {fileID: 345002147}
+      objectReference: {fileID: 60742286}
     - target: {fileID: 9099159503175847581, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_Name
       value: Nightingale
@@ -184,6 +184,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1289f1328ef924647845097412ba7562, type: 3}
+--- !u!1 &60742286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8538739493722030100, guid: 1289f1328ef924647845097412ba7562, type: 3}
+  m_PrefabInstance: {fileID: 60742285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &232504466
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,11 +326,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!1 &345002147 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8538739493722030100, guid: 1289f1328ef924647845097412ba7562, type: 3}
-  m_PrefabInstance: {fileID: 60742285}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
