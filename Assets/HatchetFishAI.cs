@@ -4,13 +4,11 @@ using UnityEngine;
 using Pathfinding;
 using System.IO;
 using static UnityEditor.Rendering.InspectorCurveEditor;
-using System;
 
 public class HatchetFishAI : MonoBehaviour
 {
     // A* variables
     public Transform target;
-
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
 
@@ -35,8 +33,11 @@ public class HatchetFishAI : MonoBehaviour
     public bool hitByTorpedo = false;
     private bool isFacingRight = true;
     private bool creatureTurn = false;
-    // Fix FLIPPING
-    public bool upFlipped = true;
+    
+    // Fix flipping
+    public bool upFlipped = false;
+
+    // Death process
     private bool slowTimeActive = false;
     private bool slowTimeCancel = false;
 
@@ -156,7 +157,11 @@ public class HatchetFishAI : MonoBehaviour
     // Wander
     void Wander()
     {
+        upFlipped = false;
+
         Vector3 localScale = transform.localScale;
+        localScale.y = 1;
+        transform.localScale = localScale;
 
         if (creatureTurn)
         {
@@ -172,22 +177,19 @@ public class HatchetFishAI : MonoBehaviour
     void Seek()
     {
         Vector3 localScale = transform.localScale;
-        
-        bool test1 = transform.eulerAngles.z > 90f && transform.eulerAngles.z < 270f;
-        Debug.Log("Test value : " + test1 + "  Flipped: " + upFlipped);
 
-        Debug.Log("Flipped" + transform.eulerAngles.z);
+        bool test1 = transform.eulerAngles.z > 90f && transform.eulerAngles.z < 270f;
+        //Debug.Log("Test value : " + test1 + "  Flipped: " + upFlipped);
+        //Debug.Log("Flipped" + transform.eulerAngles.z);
 
         if (test1 != upFlipped)
         {
             localScale.y *= -1;
             transform.localScale = localScale;
             upFlipped = !upFlipped;
-            
         }
 
         AAI();
-
     }
 
     // Die
