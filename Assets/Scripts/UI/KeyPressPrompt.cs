@@ -66,10 +66,10 @@ public class KeyPressPrompt : MonoBehaviour
 
         Color end = new Color((gameObject.GetComponent<SpriteRenderer>().color.r), (gameObject.GetComponent<SpriteRenderer>().color.g), (gameObject.GetComponent<SpriteRenderer>().color.b), 0f);
 
-        for (int i = 0; i < 120; i++)
+        for (int i = 0; i < 180; i++)
         {
 
-            gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(current, end, i / 120.0f);
+            gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(current, end, i / 180.0f);
 
             yield return new WaitForSeconds(.03f);
 
