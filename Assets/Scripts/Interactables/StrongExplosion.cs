@@ -15,6 +15,10 @@ public class StrongExplosion : MonoBehaviour
             package = GameObject.Find("Explosive package");
         }
 
+        gameObject.GetComponent<Animator>().enabled = false;
+        gameObject.GetComponent<Animator>().speed = 1f;
+
+
         isExploded = false;
         gameObject.SetActive(true);
     }
@@ -23,6 +27,7 @@ public class StrongExplosion : MonoBehaviour
     private void explode()
     {
         isExploded = true;
+        gameObject.GetComponent<Animator>().enabled = true;
         gameObject.SetActive(false);
     }
 
@@ -39,4 +44,6 @@ public class StrongExplosion : MonoBehaviour
     {
         return isExploded;
     }
+
+
 }
