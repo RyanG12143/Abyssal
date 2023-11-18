@@ -10,8 +10,9 @@ public class EventHandler : MonoBehaviour
 
     public GameObject uiText;
     private bool TextOnDisplay;
-    private Queue<string[]> textQueue = new Queue<string[]>();
-    private Queue<float> timeQueue = new Queue<float>();
+    private Queue<string> textQueue = new Queue<string>();
+    private float timeOnScreen;
+    private float timeToDisplay;
 
     private void Awake()
     {
@@ -26,34 +27,42 @@ public class EventHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (textQueue.Count > 0 && !TextOnDisplay) 
-        { 
-            displayText(textQueue.Dequeue(), timeQueue.Dequeue());
-        }
-    }
-
-    private IEnumerator timeTillFade(string[] text, float timeOnScreen)
-    {
-        
-        foreach (string s in text)
+       if (TextOnDisplay)
         {
-            uiText.GetComponent<TextMeshProUGUI>().SetText(s);
-            uiText.SetActive(true);
-            yield return new WaitForSeconds(timeOnScreen);
+            if (timeOnScreen > timeToDisplay)
+            {
+                if (textQueue.Count > 0)
+                {
+                    uiText.GetComponent<TextMeshProUGUI>().SetText(textQueue.Dequeue());
+                    timeOnScreen = 0;
+                }
+                else
+                {
+                    uiText.SetActive(false);
+                    TextOnDisplay = false;
+                }
+            }
+            timeOnScreen += Time.deltaTime;
         }
-        uiText.SetActive(false);
-        TextOnDisplay = false;
     }
 
-    public void displayText(string[] text, float timeOnScreen)
+    public void displayText(string[] text, float timeToDisplay)
     {
         if (TextOnDisplay)
         {
-            textQueue.Enqueue(text);
-            timeQueue.Enqueue(timeOnScreen);
-            return;
+            textQueue.Clear();
         }
+
+        timeOnScreen = 0;
+        foreach (string s in text)
+        {
+            textQueue.Enqueue(s);
+        }
+        timeOnScreen = 0;
+        uiText.GetComponent<TextMeshProUGUI>().SetText(textQueue.Dequeue());
+        uiText.SetActive(true);
+        this.timeToDisplay = timeToDisplay;
         TextOnDisplay = true;
-        StartCoroutine(timeTillFade(text, timeOnScreen));
+        
     }
 }

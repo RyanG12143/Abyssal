@@ -8,6 +8,7 @@ public class TextToDisplay : MonoBehaviour
     public float timeToDisplay;
     public GameObject prevEvent;
     public AudioSource dialogueAudio;
+    private bool triggered = false;
 
 
     // Start is called before the first frame update
@@ -29,8 +30,14 @@ public class TextToDisplay : MonoBehaviour
             dialogueAudio.Play();
             EventHandler.getInstance().displayText(textToDisplay, timeToDisplay);
             if (prevEvent != null)
+            if (!triggered)
             {
-                Destroy(prevEvent);
+                triggered = true;
+                EventHandler.getInstance().displayText(textToDisplay, timeToDisplay);
+                if (prevEvent != null)
+                {
+                    Destroy(prevEvent);
+                }
             }
         }
     }
