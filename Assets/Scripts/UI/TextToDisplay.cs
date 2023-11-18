@@ -7,6 +7,7 @@ public class TextToDisplay : MonoBehaviour
     public string[] textToDisplay;
     public float timeToDisplay;
     public GameObject prevEvent;
+    public AudioSource dialogueAudio;
 
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class TextToDisplay : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            dialogueAudio.Play();
             EventHandler.getInstance().displayText(textToDisplay, timeToDisplay);
             if (prevEvent != null)
             {
