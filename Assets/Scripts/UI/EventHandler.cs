@@ -26,16 +26,19 @@ public class EventHandler : MonoBehaviour
         
     }
 
-    private IEnumerator timeTillFade(float timeOnScreen)
+    private IEnumerator timeTillFade(string[] text, float timeOnScreen)
     {
-        yield return new WaitForSeconds(timeOnScreen);
+        foreach (string s in text)
+        {
+            uiText.GetComponent<TextMeshProUGUI>().SetText(s);
+            uiText.SetActive(true);
+            yield return new WaitForSeconds(timeOnScreen);
+        }
         uiText.SetActive(false);
     }
 
-    public void displayText(string text, float timeOnScreen)
+    public void displayText(string[] text, float timeOnScreen)
     {
-        uiText.GetComponent<TextMeshProUGUI>().SetText(text);
-        uiText.SetActive(true);
-        StartCoroutine(timeTillFade(timeOnScreen));
+        StartCoroutine(timeTillFade(text, timeOnScreen));
     }
 }
