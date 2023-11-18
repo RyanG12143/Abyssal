@@ -27,12 +27,10 @@ public class TextToDisplay : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            dialogueAudio.Play();
-            EventHandler.getInstance().displayText(textToDisplay, timeToDisplay);
-            if (prevEvent != null)
             if (!triggered)
             {
                 triggered = true;
+                dialogueAudio.Play();
                 EventHandler.getInstance().displayText(textToDisplay, timeToDisplay);
                 if (prevEvent != null)
                 {
