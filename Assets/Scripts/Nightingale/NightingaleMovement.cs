@@ -51,7 +51,7 @@ public class NightingaleMovement : MonoBehaviour
     }
 
     // Ryan Guy
-    // Moves character based on the facing direction (Facing), input direction (direction), and scaled by private speed;
+    // Moves character based on the facing direction (Facing), input direction (direction), and scaled by public speed;
     private void move()
     {
 
@@ -101,7 +101,6 @@ public class NightingaleMovement : MonoBehaviour
         float RotationZ = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.Euler(0f, 0f, RotationZ), Time.deltaTime * 7.5f);
 
-        //transform.right = Vector3.Slerp(transform.right, facing, 7.5f * Time.deltaTime);
     }
 
     // Ryan Guy

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TextToDisplay : MonoBehaviour
 {
-    public string textToDisplay;
+    public string[] textToDisplay;
     public float timeToDisplay;
     public GameObject prevEvent;
 
