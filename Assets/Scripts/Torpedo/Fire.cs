@@ -7,7 +7,6 @@ public class Fire : MonoBehaviour
 {
     
     private Vector2 torpedoLocation;
-    private Vector2 lightLocation;
     private bool isCooldownActive = false;
 
     public GameObject torpedoPrefab;
@@ -24,7 +23,7 @@ public class Fire : MonoBehaviour
     {
         //Matthew Brodbeck 10/13/2023
         //Places the torpedo on the right side of the sub
-        torpedoLocation = new Vector2(transform.position.x, transform.position.y - 0.4f);
+        torpedoLocation = new Vector2(transform.localPosition.x, transform.localPosition.y - 0.4f);
         
         
 
@@ -35,6 +34,7 @@ public class Fire : MonoBehaviour
         {
             fireSound.Play();
             Instantiate(torpedoPrefab, torpedoLocation, torpedoPrefab.transform.rotation);
+
             StartCoroutine(torpedoCooldown());
             
         }
@@ -56,8 +56,7 @@ public class Fire : MonoBehaviour
 
     private void FixedUpdate()
     {
-        readyLight.transform.rotation = gameObject.transform.rotation;
-        readyLight.transform.position = new Vector2(transform.position.x, transform.position.y - 0.25f);
+        readyLight.transform.localPosition = new Vector2(0, -0.25f);
     }
 
 }

@@ -349,6 +349,7 @@ MonoBehaviour:
   torpedoPrefab: {fileID: 5618860476881002139, guid: 592ebd0937163d9459e96f7c3b4108c4, type: 3}
   fireSound: {fileID: 7923326996719245162}
   readyLight: {fileID: 8538739493722030100}
+  bubbles: {fileID: 8611637075343629141, guid: a097321a78df17f4fa30e27e8ab8af45, type: 3}
 --- !u!82 &7923326996719245162
 AudioSource:
   m_ObjectHideFlags: 0
