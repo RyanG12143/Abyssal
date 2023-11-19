@@ -8,6 +8,7 @@ public class StrongExplosion : MonoBehaviour
     private GameObject package = null;
     public GameObject wallToExplode;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,19 +26,28 @@ public class StrongExplosion : MonoBehaviour
     }
 
 
-    private void explode()
+    IEnumerator explode()
     {
         isExploded = true;
+        transform.position = wallToExplode.transform.position;
+        transform.localScale = wallToExplode.transform.localScale * 5;
         gameObject.GetComponent<Animator>().enabled = true;
-        gameObject.SetActive(false);
+        gameObject.GetComponent<Animator>().Play("Package Explode");
+        yield return new WaitForSeconds(1f);
+
+        Destroy(gameObject);
+        yield return new WaitForSeconds(1f);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Torpedo") && wallToExplode.GetComponent<BigWallGone>().isPlaced)
         {
-            other.gameObject.SetActive(false);
-            explode();
+            StartCoroutine(explode());
+            Destroy(wallToExplode);
+            Destroy(other.gameObject);
+
         }
     }
 

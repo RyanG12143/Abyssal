@@ -8,7 +8,6 @@ public class Fire : MonoBehaviour
     
     private Vector2 torpedoLocation;
     private bool isCooldownActive = false;
-
     public GameObject torpedoPrefab;
     public AudioSource fireSound;
     public GameObject readyLight;
@@ -34,7 +33,6 @@ public class Fire : MonoBehaviour
         {
             fireSound.Play();
             Instantiate(torpedoPrefab, torpedoLocation, torpedoPrefab.transform.rotation);
-
             StartCoroutine(torpedoCooldown());
             
         }
@@ -57,6 +55,7 @@ public class Fire : MonoBehaviour
     private void FixedUpdate()
     {
         readyLight.transform.localPosition = new Vector2(0, -0.25f);
+        
     }
 
 }
