@@ -174,7 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireSpeed: 10
-  bubbles: {fileID: 8611637075343629141, guid: a097321a78df17f4fa30e27e8ab8af45, type: 3}
 --- !u!114 &1213188285436969477
 MonoBehaviour:
   m_ObjectHideFlags: 0

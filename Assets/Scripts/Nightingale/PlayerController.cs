@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance { get; private set; }
+    PlayerController instance;
 
     private bool invinc = false;
     public bool getInvince()
