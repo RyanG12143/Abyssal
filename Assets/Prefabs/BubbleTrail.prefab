@@ -97,4 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146f1fcb1f64df94cb2732d4aa41e3de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torpedoPrefab: {fileID: 5618860476881002139, guid: 592ebd0937163d9459e96f7c3b4108c4, type: 3}
+  objectToFollow: {fileID: 6328066914044924104, guid: 592ebd0937163d9459e96f7c3b4108c4, type: 3}
+  offset: {x: 1, y: 0, z: 0}
