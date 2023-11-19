@@ -6,6 +6,7 @@ public class StrongExplosion : MonoBehaviour
 {
     private bool isExploded;
     private GameObject package = null;
+    public GameObject wallToExplode;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class StrongExplosion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Torpedo") && !package.GetComponent<PickUpAble>().isPickedUp())
+        if (other.gameObject.CompareTag("Torpedo") && wallToExplode.GetComponent<BigWallGone>().isPlaced)
         {
             other.gameObject.SetActive(false);
             explode();

@@ -48,7 +48,7 @@ public class Fire : MonoBehaviour
     {
         readyLight.SetActive(false);
         isCooldownActive = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2f);
         isCooldownActive = false;
         readyLight.SetActive(true);
         
