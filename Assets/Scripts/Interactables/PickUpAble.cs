@@ -26,6 +26,8 @@ public class PickUpAble : MonoBehaviour
 
     public Material unlit;
 
+    private bool alreadyPickedUp = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,18 +72,35 @@ public class PickUpAble : MonoBehaviour
 
         NightingaleFacingRight = Nightingale.GetComponent<NightingaleMovement>().getIsFacingRight();
 
-        List<GameObject> crystals = Nightingale.GetComponent<PlayerController>().getCrystals();
-        float index = crystals.IndexOf(gameObject);
 
-        if (NightingaleFacingRight)
+        if (gameObject.tag == "Crystal")
         {
-            Vector3 newPos = new Vector3(target.position.x + 1.0f + index/1.5f, target.position.y + (currentVelocity.y * -0.10f * (index)), 0f);
-            transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+            List<GameObject> crystals = Nightingale.GetComponent<PlayerController>().getCrystals();
+            float index = crystals.IndexOf(gameObject);
+
+            if (NightingaleFacingRight)
+            {
+                Vector3 newPos = new Vector3(target.position.x + 1.0f + index / 1.5f, target.position.y + (currentVelocity.y * -0.10f * (index)), 0f);
+                transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+            }
+            else
+            {
+                Vector3 newPos = new Vector3(target.position.x - 1.0f - index / 1.5f, target.position.y + (currentVelocity.y * -0.10f * (index)), 0f);
+                transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+            }
         }
         else
         {
-            Vector3 newPos = new Vector3(target.position.x - 1.0f - index/1.5f, target.position.y + (currentVelocity.y * -0.10f * (index)), 0f);
-            transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+            if (NightingaleFacingRight)
+            {
+                Vector3 newPos = new Vector3(target.position.x + 1.0f + 1 / 1.5f, target.position.y + (currentVelocity.y * -0.10f * (1)), 0f);
+                transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+            }
+            else
+            {
+                Vector3 newPos = new Vector3(target.position.x - 1.0f - 1 / 1.5f, target.position.y + (currentVelocity.y * -0.10f * (1)), 0f);
+                transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+            }
         }
 
       
@@ -90,10 +109,12 @@ public class PickUpAble : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && !pickedUp)
+        if ((collision.gameObject.tag == "Player") && !pickedUp && !alreadyPickedUp)
         {
+            alreadyPickedUp = true;
             pickedUp = true;
             pickUpSound.Play();
+            if (gameObject.tag == "Crystal")
             collision.gameObject.GetComponent<PlayerController>().addCrystal(gameObject);
         }
     }
