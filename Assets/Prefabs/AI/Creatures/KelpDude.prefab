@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7422704777557619459}
   - component: {fileID: 1977354614588987616}
-  - component: {fileID: -5718629753416672123}
+  - component: {fileID: -3059233346053718648}
   m_Layer: 0
   m_Name: KelpDude
   m_TagString: EnemyNoDamage
@@ -51,8 +51,8 @@ MonoBehaviour:
   Animated: {fileID: 6497537917882137808}
   lit: {fileID: 0}
   unlit: {fileID: 0}
---- !u!60 &-5718629753416672123
-PolygonCollider2D:
+--- !u!61 &-3059233346053718648
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -83,7 +83,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.0032987595}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -93,22 +93,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.09498596, y: 0.53927803}
-      - {x: -0.059944153, y: 0.36091805}
-      - {x: -0.066474915, y: 0.23381996}
-      - {x: -0.24273682, y: 0.16199875}
-      - {x: -0.32662112, y: -0.056877345}
-      - {x: -0.28010696, y: -0.3220061}
-      - {x: -0.115484595, y: -0.52595115}
-      - {x: 0.118133545, y: -0.52261734}
-      - {x: 0.25774384, y: -0.2766571}
-      - {x: 0.22296143, y: -0.11870384}
-      - {x: 0.26914215, y: -0.052124023}
-      - {x: 0.3282013, y: 0.24425888}
-      - {x: 0.28057003, y: 0.3975734}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6272209283034553941
 GameObject:
   m_ObjectHideFlags: 0
