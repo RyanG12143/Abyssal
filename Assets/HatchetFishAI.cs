@@ -24,29 +24,26 @@ public class HatchetFishAI : MonoBehaviour
     // Variables
     public float detectionRange = 5.0f;
     public float turnInterval = 2.0f;
-    public float wanderBufferTime = 2.0f;
-    public float slowTimeInterval = 0.5f;
     public float wanderSpeed = 2.0f;
 
     // Bool's for creature state change
-    public bool hitPlayer = false;
-    public bool hitByTorpedo = false;
-    private bool isFacingRight = true;
+    private bool hitPlayer = false;
+    private bool hitByTorpedo = false;
     private bool creatureTurn = false;
     
     // Fix flipping
     public bool upFlipped = false;
 
-    // Death process
-    private bool slowTimeActive = false;
-    private bool slowTimeCancel = false;
+    // Stun variables
+    public bool stunned = false;
+    private float stunTime = 5f;
 
     // State Enum
     public enum EnemyAction
     {
         Wander,
         Seek,
-        Die,
+        Stunned,
     }
 
     public EnemyAction currState = EnemyAction.Wander;
@@ -126,15 +123,15 @@ public class HatchetFishAI : MonoBehaviour
     private void stateSwitch()
     {
         // Checks what state to be in
-        if (hitByTorpedo)
+        if (stunned)
         {
-            currState = EnemyAction.Die;
+            currState = EnemyAction.Stunned;
         }
-        else if (IsPlayerInRange(detectionRange) && currState != EnemyAction.Die)
+        else if (IsPlayerInRange(detectionRange) && !stunned)
         {
             currState = EnemyAction.Seek;
         }
-        else if (!IsPlayerInRange(detectionRange) && currState != EnemyAction.Die)
+        else if (!IsPlayerInRange(detectionRange) && !stunned)
         {
             currState = EnemyAction.Wander;
         }
@@ -148,8 +145,8 @@ public class HatchetFishAI : MonoBehaviour
             case EnemyAction.Seek:
                 Seek();
                 break;
-            case EnemyAction.Die:
-                Die();
+            case EnemyAction.Stunned:
+                Stunned();
                 break;
         }
     }
@@ -192,16 +189,36 @@ public class HatchetFishAI : MonoBehaviour
         AAI();
     }
 
-    // Die
-    void Die()
+    // Stunned
+    void Stunned()
     {
-        if (slowTimeActive == true)
+        //Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        //Vector2 force = -direction * speed/10 * Time.deltaTime;
+
+        //rb.AddForce(force);
+    }
+
+    // Collision
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && !hitPlayer && !stunned)
         {
-            rb.velocity = new Vector2(rb.velocity.x * 0.2f, rb.velocity.y * 0.2f);
-            slowTimeActive = false;
+            
+        }
+        else if (collision.gameObject.name == "Torpedo2(Clone)" && stunned == false)
+        {
+            stunned = true;
+            //rb.bodyType = RigidbodyType2D.Dynamic;
+            //rb.gravityScale = 0.01f;
+            currentWaypoint = 0;
+            StartCoroutine(StunTimer());
         }
     }
 
+
+    // Helper Methods
+    //
+    //
     // Changing Creature Momentum Direction
     IEnumerator ChangeCreatureTurn()
     {
@@ -211,11 +228,10 @@ public class HatchetFishAI : MonoBehaviour
         {
             yield return new WaitForSeconds(turnInterval);
             creatureTurn = !creatureTurn;
-            //localScale.x *= -1f;
         }
-
     }
 
+    // Sets facing direction to velocity direction
     private void FacingUpdate()
     {
         transform.right = rb.velocity;
@@ -237,21 +253,11 @@ public class HatchetFishAI : MonoBehaviour
         }
     }
 
-    // Time to slow down after dying
-    IEnumerator deathSlowTime()
+    // Stun Timer
+    IEnumerator StunTimer()
     {
-        if (!slowTimeCancel)
-        {
-            yield return new WaitForSeconds(slowTimeInterval);
-            yield return slowTimeActive = true;
-        }
-    }
-
-    // Cancels the slow time after a given time
-    IEnumerator deathSlowTimeCancel()
-    {
-        yield return new WaitForSeconds(4);
-        slowTimeCancel = true;
+        yield return new WaitForSeconds(stunTime);
+        stunned = false;
     }
 
     // Checks if the player

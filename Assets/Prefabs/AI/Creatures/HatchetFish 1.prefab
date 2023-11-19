@@ -123,7 +123,7 @@ MonoBehaviour:
   wanderSpeed: 2
   hitPlayer: 0
   hitByTorpedo: 0
-  upFlipped: 1
+  upFlipped: 0
   currState: 0
 --- !u!50 &5558966272975042315
 Rigidbody2D:
