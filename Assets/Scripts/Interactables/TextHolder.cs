@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TextHolder : MonoBehaviour
 {
-    public string Text;
+    public string[] Text;
     // Start is called before the first frame update
     void Start()
     {
