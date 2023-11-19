@@ -2635,7 +2635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[0]
-      value: I've never seen something like THAT before...
+      value: I've never seen something like that before...
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[1]
@@ -49932,6 +49932,10 @@ PrefabInstance:
       propertyPath: wallToExplode
       value: 
       objectReference: {fileID: 560838043}
+    - target: {fileID: 5485740818418477972, guid: 92224fb69892ebb4480e37811e7ef5b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7896449086998561769, guid: 92224fb69892ebb4480e37811e7ef5b4, type: 3}
       propertyPath: m_Name
       value: Explosive package
