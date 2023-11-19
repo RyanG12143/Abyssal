@@ -14,6 +14,8 @@ public class BigWallGone : MonoBehaviour
     void Start()
     {
 
+        isPlaced = false;
+
         gameObject.SetActive(true);
     }
 
@@ -28,6 +30,16 @@ public class BigWallGone : MonoBehaviour
 
         blowUp();
         //dropPackage();
+    }
+
+    private void FixedUpdate()
+    {
+        if (isPlaced)
+        {
+            Vector3 endPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f, gameObject.transform.position.z);
+            package.transform.position = Vector3.Slerp(package.transform.position, endPos, 2.5f * Time.deltaTime);
+
+        }
     }
 
 
@@ -52,18 +64,11 @@ public class BigWallGone : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        Debug.Log("collison");
-
-        if ((collision.gameObject.tag == "Player"))
+        if ((collision.gameObject.tag == "Player") && package.GetComponent<PickUpAble>().isPickedUp())
         {
             isPlaced = true;
             package.GetComponent<PickUpAble>().setPickedUp(false);
-            Vector3 startPos = new Vector3(package.transform.position.x, package.transform.position.y, package.transform.position.z);
-            Vector3 endPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 0.5f, gameObject.transform.position.z);
-            while (startPos != endPos)
-            {
-                package.transform.position = Vector3.Slerp(startPos, endPos, 10f * Time.deltaTime);
-            }
+
         }
     }
 

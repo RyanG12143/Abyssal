@@ -82,7 +82,7 @@ public class Sonar : MonoBehaviour
     {
         creaturesScanned = GameObject.FindGameObjectsWithTag("Enemy");
         creaturesNoDamageScanned = GameObject.FindGameObjectsWithTag("EnemyNoDamage");
-        interactablesScanned = GameObject.FindGameObjectsWithTag("Interactable");
+        interactablesScanned = GameObject.FindGameObjectsWithTag("ExplosivePackage");
         beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
         crackedWallsScanned = GameObject.FindGameObjectsWithTag("CrackedWall");
         crystalsScanned = GameObject.FindGameObjectsWithTag("Crystal");
@@ -157,7 +157,7 @@ public class Sonar : MonoBehaviour
                 foreach (var interactable in interactablesScanned)
                 {
 
-                    if ((interactable != null) && (Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    if ((interactable != null) && (Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)) && (!interactable.GetComponent<PickUpAble>().isPickedUp()))
                     {
 
                         interactable.GetComponent<InteractableSonarPulse>().StartFade();
