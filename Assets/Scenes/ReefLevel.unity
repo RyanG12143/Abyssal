@@ -40656,31 +40656,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4584873412949375461, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[9].x
-      value: 2.890211
+      value: 4.446066
       objectReference: {fileID: 0}
     - target: {fileID: -4584873412949375461, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[9].y
-      value: -3.5463023
+      value: -4.3242283
       objectReference: {fileID: 0}
     - target: {fileID: -4584873412949375461, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[10].x
-      value: 3.5360947
+      value: 6.6283493
       objectReference: {fileID: 0}
     - target: {fileID: -4584873412949375461, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[10].y
-      value: -3.018034
+      value: -3.5236855
       objectReference: {fileID: 0}
     - target: {fileID: -4584873412949375461, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].x
-      value: 4.113909
+      value: 6.758852
       objectReference: {fileID: 0}
     - target: {fileID: -4584873412949375461, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[11].y
-      value: -0.887805
+      value: -1.2767677
       objectReference: {fileID: 0}
     - target: {fileID: -4584873412949375461, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].x
-      value: 3.5383615
+      value: 6.572274
       objectReference: {fileID: 0}
     - target: {fileID: -4584873412949375461, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[12].y
@@ -40708,7 +40708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5997611710188416869, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 71.83
+      value: 68.25
       objectReference: {fileID: 0}
     - target: {fileID: 5997611710188416869, guid: 92a3ccc49b248d6469f86ae5242476fb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -46498,30 +46498,39 @@ PrefabInstance:
       objectReference: {fileID: 1675377124}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: timeToDisplay
-      value: 5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[0]
-      value: "Great, she\u2019s running smooth as ever! Anyway, you see those fish
-        around you?"
+      value: 'You saw that arrow on your interface when you activated the sonar,
+        right? That can only mean one thing:'
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[1]
-      value: "They should show up on the Nightingale\u2019s interface if you activate
-        the sonar. Give that a try for me."
+      value: "there\u2019s a beacon left behind by the previous vessel emitting a
+        signal! If I remember correctly,"
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[2]
-      value: Anyway, you see those fish around you?
+      value: "the vessel was instructed to leave behind beacons at areas of note,
+        so that\u2019s probably worth checking out."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
+      propertyPath: textToDisplay.Array.data[3]
+      value: "You can activate your sonar again if you need to see the arrow.\u201D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
+      propertyPath: textToDisplay.Array.data[4]
+      value: "You can activate your sonar again if you need to see the arrow.\u201D"
       objectReference: {fileID: 0}
     - target: {fileID: 3856644253835703040, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: d8024ace88ee87749aec01436fa62eae, type: 3}
+      objectReference: {fileID: 8300000, guid: 3288605273a66ca44a4eb71b55f9f98b, type: 3}
     - target: {fileID: 3856644253835703040, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -48429,15 +48438,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5754346128493234497, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: m_Size.y
-      value: 6.416272
+      value: 4.326002
       objectReference: {fileID: 0}
     - target: {fileID: 5754346128493234497, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: m_Offset.y
-      value: 0.548596
+      value: 1.5937308
       objectReference: {fileID: 0}
     - target: {fileID: 6315111243565350154, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 69.81
+      value: 67.66
       objectReference: {fileID: 0}
     - target: {fileID: 6315111243565350154, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -50932,30 +50941,44 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: timeToDisplay
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[0]
-      value: "Great, she\u2019s running smooth as ever! Anyway, you see those fish
-        around you?"
+      value: This is Reynolds operating out of Research Base 7C.
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[1]
-      value: "They should show up on the Nightingale\u2019s interface if you activate
-        the sonar. Give that a try for me."
+      value: "I\u2019ve been tasked with monitoring and guiding you throughout this
+        mission."
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[2]
-      value: Anyway, you see those fish around you?
+      value: "I\u2019m also supposed to read you some of the legal stuff you\u2019ve
+        already heard a hundred times,"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
+      propertyPath: textToDisplay.Array.data[3]
+      value: "but honestly, we don\u2019t have all day, so just pretend I did that,
+        okay?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
+      propertyPath: textToDisplay.Array.data[4]
+      value: "Okay. Let\u2019s get started with some of the tests to make sure the
+        Nightingale's"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
+      propertyPath: textToDisplay.Array.data[5]
+      value: still working. Let's see how she moves forward."
       objectReference: {fileID: 0}
     - target: {fileID: 3856644253835703040, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: d8024ace88ee87749aec01436fa62eae, type: 3}
+      objectReference: {fileID: 8300000, guid: 4a8046113c82ed24cb5305057b6751d8, type: 3}
     - target: {fileID: 3856644253835703040, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -51177,11 +51200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 29.62
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.19
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.z
