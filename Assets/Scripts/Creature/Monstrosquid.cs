@@ -40,6 +40,9 @@ public class Monstrosquid : MonoBehaviour
     private bool attacking = true;
     private bool leaveTrack = true;
 
+    public AudioSource JumpscareSound;
+    public AudioSource AttackSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -160,6 +163,7 @@ public class Monstrosquid : MonoBehaviour
     IEnumerator jumpscareActivate()
     {
         animator.SetBool("Jumpscare", true);
+        JumpscareSound.Play();
         yield return new WaitForSeconds(0.3f);
         jumpscare = false;
         animationClear();
@@ -173,6 +177,7 @@ public class Monstrosquid : MonoBehaviour
         {
             attacking = false;
             animator.SetBool("Attack", true);
+            AttackSound.Play();
             myRigidbody.velocity = new Vector2(-4f, 4f);
             yield return new WaitForSeconds(0.1f);
             animationClear();

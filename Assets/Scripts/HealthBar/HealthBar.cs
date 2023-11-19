@@ -4,18 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
-    //private bool invinc;
-    public Sprite[] spriteList = new Sprite[4];
+    public Image bar;
+    public Image mask;
+    public Image container;
+    private float originalSize;
+
     //private int count = 1;
 
-    private int currHealth;
+    private float currHealth;
+    private float maxHealth;
     // Start is called before the first frame update
+
+    void Awake()
+    {
+        originalSize = mask.rectTransform.rect.yMax;
+    }
+
     void Start()
     {
-        //state1 = this.gameObject.GetComponent<SpriteRenderer>();
-        //LowerHealthImage();
         Health.GetInstance().addOnHealthChanged(updateHealthBar);
         currHealth = Health.GetInstance().getMax();
+        maxHealth = Health.GetInstance().getMax();
+
     }
 
     private void updateHealthBar(int oldVal, int newVal)
@@ -23,7 +33,8 @@ public class HealthBar : MonoBehaviour
         currHealth = newVal;
         if (currHealth >= 0)
         {
-            gameObject.GetComponent<UnityEngine.UI.Image>().sprite = spriteList[currHealth];
+            Debug.Log(currHealth);
+            mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, originalSize * (currHealth/maxHealth));
         }
     }
 

@@ -52,13 +52,7 @@ public class Sonar : MonoBehaviour
         sonarSizeIncrease = false;
         SonarSpread.transform.localScale = new Vector3(1f, 1f, 1f);
         SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 0f);
-        creaturesScanned = GameObject.FindGameObjectsWithTag("Enemy");
-        creaturesNoDamageScanned = GameObject.FindGameObjectsWithTag("EnemyNoDamage");
-        //tilesScanned = GameObject.FindGameObjectsWithTag("Wall");
-        interactablesScanned = GameObject.FindGameObjectsWithTag("Interactable");
-        beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
-        crackedWallsScanned = GameObject.FindGameObjectsWithTag("CrackedWall");
-        crystalsScanned = GameObject.FindGameObjectsWithTag("Crystal");
+        
     }
 
     // Update is called once per frame
@@ -71,16 +65,27 @@ public class Sonar : MonoBehaviour
         }
 
         // Activates sonar if space is pressed and it is off cooldown.
-        if (Input.GetKeyDown(KeyCode.Space) && !isCooldownActive)
+        if ((Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Space)) && !isCooldownActive)
         {
             sonarBeep.Play();
             SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 1f);
+            sonarTargetsUpdate();
             SonarScan();
             StartCoroutine(Cooldown());
         }
 
         UpdateSonar();
 
+    }
+
+    private void sonarTargetsUpdate()
+    {
+        creaturesScanned = GameObject.FindGameObjectsWithTag("Enemy");
+        creaturesNoDamageScanned = GameObject.FindGameObjectsWithTag("EnemyNoDamage");
+        interactablesScanned = GameObject.FindGameObjectsWithTag("ExplosivePackage");
+        beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
+        crackedWallsScanned = GameObject.FindGameObjectsWithTag("CrackedWall");
+        crystalsScanned = GameObject.FindGameObjectsWithTag("Crystal");
     }
 
         /*
@@ -152,7 +157,7 @@ public class Sonar : MonoBehaviour
                 foreach (var interactable in interactablesScanned)
                 {
 
-                    if ((interactable != null) && (Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    if ((interactable != null) && (Vector2.Distance(SonarSpread.transform.position, interactable.transform.position) < (SonarSpread.transform.localScale.x * 0.5)) && (!interactable.GetComponent<PickUpAble>().isPickedUp()))
                     {
 
                         interactable.GetComponent<InteractableSonarPulse>().StartFade();

@@ -5,29 +5,64 @@ using UnityEngine;
 
 public class EventHandler : MonoBehaviour
 {
+    private static EventHandler instance;
+    public static EventHandler getInstance() { return instance; }
+
     public GameObject uiText;
+    private bool TextOnDisplay;
+    private Queue<string> textQueue = new Queue<string>();
+    private float timeOnScreen;
+    private float timeToDisplay;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        displayText("There was a mission before us, we should go deeper to try and find them, they may have left behind a trail. We can use our sonar to detect beacons(Space)");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       if (TextOnDisplay)
+        {
+            if (timeOnScreen > timeToDisplay)
+            {
+                if (textQueue.Count > 0)
+                {
+                    uiText.GetComponent<TextMeshProUGUI>().SetText(textQueue.Dequeue());
+                    timeOnScreen = 0;
+                }
+                else
+                {
+                    uiText.SetActive(false);
+                    TextOnDisplay = false;
+                }
+            }
+            timeOnScreen += Time.deltaTime;
+        }
     }
 
-    private IEnumerator timeTillFade()
+    public void displayText(string[] text, float timeToDisplay)
     {
-        yield return new WaitForSeconds(10);
-        uiText.SetActive(false);
-    }
+        if (TextOnDisplay)
+        {
+            textQueue.Clear();
+        }
 
-    public void displayText(string text)
-    {
-        uiText.GetComponent<TextMeshProUGUI>().SetText(text);
+        timeOnScreen = 0;
+        foreach (string s in text)
+        {
+            textQueue.Enqueue(s);
+        }
+        timeOnScreen = 0;
+        uiText.GetComponent<TextMeshProUGUI>().SetText(textQueue.Dequeue());
         uiText.SetActive(true);
-        StartCoroutine(timeTillFade());
+        this.timeToDisplay = timeToDisplay;
+        TextOnDisplay = true;
+        
     }
 }

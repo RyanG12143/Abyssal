@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AstarPathfindingProject/ExampleScenes/Prefabs/MineBot/mine_bot_render.prefab.meta
 guid: 0b9c68ddd67ee5b9e8aeca86ac0fbc03
+========
+guid: 95bdf114baad60b43b02103420766c29
+>>>>>>>> Ryan_Test:Assets/Finished Assets/Background/BackGroundFolder/Twilight zone.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
