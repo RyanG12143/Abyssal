@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-using System.IO;
-using static UnityEditor.Rendering.InspectorCurveEditor;
 
 public class HatchetFishAI : MonoBehaviour
 {
@@ -22,14 +19,15 @@ public class HatchetFishAI : MonoBehaviour
     Rigidbody2D rb;
     
     // Variables
+    //
+    // Wander variables
     public float detectionRange = 5.0f;
-    public float turnInterval = 2.0f;
+    public float changeDirectionCooldown = 2.0f;
     public float wanderSpeed = 2.0f;
 
     // Bool's for creature state change
     private bool hitPlayer = false;
-    private bool hitByTorpedo = false;
-    private bool creatureTurn = false;
+    private bool creatureTurn = true;
     
     // Fix flipping
     public bool upFlipped = false;
@@ -37,6 +35,9 @@ public class HatchetFishAI : MonoBehaviour
     // Stun variables
     public bool stunned = false;
     private float stunTime = 5f;
+
+    // Animator
+    public Animator animator;
 
     // State Enum
     public enum EnemyAction
@@ -50,6 +51,8 @@ public class HatchetFishAI : MonoBehaviour
 
     //player declaration
     private GameObject player;
+
+    public GameObject stunAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -173,45 +176,40 @@ public class HatchetFishAI : MonoBehaviour
     // Seek
     void Seek()
     {
-        Vector3 localScale = transform.localScale;
-
-        bool test1 = transform.eulerAngles.z > 90f && transform.eulerAngles.z < 270f;
-        //Debug.Log("Test value : " + test1 + "  Flipped: " + upFlipped);
-        //Debug.Log("Flipped" + transform.eulerAngles.z);
-
-        if (test1 != upFlipped)
-        {
-            localScale.y *= -1;
-            transform.localScale = localScale;
-            upFlipped = !upFlipped;
-        }
-
+        FlippingUpdate();
         AAI();
     }
 
     // Stunned
     void Stunned()
     {
-        //Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        //Vector2 force = -direction * speed/10 * Time.deltaTime;
+        stunAnimation.SetActive(true);
+        animator.SetBool("stunned", true);
+        FlippingUpdate();
 
-        //rb.AddForce(force);
+        currentWaypoint = 0;
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = -direction * speed * Time.deltaTime;
+
+        rb.AddForce(force);
     }
 
     // Collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && !hitPlayer && !stunned)
+        if (collision.gameObject.tag == "Player" && !stunned)
         {
+            Health.GetInstance().damage();
             
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = -direction * speed * Time.deltaTime * 100;
+
+            rb.AddForce(force);
         }
-        else if (collision.gameObject.name == "Torpedo2(Clone)" && stunned == false)
+        else if (collision.gameObject.tag == "Torpedo" && stunned == false)
         {
             stunned = true;
-            //rb.bodyType = RigidbodyType2D.Dynamic;
-            //rb.gravityScale = 0.01f;
-            currentWaypoint = 0;
-            StartCoroutine(StunTimer());
+            StartCoroutine(Timer(stunTime));
         }
     }
 
@@ -226,7 +224,7 @@ public class HatchetFishAI : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(turnInterval);
+            yield return new WaitForSeconds(changeDirectionCooldown);
             creatureTurn = !creatureTurn;
         }
     }
@@ -253,11 +251,27 @@ public class HatchetFishAI : MonoBehaviour
         }
     }
 
-    // Stun Timer
-    IEnumerator StunTimer()
+    private void FlippingUpdate()
     {
-        yield return new WaitForSeconds(stunTime);
+        Vector3 localScale = transform.localScale;
+
+        bool test1 = transform.eulerAngles.z > 90f && transform.eulerAngles.z < 270f;
+
+        if (test1 != upFlipped)
+        {
+            localScale.y *= -1;
+            transform.localScale = localScale;
+            upFlipped = !upFlipped;
+        }
+    }
+
+    // Stun Timer
+    IEnumerator Timer(float timer)
+    {
+        yield return new WaitForSeconds(timer);
         stunned = false;
+        animator.SetBool("stunned", false);
+        stunAnimation.SetActive(false);
     }
 
     // Checks if the player
