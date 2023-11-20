@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CameraController : MonoBehaviour
 {
     // Speed of the camera (would not recommend messing with this)
-    private float FollowSpeed = 10f;
+    private float FollowSpeed = 5f;
 
     // The transform of the Nightingale
     private Transform target;
