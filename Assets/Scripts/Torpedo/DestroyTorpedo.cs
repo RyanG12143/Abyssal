@@ -11,8 +11,11 @@ public class DestroyTorpedo : MonoBehaviour
      * Destroys the torpedo when it collides */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Instantiate(hitAnimation, gameObject.transform.position, gameObject.transform.rotation);
         Destroy(gameObject);
+    }
+
+    private void OnDestroy(){
+        Instantiate(hitAnimation, gameObject.transform.position, gameObject.transform.rotation);
     }
 
    

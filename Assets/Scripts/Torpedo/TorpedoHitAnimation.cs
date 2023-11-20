@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TorpedoHitAnimation : MonoBehaviour
 {
+
+    public AudioSource soundEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,10 @@ public class TorpedoHitAnimation : MonoBehaviour
 
     IEnumerator Delete()
     {
-        yield return new WaitForSeconds(0.35f);
+        soundEffect.Play();
+        yield return new WaitForSeconds(0.5f);
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(3.5f);
         Destroy(gameObject);
     }
 }

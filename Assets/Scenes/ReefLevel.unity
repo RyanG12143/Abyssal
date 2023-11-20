@@ -51793,11 +51793,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 122.9
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 8538275826428669977, guid: 1289f1328ef924647845097412ba7562, type: 3}
       propertyPath: m_LocalPosition.z
@@ -54408,7 +54408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 866181094093127605, guid: 7d44b059c346a04449b2ed7551fe5b3e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.03045193
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 866181094093127605, guid: 7d44b059c346a04449b2ed7551fe5b3e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54442,6 +54442,10 @@ PrefabInstance:
       propertyPath: wallToExplode
       value: 
       objectReference: {fileID: 560838043}
+    - target: {fileID: 4122819366573612596, guid: 7d44b059c346a04449b2ed7551fe5b3e, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7210974696788985118, guid: 7d44b059c346a04449b2ed7551fe5b3e, type: 3}
       propertyPath: m_Name
       value: Big explosion
