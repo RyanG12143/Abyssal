@@ -192,7 +192,7 @@ Transform:
   m_GameObject: {fileID: 4964165570310397334}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.112, y: 0.407, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -291,6 +291,7 @@ Transform:
   - {fileID: 8120793219803548095}
   - {fileID: 5344713262239837633}
   - {fileID: 5634663801051760365}
+  - {fileID: 7035191187650155909}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1202467531740560110
@@ -316,7 +317,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 8
-  m_Interpolate: 2
+  m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -332,8 +333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5545caa441cbe1d4a867069e7cce6cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 275
   spotlight: {fileID: 4964165570310397334}
-  maxSpeed: 15
+  maxSpeed: 5
   rb: {fileID: 1202467531740560110}
 --- !u!114 &9083185665963598300
 MonoBehaviour:
@@ -349,7 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torpedoPrefab: {fileID: 5618860476881002139, guid: 592ebd0937163d9459e96f7c3b4108c4, type: 3}
   fireSound: {fileID: 7923326996719245162}
-  readyLight: {fileID: 6574166710954606354, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+  readyLight: {fileID: 173478596017636542}
+  bubbles: {fileID: 8611637075343629141, guid: a097321a78df17f4fa30e27e8ab8af45, type: 3}
 --- !u!82 &7923326996719245162
 AudioSource:
   m_ObjectHideFlags: 0
@@ -362,7 +365,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c05ba03ac4004a746894116b45b235ce, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -834,3 +837,70 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &6436893015388093356
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8538275826428669977}
+    m_Modifications:
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574166710954606354, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_Name
+      value: Torpedo Ready
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+--- !u!1 &173478596017636542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6574166710954606354, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+  m_PrefabInstance: {fileID: 6436893015388093356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7035191187650155909 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+  m_PrefabInstance: {fileID: 6436893015388093356}
+  m_PrefabAsset: {fileID: 0}

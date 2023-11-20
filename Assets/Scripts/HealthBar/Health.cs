@@ -36,18 +36,22 @@ public class Health : MonoBehaviour
 
     public void damage()
     {
-        onHealthChanged(currHealth , currHealth - 1);
-        currHealth = currHealth - 1;
-
-        if (!isDamageFXrunning) {
-            StartCoroutine(damageFX());
-        }
-        if (currHealth < 1)
+        if (!PlayerController.instance.getInvince())
         {
-            //deathSound.Play();
-            if (onFail !=  null)
+            onHealthChanged(currHealth, currHealth - 1);
+            currHealth = currHealth - 1;
+
+            if (!isDamageFXrunning)
             {
-                onFail();
+                StartCoroutine(damageFX());
+            }
+            if (currHealth < 1)
+            {
+                //deathSound.Play();
+                if (onFail != null)
+                {
+                    onFail();
+                }
             }
         }
     }
