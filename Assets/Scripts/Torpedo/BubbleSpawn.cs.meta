@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Torpedo/BubbleSpawn.cs.meta
 guid: 688d13fd4ea158548a8217398127fef9
-========
-guid: c6d637fc2c48ff84c8dd7f3443dbe45e
->>>>>>>> Leo_Test:Assets/Scripts/AI/Creatures/KelpDude.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
