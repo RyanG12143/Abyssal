@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Interactables/TextHolder.cs.meta
+guid: 900028b7edb296d40bad9af2b7448917
+========
 guid: c6d637fc2c48ff84c8dd7f3443dbe45e
+>>>>>>>> Leo_Test:Assets/Scripts/AI/Creatures/KelpDude.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
