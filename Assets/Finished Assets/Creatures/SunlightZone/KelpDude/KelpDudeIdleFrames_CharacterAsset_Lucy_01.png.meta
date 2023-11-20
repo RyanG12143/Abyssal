@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4b21383fb207e9f4cbb2f83744369b87
+guid: e29dfffc0f511cc4fb1edfb06475b2c5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -94,7 +107,33 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -123,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Big_Explosion-Sheet_0
+      name: KelpDudeIdleFrames_CharacterAsset_Lucy_01_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +176,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 110e83b3ea5f14e409a93c456989608a
-      internalID: 2002420621
+      spriteID: f9c629a675ed7e94cbd299357b35de5d
+      internalID: 960048671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Big_Explosion-Sheet_1
+      name: KelpDudeIdleFrames_CharacterAsset_Lucy_01_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33abfc8b6138a3542a79e79c9eae8b11
+      internalID: -1917497846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KelpDudeIdleFrames_CharacterAsset_Lucy_01_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +218,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd1285fac7faa3447805c2fc41a46e67
-      internalID: -1666240193
+      spriteID: 05eb3f7484203f94fa8cbef3ca3768da
+      internalID: -238362937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Big_Explosion-Sheet_2
+      name: KelpDudeIdleFrames_CharacterAsset_Lucy_01_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c18422289064aa4db1b71e7d9aef3d0
+      internalID: -203491812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KelpDudeIdleFrames_CharacterAsset_Lucy_01_4
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +260,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8858e738fcf320449ae39af8f2ef5849
-      internalID: 316550533
+      spriteID: 7a03459f14e89334c89ea50187575678
+      internalID: -1359396962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Big_Explosion-Sheet_3
+      name: KelpDudeIdleFrames_CharacterAsset_Lucy_01_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98c60f7551a1ac742a2c35aadad282f3
+      internalID: -1011628041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KelpDudeIdleFrames_CharacterAsset_Lucy_01_6
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +302,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eafd256c6d8da6945b89bb169ca61dfb
-      internalID: -383896968
+      spriteID: 9f78a46ad8c4a6d4892dddad7cf5d1ab
+      internalID: -1363382249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Big_Explosion-Sheet_4
+      name: KelpDudeIdleFrames_CharacterAsset_Lucy_01_7
       rect:
         serializedVersion: 2
-        x: 256
+        x: 224
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,134 +323,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6e8c433bd22c8c4e98a49d90ce11f4c
-      internalID: -581285023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Big_Explosion-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9d531c4467018614b80aa134f9afe5f2
-      internalID: 1863484723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Big_Explosion-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db967caa29f78e64fbe6b3dc01ce100c
-      internalID: -1118526368
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Big_Explosion-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f6dede78c7906f459736ea863d65f94
-      internalID: 1548153862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Big_Explosion-Sheet_8
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c567cd7b9a428c042bba7f5af05394a0
-      internalID: 1038463832
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Big_Explosion-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1803b3bb1c1e55d40847bcf336ff7d16
-      internalID: -1557464753
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Big_Explosion-Sheet_10
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f4be1a2acff7ae1459d5f5f8007ce8cd
-      internalID: 2088474158
+      spriteID: bd19ae456464f4146bb4f2a046c8e437
+      internalID: 1176411251
       vertices: []
       indices: 
       edges: []
@@ -364,17 +340,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Big_Explosion-Sheet_0: 2002420621
-      Big_Explosion-Sheet_1: -1666240193
-      Big_Explosion-Sheet_10: 2088474158
-      Big_Explosion-Sheet_2: 316550533
-      Big_Explosion-Sheet_3: -383896968
-      Big_Explosion-Sheet_4: -581285023
-      Big_Explosion-Sheet_5: 1863484723
-      Big_Explosion-Sheet_6: -1118526368
-      Big_Explosion-Sheet_7: 1548153862
-      Big_Explosion-Sheet_8: 1038463832
-      Big_Explosion-Sheet_9: -1557464753
+      KelpDudeIdleFrames_CharacterAsset_Lucy_01_0: 960048671
+      KelpDudeIdleFrames_CharacterAsset_Lucy_01_1: -1917497846
+      KelpDudeIdleFrames_CharacterAsset_Lucy_01_2: -238362937
+      KelpDudeIdleFrames_CharacterAsset_Lucy_01_3: -203491812
+      KelpDudeIdleFrames_CharacterAsset_Lucy_01_4: -1359396962
+      KelpDudeIdleFrames_CharacterAsset_Lucy_01_5: -1011628041
+      KelpDudeIdleFrames_CharacterAsset_Lucy_01_6: -1363382249
+      KelpDudeIdleFrames_CharacterAsset_Lucy_01_7: 1176411251
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
