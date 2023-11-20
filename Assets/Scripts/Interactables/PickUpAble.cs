@@ -120,13 +120,14 @@ public class PickUpAble : MonoBehaviour
     }
 
     public bool isPickedUp()
-    {
-        return pickedUp;
+{
+    return pickedUp;
 
-    }
+}
 
     public void setPickedUp(bool pickedup)
     {
-        this.pickedUp = pickedup;   
+        this.pickedUp = pickedup;
     }
+
 }

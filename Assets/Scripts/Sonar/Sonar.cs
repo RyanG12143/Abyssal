@@ -8,6 +8,7 @@ public class Sonar : MonoBehaviour
 {
     // List of scannable creatures
     private GameObject[] creaturesScanned;
+    private GameObject[] creaturesNoDamageScanned;
 
     // List of scannable environment tiles
     private GameObject[] tilesScanned;
@@ -64,7 +65,7 @@ public class Sonar : MonoBehaviour
         }
 
         // Activates sonar if space is pressed and it is off cooldown.
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !isCooldownActive)
+        if ((Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Space)) && !isCooldownActive)
         {
             sonarBeep.Play();
             SonarSpread.GetComponent<SpriteRenderer>().color = new Color((SonarSpread.GetComponent<SpriteRenderer>().color.r), (SonarSpread.GetComponent<SpriteRenderer>().color.g), (SonarSpread.GetComponent<SpriteRenderer>().color.b), 1f);
@@ -80,6 +81,7 @@ public class Sonar : MonoBehaviour
     private void sonarTargetsUpdate()
     {
         creaturesScanned = GameObject.FindGameObjectsWithTag("Enemy");
+        creaturesNoDamageScanned = GameObject.FindGameObjectsWithTag("EnemyNoDamage");
         interactablesScanned = GameObject.FindGameObjectsWithTag("ExplosivePackage");
         beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
         crackedWallsScanned = GameObject.FindGameObjectsWithTag("CrackedWall");
@@ -104,6 +106,18 @@ public class Sonar : MonoBehaviour
             if (creaturesScanned.Length > 0)
             {
                 foreach (var creature in creaturesScanned)
+                {
+
+                    if ((creature != null) && (Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
+                    {
+                        creature.GetComponent<CreatureSonarPulse>().StartFade();
+                    }
+                }
+            }
+
+            if (creaturesNoDamageScanned.Length > 0)
+            {
+                foreach (var creature in creaturesNoDamageScanned)
                 {
 
                     if ((creature != null) && (Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))

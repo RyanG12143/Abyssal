@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CameraController : MonoBehaviour
 {
     // Speed of the camera (would not recommend messing with this)
-    private float FollowSpeed = 5f;
+    private float FollowSpeed = 10f;
 
     // The transform of the Nightingale
     private Transform target;
@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     // Current Nightingale Velocity
     private Vector2 currentVelocity;
 
-    static public float defaultCameraSize = 4.703125f;
+    static private float defaultCameraSize = 4.703125f;
 
     private float cameraSize;
 
