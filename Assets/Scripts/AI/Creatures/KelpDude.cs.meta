@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Interactables/TextHolder.cs.meta
+guid: e8cf4d9147ba7ae40961f4d9bb25b107
+========
+guid: c6d637fc2c48ff84c8dd7f3443dbe45e
+>>>>>>>> Leo_Test:Assets/Scripts/AI/Creatures/KelpDude.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
