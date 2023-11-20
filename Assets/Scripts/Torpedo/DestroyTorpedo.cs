@@ -15,7 +15,8 @@ public class DestroyTorpedo : MonoBehaviour
     }
 
     private void OnDestroy(){
-        Instantiate(hitAnimation, gameObject.transform.position, gameObject.transform.rotation);
+        Vector3 spawnPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z -2);
+        Instantiate(hitAnimation, spawnPos, gameObject.transform.rotation);
     }
 
    
