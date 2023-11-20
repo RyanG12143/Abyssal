@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6652891601126116922}
   m_Layer: 6
   m_Name: HatchetFish 1
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,13 +82,10 @@ MonoBehaviour:
   nextWaypointDistance: 1
   enemyGFX: {fileID: 2451932035082844621}
   detectionRange: 20
-  turnInterval: 2
-  wanderBufferTime: 2
-  slowTimeInterval: 0.5
+  changeDirectionCooldown: 2
   wanderSpeed: 2
-  hitPlayer: 0
-  hitByTorpedo: 0
   upFlipped: 0
+  stunned: 0
   currState: 0
 --- !u!50 &5558966272975042315
 Rigidbody2D:
@@ -204,7 +201,7 @@ GameObject:
   - component: {fileID: 3635674864306542996}
   m_Layer: 6
   m_Name: HatchetFishGFX
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
