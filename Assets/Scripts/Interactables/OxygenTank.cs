@@ -9,6 +9,7 @@ public class OxygenTank : MonoBehaviour
     public float floatInterval = 1f;
     public float floatSpeed = 0.05f;
     private bool floatFlip;
+    public GameObject hasSR;
 
 
     // Start is called before the first frame update
@@ -45,8 +46,16 @@ public class OxygenTank : MonoBehaviour
         if (collision.gameObject.name == "Nightingale")
         {
             Oxygen.GetInstance().deactivateOxygen();
-            Destroy(gameObject);
+            StartCoroutine(Delete());
+            //Destroy(gameObject);
         }
+    }
+
+    IEnumerator Delete(){
+        hasSR.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(9f);
+        Destroy(gameObject);
     }
 
     // Changing Floating up and down

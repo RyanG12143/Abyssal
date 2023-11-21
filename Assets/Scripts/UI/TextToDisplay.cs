@@ -10,6 +10,8 @@ public class TextToDisplay : MonoBehaviour
     public AudioSource dialogueAudio;
     private bool triggered = false;
 
+    public AudioSource Dialogue;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class TextToDisplay : MonoBehaviour
         {
             if (!triggered)
             {
+                Dialogue.Play();
                 triggered = true;
                 dialogueAudio.Play();
                 EventHandler.getInstance().displayText(textToDisplay, timeToDisplay);
