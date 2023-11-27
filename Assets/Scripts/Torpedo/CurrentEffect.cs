@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CurrentEffect : MonoBehaviour
 {
-    public float torpedoForce = 0.25f;
+    public float torpedoForce = 20f;
 
     
 
