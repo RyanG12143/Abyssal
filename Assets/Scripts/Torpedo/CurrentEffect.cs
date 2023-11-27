@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CurrentEffect : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class CurrentEffect : MonoBehaviour
         if (other.gameObject.CompareTag("CurrentVertical"))
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + torpedoForce);
+            transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z * 90);
         }
         else
         {
@@ -31,6 +33,7 @@ public class CurrentEffect : MonoBehaviour
         if (other.gameObject.CompareTag("CurrentVertical"))
         {
             transform.position = other.transform.position;
+            transform.Rotate(transform.rotation.x, transform.rotation.y, transform.rotation.z + 45);
         }
     }
 
