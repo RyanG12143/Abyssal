@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Pathfinding;
+using System.IO;
 
 public class SeaMonkeyScene : MonoBehaviour
 {
@@ -22,20 +23,14 @@ public class SeaMonkeyScene : MonoBehaviour
     //
     // Wander variables
     public float detectionRange = 5.0f;
-    public float changeDirectionCooldown = 2.0f;
     public float wanderSpeed = 2.0f;
 
     // Bool's for creature state change
     private bool hitPlayer = false;
-    private bool creatureTurn = true;
     public bool hitByTorpedo = false;
 
     // Fix flipping
     public bool upFlipped = false;
-
-    // Stun variables
-    public bool stunned = false;
-    private float stunTime = 5f;
 
     // Animator
     public Animator animator;
@@ -67,9 +62,6 @@ public class SeaMonkeyScene : MonoBehaviour
         // Declaring player
         player = GameObject.FindGameObjectWithTag("Player");
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-
-        // Starting creature turning
-        StartCoroutine(ChangeCreatureTurn());
     }
 
     void UpdatePath()
@@ -92,7 +84,7 @@ public class SeaMonkeyScene : MonoBehaviour
     {
         stateSwitch();
         AAI();
-        facingUpdate();
+        FacingUpdate();
     }
 
     // Core AI
@@ -122,24 +114,24 @@ public class SeaMonkeyScene : MonoBehaviour
         {
             currentWaypoint++;
         }
-
     }
 
     // Switches the states of the enemy creature
     private void stateSwitch()
     {
-        if (stunned)
+        if (hitByTorpedo)
         {
             currState = EnemyAction.Leave;
         }
-        else if (IsPlayerInRange(detectionRange) && !stunned)
+        else if (IsPlayerInRange(detectionRange) && !hitByTorpedo)
         {
             currState = EnemyAction.Lunge;
         }
-        else if (!IsPlayerInRange(detectionRange) && !stunned)
+        else if (!IsPlayerInRange(detectionRange) && !hitByTorpedo)
         {
             currState = EnemyAction.Run;
-        } else
+        }
+        else
         {
             currState = EnemyAction.Primed;
         }
@@ -169,10 +161,10 @@ public class SeaMonkeyScene : MonoBehaviour
     // Wander creature state
     void Primed()
     {
-        
+
     }
 
-    // Follow creature state
+    // Lunge creature state
     void Lunge()
     {
         FlippingUpdate();
@@ -182,60 +174,31 @@ public class SeaMonkeyScene : MonoBehaviour
     // Run creature state
     void Run()
     {
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
+        //Vector2 targetPosition = target.position;
+        //Vector2 currentPosition = transform.position;
 
-        Vector2 direction = (targetPosition - currentPosition).normalized;
+        //Vector2 direction = (targetPosition - currentPosition).normalized;
 
-        // Invert the direction for running away
-        direction = -direction;
+        //// Invert the direction for running away
+        //direction = -direction;
 
-        rb.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+        //rb.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
 
         FlippingUpdate();
+        AAI();
     }
 
-    // Die method
+    // Leaving level
     void Leave()
     {
-        
+        FlippingUpdate();
+        AAI();
     }
 
     // Helper methods
     //
     //
     // Flipping sprite at critical points (Looking Straight Up and Down)
-    private void flip()
-    {
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
-
-        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        if ((isFacingRight && direction.x < -0.01) || (!isFacingRight && direction.x > 0.01))
-        {
-            isFacingRight = !isFacingRight;
-
-            Vector3 localScale = transform.localScale;
-            localScale.y *= -1;
-            transform.localScale = localScale;
-        }
-    }
-
-    // Corrects Y flip after wander method and before die method (Edge Cases)
-    private void correctFlip()
-    {
-        Vector3 localScale = transform.localScale;
-
-        if (upFlipped)
-        {
-            localScale.y *= -1;
-            transform.localScale = localScale;
-            upFlipped = false;
-        }
-    }
-
-    // Updates facing direction of creature based on velocity
     private void FacingUpdate()
     {
         transform.right = rb.velocity;
@@ -257,6 +220,20 @@ public class SeaMonkeyScene : MonoBehaviour
         }
     }
 
+    private void FlippingUpdate()
+    {
+        Vector3 localScale = transform.localScale;
+
+        bool test1 = transform.eulerAngles.z > 90f && transform.eulerAngles.z < 270f;
+
+        if (test1 != upFlipped)
+        {
+            localScale.y *= -1;
+            transform.localScale = localScale;
+            upFlipped = !upFlipped;
+        }
+    }
+
 
     // Status Checks
     //
@@ -264,28 +241,18 @@ public class SeaMonkeyScene : MonoBehaviour
     // Checking if enemy hit player or Torpedo
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
+        if (collision.gameObject.tag == "Player")
         {
             hitPlayer = true;
 
-            Vector3 localScale = transform.localScale;
-            localScale.y *= -1;
-            transform.localScale = localScale;
+            //Vector3 localScale = transform.localScale;
+            //localScale.y *= -1;
+            //transform.localScale = localScale;
             Oxygen.GetInstance().activateOxygen();
         }
-        else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
+        else if (collision.gameObject.tag == "Torpedo" && hitByTorpedo == false)
         {
-            if (hitPlayer)
-            {
-                Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
-                Instantiate(objectToSpawn, transform.position + dropModify, objectToSpawn.transform.rotation);
-            }
             hitByTorpedo = true;
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.gravityScale = 0.01f;
-            StartCoroutine(deathSlowTime());
-            StartCoroutine(deathSlowTimeCancel());
-            correctFlip();
         }
     }
 
@@ -293,41 +260,5 @@ public class SeaMonkeyScene : MonoBehaviour
     private bool IsPlayerInRange(float range)
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
-    }
-
-    // Changing Creature Momentum Direction
-    IEnumerator ChangeCreatureTurn()
-    {
-        Vector3 localScale = transform.localScale;
-
-        while (true)
-        {
-            yield return new WaitForSeconds(changeDirectionCooldown);
-            creatureTurn = !creatureTurn;
-        }
-    }
-
-    // Buffer timer so creature gets further away
-    IEnumerator wanderBuffer()
-    {
-        yield return new WaitForSeconds(wanderBufferTime);
-        buffer = false;
-    }
-
-    // Time to slow down after dying
-    IEnumerator deathSlowTime()
-    {
-        if (!slowTimeCancel)
-        {
-            yield return new WaitForSeconds(slowTimeInterval);
-            slowTimeActive = true;
-        }
-    }
-
-    //Cancels the slow time after a given time
-    IEnumerator deathSlowTimeCancel()
-    {
-        yield return new WaitForSeconds(4);
-        slowTimeCancel = true;
     }
 }

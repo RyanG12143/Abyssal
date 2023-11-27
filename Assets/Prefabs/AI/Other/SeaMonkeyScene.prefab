@@ -92,8 +92,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2458268644357433923}
+  - component: {fileID: 3015716595087515915}
+  - component: {fileID: 8982870494735498440}
   - component: {fileID: 3663781290711527478}
-  - component: {fileID: 7555750050832403828}
   - component: {fileID: 4467390810138482106}
   - component: {fileID: 7455272877620490741}
   m_Layer: 0
@@ -120,6 +121,58 @@ Transform:
   - {fileID: 4190730577903071445}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3015716595087515915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316498124066588477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &8982870494735498440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316498124066588477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76074e1e2adbde246938f48665494c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 200
+  nextWaypointDistance: 1
+  enemyGFX: {fileID: 7416237900535023009}
+  detectionRange: 30
+  wanderSpeed: 2
+  hitByTorpedo: 0
+  upFlipped: 0
+  animator: {fileID: 0}
+  currState: 1
+  objectToSpawn: {fileID: 0}
+  stunAnimation: {fileID: 0}
 --- !u!50 &3663781290711527478
 Rigidbody2D:
   serializedVersion: 4
@@ -146,30 +199,7 @@ Rigidbody2D:
   m_Interpolate: 2
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!114 &7555750050832403828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7316498124066588477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c65ac5c470a25ad4aaa785ac1742a9de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 8647918077967304447, guid: 1a51df6c805e3e14dbc47774d9b87e62, type: 3}
-  currState: 0
-  target: {fileID: 0}
-  range: 5
-  moveSpeed: 2
-  moveDistance: 5
-  turnInterval: 2
-  wanderBufferTime: 2
-  slowTimeInterval: 0.5
-  hitPlayer: 0
-  hitByTorpedo: 0
+  m_Constraints: 4
 --- !u!114 &4467390810138482106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +394,7 @@ GameObject:
   - component: {fileID: 7875640481569466237}
   - component: {fileID: 4240677155075793744}
   m_Layer: 0
-  m_Name: SeaMonkeyAnimation
+  m_Name: SeaMonkeySceneEnemyGFX
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
