@@ -196,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatInterval: 2
   floatSpeed: 0.08
+  hasSR: {fileID: 6790314712359780522}
 --- !u!1001 &4878592554443281084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,6 +205,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2687384736525647512}
     m_Modifications:
+    - target: {fileID: -924130004384411406, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 58bc3a76939d6cf4c8ba5e1d992a61a3, type: 3}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: timeToDisplay
       value: 8
