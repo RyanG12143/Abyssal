@@ -23,6 +23,7 @@ TagManager:
   - SwordFish
   - CurrentDown
   - EnemyNoDamage
+  - Boss
   layers:
   - Default
   - TransparentFX
