@@ -6,9 +6,12 @@ using System.IO;
 public class SeaMonkeyScene : MonoBehaviour
 {
     // A* variables
-    public Transform target;
-    public float speed = 200f;
-    public float nextWaypointDistance = 3f;
+    public Transform currentTarget;
+    private Transform runTarget;
+    private Transform leaveTarget;
+    public float speed = 400f;
+    public float runSpeed = 200f;
+    private float nextWaypointDistance = 3f;
 
     public Transform enemyGFX;
 
@@ -23,7 +26,6 @@ public class SeaMonkeyScene : MonoBehaviour
     //
     // Wander variables
     public float detectionRange = 5.0f;
-    public float wanderSpeed = 2.0f;
 
     // Bool's for creature state change
     private bool hitPlayer = false;
@@ -61,13 +63,15 @@ public class SeaMonkeyScene : MonoBehaviour
 
         // Declaring player
         player = GameObject.FindGameObjectWithTag("Player");
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        currentTarget = player.GetComponent<Transform>();
+        runTarget = GameObject.Find("runTarget").GetComponent<Transform>();
+        leaveTarget = GameObject.Find("leaveTarget").GetComponent<Transform>();
     }
 
     void UpdatePath()
     {
         if (seeker.IsDone())
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
+            seeker.StartPath(rb.position, currentTarget.position, OnPathComplete);
     }
 
     void OnPathComplete(Pathfinding.Path p)
@@ -83,8 +87,8 @@ public class SeaMonkeyScene : MonoBehaviour
     void FixedUpdate()
     {
         stateSwitch();
-        AAI();
         FacingUpdate();
+        FlippingUpdate();
     }
 
     // Core AI
@@ -123,11 +127,11 @@ public class SeaMonkeyScene : MonoBehaviour
         {
             currState = EnemyAction.Leave;
         }
-        else if (IsPlayerInRange(detectionRange) && !hitByTorpedo)
+        else if (IsPlayerInRange(detectionRange) && !hitPlayer)
         {
             currState = EnemyAction.Lunge;
         }
-        else if (!IsPlayerInRange(detectionRange) && !hitByTorpedo)
+        else if (hitPlayer)
         {
             currState = EnemyAction.Run;
         }
@@ -167,31 +171,21 @@ public class SeaMonkeyScene : MonoBehaviour
     // Lunge creature state
     void Lunge()
     {
-        FlippingUpdate();
         AAI();
     }
 
     // Run creature state
     void Run()
     {
-        //Vector2 targetPosition = target.position;
-        //Vector2 currentPosition = transform.position;
-
-        //Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        //// Invert the direction for running away
-        //direction = -direction;
-
-        //rb.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
-
-        FlippingUpdate();
+        speed = runSpeed;
+        currentTarget = runTarget;
         AAI();
     }
 
     // Leaving level
     void Leave()
     {
-        FlippingUpdate();
+        currentTarget = leaveTarget;
         AAI();
     }
 
@@ -241,18 +235,21 @@ public class SeaMonkeyScene : MonoBehaviour
     // Checking if enemy hit player or Torpedo
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !hitPlayer)
         {
             hitPlayer = true;
-
-            //Vector3 localScale = transform.localScale;
-            //localScale.y *= -1;
-            //transform.localScale = localScale;
+            animator.SetBool("oxygenTank", true);
             Oxygen.GetInstance().activateOxygen();
         }
-        else if (collision.gameObject.tag == "Torpedo" && hitByTorpedo == false)
+        else if (collision.gameObject.tag == "Torpedo" && hitByTorpedo == false && hitPlayer == true)
         {
             hitByTorpedo = true;
+            if(hitPlayer == true)
+            {
+                Instantiate(objectToSpawn, transform.position, objectToSpawn.transform.rotation);
+                stunAnimation.SetActive(true);
+                animator.SetBool("stunned", true);
+            }
         }
     }
 

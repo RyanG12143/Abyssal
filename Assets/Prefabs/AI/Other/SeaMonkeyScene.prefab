@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   drawGizmos: 1
-  detailedGizmos: 0
+  detailedGizmos: 1
   startEndModifier:
     addPoints: 0
     exactStartPoint: 3
@@ -161,18 +161,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76074e1e2adbde246938f48665494c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  currentTarget: {fileID: 0}
   speed: 200
-  nextWaypointDistance: 1
+  runSpeed: 200
   enemyGFX: {fileID: 7416237900535023009}
-  detectionRange: 30
+  detectionRange: 15
   wanderSpeed: 2
   hitByTorpedo: 0
   upFlipped: 0
-  animator: {fileID: 0}
-  currState: 1
-  objectToSpawn: {fileID: 0}
-  stunAnimation: {fileID: 0}
+  animator: {fileID: 4240677155075793744}
+  currState: 0
+  objectToSpawn: {fileID: 8647918077967304447, guid: 1a51df6c805e3e14dbc47774d9b87e62, type: 3}
+  stunAnimation: {fileID: 9157042611667873350}
 --- !u!50 &3663781290711527478
 Rigidbody2D:
   serializedVersion: 4
