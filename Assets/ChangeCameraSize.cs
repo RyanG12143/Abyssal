@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ChangeCameraSize : MonoBehaviour
 {
+    public Camera Camera;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Camera.GetComponent<PixelPerfectCamera>();
     }
 
     // Update is called once per frame

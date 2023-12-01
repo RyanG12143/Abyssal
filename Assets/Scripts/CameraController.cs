@@ -39,6 +39,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        cameraSizeChange(24);
         if (!switchCamera)
         {
             if (Nightingale == null)
