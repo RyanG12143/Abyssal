@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/AI/Other/SeaMonkeyScene.cs.meta
+guid: 76074e1e2adbde246938f48665494c77
+========
+guid: fa3138bd582f361428555333cafb4cf5
+>>>>>>>> Dustins-Branch:Assets/Scripts/AI/Bosses/Amalgamation.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
