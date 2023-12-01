@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Finished Assets/Background/Reef/Parallax/Backdrop.png.meta
-guid: 3a909b8fb5eba63458784ec5f1ff1303
-========
-guid: 5c0acfcd9e2fb454c8a16ea1b0af1261
->>>>>>>> Dustins-Branch:Assets/Finished Assets/Creatures/Other/StunAnimationFrames_CharacterAsset_Lucy_01.png.meta
+guid: 683d5787f3aed29488dcd45f8995ccd9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -38,12 +34,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -53,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 7, y: 20, z: 51, w: 6}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -166,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StunAnimationFrames_CharacterAsset_Lucy_01_0
+      name: Bits_ReefWall_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 7
+        y: 20
+        width: 6
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,50 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23ea2fa151685dc4e932594565f962d9
-      internalID: 715188095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StunAnimationFrames_CharacterAsset_Lucy_01_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35df5fc3658a4374aa0f272ac4def006
-      internalID: -492982697
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: StunAnimationFrames_CharacterAsset_Lucy_01_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d6d12d43465725f4ba66232a9c0539cf
-      internalID: 1146721779
+      spriteID: df770de40d5bb3e4997cb3e1505cbbf4
+      internalID: 666397689
       vertices: []
       indices: 
       edges: []
@@ -232,16 +186,58 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      StunAnimationFrames_CharacterAsset_Lucy_01_0: 715188095
-      StunAnimationFrames_CharacterAsset_Lucy_01_1: -492982697
-      StunAnimationFrames_CharacterAsset_Lucy_01_2: 1146721779
+      Bits_ReefWall_0: -143685499
+      Bits_ReefWall_1: 1066474593
+      Bits_ReefWall_10: -1531336212
+      Bits_ReefWall_11: -693307174
+      Bits_ReefWall_12: 1020186986
+      Bits_ReefWall_13: -1946546960
+      Bits_ReefWall_14: -1952525191
+      Bits_ReefWall_15: 150332457
+      Bits_ReefWall_16: 573128833
+      Bits_ReefWall_17: -2042283222
+      Bits_ReefWall_18: -715022831
+      Bits_ReefWall_19: -50039128
+      Bits_ReefWall_2: 1910555495
+      Bits_ReefWall_20: -695316073
+      Bits_ReefWall_21: -1012656296
+      Bits_ReefWall_22: -475641251
+      Bits_ReefWall_23: 1917925632
+      Bits_ReefWall_24: -1239154542
+      Bits_ReefWall_25: -2055242131
+      Bits_ReefWall_26: -2125783923
+      Bits_ReefWall_27: 152599474
+      Bits_ReefWall_28: 1776464461
+      Bits_ReefWall_29: 855141992
+      Bits_ReefWall_3: 425116073
+      Bits_ReefWall_30: 738705452
+      Bits_ReefWall_31: -693507851
+      Bits_ReefWall_32: 7244795
+      Bits_ReefWall_33: -1021391158
+      Bits_ReefWall_34: -1189870850
+      Bits_ReefWall_35: 239258191
+      Bits_ReefWall_36: -676939558
+      Bits_ReefWall_37: -1739106741
+      Bits_ReefWall_38: 1703065093
+      Bits_ReefWall_39: -1314196216
+      Bits_ReefWall_4: 46331643
+      Bits_ReefWall_40: 1255372546
+      Bits_ReefWall_41: -1829794023
+      Bits_ReefWall_42: 527458284
+      Bits_ReefWall_43: -776714320
+      Bits_ReefWall_44: 42885355
+      Bits_ReefWall_5: 1493622234
+      Bits_ReefWall_6: 1146377801
+      Bits_ReefWall_7: 1896992630
+      Bits_ReefWall_8: 2145179946
+      Bits_ReefWall_9: 666397689
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
