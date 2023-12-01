@@ -10,7 +10,7 @@ public class Amalgamation : MonoBehaviour
     private Transform nextTarget;
     public float speed = 400f;
     public float chargeSpeed = 200f;
-    private float nextWaypointDistance = 1f;
+    private float nextWaypointDistance = 6f;
     private bool hidden = false;
     public float detectionRange = 10;
     public float jumpscareTime = 2;
@@ -80,6 +80,7 @@ public class Amalgamation : MonoBehaviour
         stateSwitch();
         FacingUpdate();
         FlippingUpdate();
+        Chase();
     }
 
     // Core AI
