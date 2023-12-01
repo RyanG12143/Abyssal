@@ -8,7 +8,7 @@ public class ChangeCameraSize : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Camera.GetComponent<PixelPerfectCamera>();
+        
     }
 
     // Update is called once per frame
