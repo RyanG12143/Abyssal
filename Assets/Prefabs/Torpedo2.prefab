@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6580562475178365997}
   - component: {fileID: 1213188285436969477}
   - component: {fileID: 5092150234851739746}
+  - component: {fileID: 1911685363130480815}
   m_Layer: 3
   m_Name: Torpedo2
   m_TagString: Torpedo
@@ -269,6 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43f332bcd0e3b0944919b4dc8ae93133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnimation: {fileID: 2207805592209809053, guid: d92ca072de5d80044b5f80278a86610f, type: 3}
 --- !u!114 &5092150234851739746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,3 +284,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   torpedoForce: 0.25
+--- !u!114 &1911685363130480815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618860476881002139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 688d13fd4ea158548a8217398127fef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbles: {fileID: 3121042841983738520, guid: 9cda0b13b9ad81843b1345b65a4e2db4, type: 3}

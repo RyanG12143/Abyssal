@@ -8,10 +8,10 @@ public class TorpedoFire : MonoBehaviour
     public float fireSpeed = 5.0f;
     private float horizontalBound;
     private float verticalBound;
-    private Vector2 bubbleLocation;
+    
     private GameObject Nightingale = null;
     private GameObject mainCamera;
-    //[SerializeField] private GameObject bubbles;
+    
     
     private Vector2 direction;
 
@@ -31,7 +31,7 @@ public class TorpedoFire : MonoBehaviour
             mainCamera = GameObject.Find("Main Camera");
         }
 
-        bubbleLocation = transform.position;
+        
 
         //Has the bounds of the screen be based on the current camera
         horizontalBound = Mathf.Abs(mainCamera.transform.position.x) + 20;
@@ -41,7 +41,7 @@ public class TorpedoFire : MonoBehaviour
 
         transform.localRotation = Nightingale.transform.rotation;
 
-        //Instantiate(bubbles, bubbleLocation, bubbles.transform.rotation);
+        
         
 
     }

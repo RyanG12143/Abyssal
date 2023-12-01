@@ -12,7 +12,10 @@ public class DestroyCrackedWall : MonoBehaviour
         if (other.gameObject.CompareTag("Torpedo"))
         {
             Destroy(gameObject);
-            Destroy(HiddenArea);
+            if (HiddenArea != null)
+            {
+                Destroy(HiddenArea);
+            }
         }
     }
 }
