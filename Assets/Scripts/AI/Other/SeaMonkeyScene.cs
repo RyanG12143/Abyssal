@@ -5,13 +5,13 @@ using System.IO;
 
 public class SeaMonkeyScene : MonoBehaviour
 {
-    // A* variables
+    // variables
     public Transform currentTarget;
     private Transform runTarget;
     private Transform leaveTarget;
     public float speed = 400f;
     public float runSpeed = 200f;
-    private float nextWaypointDistance = 3f;
+    private float nextWaypointDistance = 1f;
 
     public Transform enemyGFX;
 
@@ -22,8 +22,6 @@ public class SeaMonkeyScene : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
-    // Variables
-    //
     // Wander variables
     public float detectionRange = 5.0f;
 
