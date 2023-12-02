@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2004754227149077389}
   - component: {fileID: -5224899728689460541}
   m_Layer: 0
-  m_Name: Bits_ReefWall
+  m_Name: Bits_Twilight Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 666397689, guid: 683d5787f3aed29488dcd45f8995ccd9, type: 3}
+  m_Sprite: {fileID: -1355070266, guid: 32459b3c899ad60499fa3071ae45c94e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

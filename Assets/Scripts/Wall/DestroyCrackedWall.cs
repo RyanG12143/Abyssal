@@ -9,9 +9,9 @@ public class DestroyCrackedWall : MonoBehaviour
     private List<GameObject> children = new List<GameObject>();
 
     private void Start(){
-        RigidBody[] bodies;
-        bodies = GetComponentsInChildren<RigidBody>();
-        foreach(RigidBody body in bodies){
+        Rigidbody2D[] bodies;
+        bodies = GetComponentsInChildren<Rigidbody2D>();
+        foreach(Rigidbody2D body in bodies){
             children.Add(body.gameObject);
         }
     }
