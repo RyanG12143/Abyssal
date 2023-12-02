@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4166935699015760266}
   - component: {fileID: 2004754227149077389}
   - component: {fileID: 3869762463797637472}
+  - component: {fileID: -5224899728689460541}
   m_Layer: 0
   m_Name: Bits_ReefWall
   m_TagString: Untagged
@@ -171,3 +172,15 @@ PolygonCollider2D:
       - {x: 0.09375, y: -0.09375}
       - {x: 0.09375, y: 0.09375}
   m_UseDelaunayMesh: 0
+--- !u!114 &-5224899728689460541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552608974058028750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0cb928aa0159f478919859687dbfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
