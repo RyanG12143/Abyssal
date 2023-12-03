@@ -193,6 +193,7 @@ public class SeaMonkeyScene : MonoBehaviour
     {
         currentTarget = leaveTarget;
         AAI();
+        StartCoroutine(Delete());
     }
 
     // Helper methods
@@ -272,5 +273,10 @@ public class SeaMonkeyScene : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         bubblesSpawning = false;
 
+    }
+
+    IEnumerator Delete(){
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 }
