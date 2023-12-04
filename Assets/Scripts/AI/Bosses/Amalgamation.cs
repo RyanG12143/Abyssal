@@ -203,7 +203,7 @@ public class Amalgamation : MonoBehaviour
     void Jumpscare()
     {
         AAI();
-        getCamera.GetComponent<CameraController>().setCameraSize(11f);
+        getCamera.GetComponent<CameraController>().setCameraSize(50f);
         StartCoroutine(jumpscareTimer(jumpscareTime));
     }
 
