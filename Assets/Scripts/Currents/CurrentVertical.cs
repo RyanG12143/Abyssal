@@ -5,6 +5,7 @@ using UnityEngine;
 public class CurrentVertical : MonoBehaviour
 {
     public float force = 5f;
+  
 
     /*Matthew Brodbeck 11/01/2023
      * Forces the object in a vertical direction*/
