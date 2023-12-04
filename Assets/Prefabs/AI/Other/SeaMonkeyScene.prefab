@@ -92,8 +92,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2458268644357433923}
+  - component: {fileID: 3015716595087515915}
+  - component: {fileID: 8982870494735498440}
   - component: {fileID: 3663781290711527478}
-  - component: {fileID: 7555750050832403828}
   - component: {fileID: 4467390810138482106}
   - component: {fileID: 7455272877620490741}
   m_Layer: 0
@@ -120,6 +121,58 @@ Transform:
   - {fileID: 4190730577903071445}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3015716595087515915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316498124066588477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 1
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &8982870494735498440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7316498124066588477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76074e1e2adbde246938f48665494c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
+  speed: 200
+  runSpeed: 200
+  enemyGFX: {fileID: 7416237900535023009}
+  detectionRange: 15
+  wanderSpeed: 2
+  hitByTorpedo: 0
+  upFlipped: 0
+  animator: {fileID: 4240677155075793744}
+  currState: 0
+  objectToSpawn: {fileID: 8647918077967304447, guid: 1a51df6c805e3e14dbc47774d9b87e62, type: 3}
+  stunAnimation: {fileID: 9157042611667873350}
 --- !u!50 &3663781290711527478
 Rigidbody2D:
   serializedVersion: 4
@@ -146,30 +199,7 @@ Rigidbody2D:
   m_Interpolate: 2
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!114 &7555750050832403828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7316498124066588477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c65ac5c470a25ad4aaa785ac1742a9de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 8647918077967304447, guid: 1a51df6c805e3e14dbc47774d9b87e62, type: 3}
-  currState: 0
-  target: {fileID: 0}
-  range: 5
-  moveSpeed: 2
-  moveDistance: 5
-  turnInterval: 2
-  wanderBufferTime: 2
-  slowTimeInterval: 0.5
-  hitPlayer: 0
-  hitByTorpedo: 0
+  m_Constraints: 4
 --- !u!114 &4467390810138482106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +394,7 @@ GameObject:
   - component: {fileID: 7875640481569466237}
   - component: {fileID: 4240677155075793744}
   m_Layer: 0
-  m_Name: SeaMonkeyAnimation
+  m_Name: SeaMonkeySceneEnemyGFX
   m_TagString: Animation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,7 +457,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 370138311, guid: 2cb20f6a1a314444a84baef9b93d8f1f, type: 3}
+  m_Sprite: {fileID: -938034410, guid: daa6081e1349db94b8dc5189b6c5de8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -448,7 +478,7 @@ Animator:
   m_GameObject: {fileID: 7920679325874925847}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 625a1753437e4814da6f350cbe3c1c7b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 91c07f33628076542b0e5ceac9c40092, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -485,7 +515,7 @@ Transform:
   m_GameObject: {fileID: 9157042611667873350}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.015, y: 0.427, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
