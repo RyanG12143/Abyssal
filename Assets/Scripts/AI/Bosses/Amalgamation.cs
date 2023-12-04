@@ -29,6 +29,9 @@ public class Amalgamation : MonoBehaviour
     public bool charge1 = false;
     public float waitTime;
 
+    // Animator
+    public Animator animator;
+
     public Transform enemyGFX;
 
     Pathfinding.Path path;
@@ -200,7 +203,7 @@ public class Amalgamation : MonoBehaviour
     void Jumpscare()
     {
         AAI();
-        getCamera.GetComponent<CameraController>().setCameraSize(8f);
+        getCamera.GetComponent<CameraController>().setCameraSize(11f);
         StartCoroutine(jumpscareTimer(jumpscareTime));
     }
 
@@ -224,6 +227,8 @@ public class Amalgamation : MonoBehaviour
         if (hitWallCharging)
         {
             currentSpeed = speed;
+            //animator.SetBool("stunned", true);
+            stunAnimation.SetActive(true);
             StartCoroutine(endChargeTimer(chargeEndTimer));
         }
         else

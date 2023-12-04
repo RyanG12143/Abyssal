@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 2152882952370160538}
   m_Layer: 0
   m_Name: Amalgamation
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,18 +271,21 @@ MonoBehaviour:
   speed: 1000
   chargeSpeed: 3000
   jumpscareSpeed: 200
-  primedSpeed: 100
-  detectionRange: 15
-  jumpscareTime: 2
-  chargeTargetRange: 15
+  primedSpeed: 50
+  detectionRange: 25
+  jumpscareTime: 3
+  chargeTargetRange: 30
+  chargeEndTimer: 3
   chargeUpTimer: 5
+  hitWallCharging: 0
   jumpscare: 0
   chaseActive: 0
   waitTimer: 0
-  hitWallCharging: 0
   roarCooldown: 1
   chargeEvent: 0
+  charge1: 0
   waitTime: 0
+  animator: {fileID: 0}
   enemyGFX: {fileID: 1901715649594067147}
   getCamera: {fileID: 0}
   upFlipped: 0
