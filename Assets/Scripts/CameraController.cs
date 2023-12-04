@@ -24,6 +24,10 @@ public class CameraController : MonoBehaviour
 
     private bool isCameraChanging = false;
 
+    private bool switchCamera = false;
+    public GameObject TargetPosition;
+
+
 
     private void Start()
     {
@@ -35,18 +39,49 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Nightingale == null)
+        cameraSizeChange(24);
+        if (!switchCamera)
         {
-            Nightingale = GameObject.Find("Nightingale");
+            if (Nightingale == null)
+            {
+                Nightingale = GameObject.Find("Nightingale");
+            }
+
+            target = Nightingale.transform;
+
+            currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
+
+            // These two lines are what effect camera movement
+            Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.60f), -10f);
+            transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+        }
+        else
+        {
+            if (Nightingale == null)
+            {
+                Nightingale = GameObject.Find("Nightingale");
+            }
+            //Vector3 middle = new Vector3(Nightingale.transform.position.x - TargetPosition.position.x, Nightingale.transform.position.y - TargetPosition.position.y, Nightingale.transform.position.z);
+            target = TargetPosition.transform;
+
+            currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
+
+            // These two lines are what effect camera movement
+            Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.30f), -90f);
+            transform.position = Vector3.Lerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+            
         }
 
-        target = Nightingale.transform;
-
-        currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
-
-        // These two lines are what effect camera movement
-        Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.60f), -10f);
-        transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+    }
+    public void changeCamera() 
+    {
+        Debug.Log("test");
+        switchCamera = true;
+            //{
+            //transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, transform.position.y, transform.position.z - 10), ref currentVelocity, speed * Time.deltaTime);
+            //MainCamera.transform.rotation = Quaternion.Lerp(transform.rotation, TargetPosition.transform.rotation, speed * Time.deltaTime);
+            //setCameraSize(24);
+            //}
 
     }
 

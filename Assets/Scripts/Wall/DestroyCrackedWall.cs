@@ -26,7 +26,10 @@ public class DestroyCrackedWall : MonoBehaviour
             }
 
             Destroy(gameObject);
-            Destroy(HiddenArea);
+            if (HiddenArea != null)
+            {
+                Destroy(HiddenArea);
+            }
         }
     }
 }
