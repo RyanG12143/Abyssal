@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossChargeEvent : MonoBehaviour
 {
     public Camera MainCamera;
-    public Camera SecondCamera;
     public GameObject TargetPosition;
     public GameObject nightingale;
     public int speed = 2;
