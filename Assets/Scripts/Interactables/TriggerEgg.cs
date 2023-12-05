@@ -8,6 +8,7 @@ public class TriggerEgg : MonoBehaviour
     private GameObject player;
     private Amalgamation amalgamation;
     public GameObject spawnParasite;
+    public GameObject parasiteCluster;
 
     // Animator
     public Animator animator;
@@ -31,6 +32,7 @@ public class TriggerEgg : MonoBehaviour
         {
             animator.SetBool("eggBroken", true);
             spawnParasite.SetActive(true);
+            parasiteCluster.SetActive(true);
             amalgamation.StartChase();
         }
     }

@@ -6,7 +6,7 @@ public class Parasite : MonoBehaviour
 {
     // A* variables
     public Transform target;
-    public float speed = 200f;
+    public float speed = 20f;
     public float nextWaypointDistance = 3f;
 
     public Transform enemyGFX;
@@ -178,6 +178,15 @@ public class Parasite : MonoBehaviour
     {
         FlippingUpdate();
         AAI();
+
+        if (IsPlayerInRange(4))
+        {
+            rb.GetComponent<Rigidbody2D>().drag = 20;
+        }
+        else
+        {
+            rb.GetComponent<Rigidbody2D>().drag = 1.5f;
+        }
     }
 
     // Stunned

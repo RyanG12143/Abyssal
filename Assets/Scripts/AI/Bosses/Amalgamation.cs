@@ -9,26 +9,26 @@ public class Amalgamation : MonoBehaviour
     public Transform currentTarget;
     private Transform nextTarget;
     public Transform chargeTarget;
-    public float currentSpeed;
-    public float speed = 1000f;
-    public float chargeSpeed = 3000f;
-    public float jumpscareSpeed = 200f;
-    public float primedSpeed = 100f;
+    private float currentSpeed;
+    private float speed = 1000f;
+    private float chargeSpeed = 3000f;
+    private float jumpscareSpeed = 200f;
+    private float primedSpeed = 10f;
     private float nextWaypointDistance = 4f;
-    public float detectionRange = 10;
-    public float jumpscareTime = 2;
-    public float chargeTargetRange = 30;
-    public float chargeEndTimer = 5;
-    public float chargeUpTimer = 5;
-    public bool hitWallCharging = false;
-    public bool jumpscare = false;
-    public bool chaseActive = false;
-    public bool eggActive = false;
-    public bool waitTimer = false;
-    public bool roarCooldown = true; // set false
-    public bool chargeEvent = false;
-    public bool charge1 = false;
-    public float waitTime;
+    private float jumpscareTime = 3;
+    private float chargeTargetRange = 30;
+    private float chargeEndTimer = 5;
+    private float chargeUpTimer = 5;
+    private bool hitWallCharging = false;
+    private bool jumpscare = false;
+    private bool chaseActive = false;
+    private bool eggActive = false;
+    private bool waitTimer = false;
+    private bool roarCooldown = true; // set false
+    private bool chargeEvent = false;
+    private bool charge1 = false;
+    private float waitTime;
+    private bool slowForceApplied = false;
 
     // Animator
     public Animator animator;
@@ -211,12 +211,24 @@ public class Amalgamation : MonoBehaviour
     // Post Scare States
     void Chase()
     {
-        animator.SetBool("roar", false);
         AAI();
     }
 
     void Primed()
     {
+        if(!slowForceApplied)
+        {
+            //Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            //Vector2 force = -direction * speed * Time.deltaTime * 50;
+            //rb.AddForce(force);
+            rb.GetComponent<Rigidbody2D>().drag = 1000;
+            slowForceApplied = true;
+        }
+        else
+        {
+            rb.GetComponent<Rigidbody2D>().drag = 1;
+        }
+        
         currentSpeed = primedSpeed;
         currentTarget = chargeTarget;
         StartCoroutine(chargingTimer(chargeUpTimer));
@@ -228,6 +240,7 @@ public class Amalgamation : MonoBehaviour
         currentSpeed = chargeSpeed;
         if (hitWallCharging)
         {
+            animator.SetBool("charge", false);
             currentSpeed = speed;
             animator.SetBool("stunned", true);
             stunAnimation.SetActive(true);
@@ -235,6 +248,7 @@ public class Amalgamation : MonoBehaviour
         }
         else
         {
+            animator.SetBool("charge", true);
             AAI();
         }
     }
@@ -296,14 +310,17 @@ public class Amalgamation : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            // Ask Ryan If Right!!!!!
+            Health.GetInstance().damage();
+            Health.GetInstance().damage();
+            Health.GetInstance().damage();
+            Health.GetInstance().damage();
             Health.GetInstance().damage();
         }
         else if (collision.gameObject.tag == "BossChargeWall")
         {
             hitWallCharging = true;
             charge1 = true;
-            //Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-            //Vector2 force = -direction * speed * Time.deltaTime * 100;
         }
         
     }
@@ -321,6 +338,8 @@ public class Amalgamation : MonoBehaviour
     //
     IEnumerator jumpscareTimer(float timer)
     {
+        yield return new WaitForSeconds(2);
+        animator.SetBool("active", true);
         yield return new WaitForSeconds(timer);
         chaseActive = true;
         currentSpeed = speed;
@@ -354,7 +373,7 @@ public class Amalgamation : MonoBehaviour
         chargeEvent = false;
         currentTarget = player.GetComponent<Transform>();
         currentSpeed = speed;
-
+        stunAnimation.SetActive(false);
     }
 
     private bool IsPlayerInRange(float range)
