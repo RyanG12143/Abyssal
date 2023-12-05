@@ -242,7 +242,7 @@ Rigidbody2D:
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b9f0644872d3bf746931a3f21900fcc3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -280,12 +280,13 @@ MonoBehaviour:
   hitWallCharging: 0
   jumpscare: 0
   chaseActive: 0
+  eggActive: 0
   waitTimer: 0
   roarCooldown: 1
   chargeEvent: 0
   charge1: 0
   waitTime: 0
-  animator: {fileID: 0}
+  animator: {fileID: 4684767346458064559}
   enemyGFX: {fileID: 1901715649594067147}
   getCamera: {fileID: 0}
   upFlipped: 0

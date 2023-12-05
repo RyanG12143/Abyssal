@@ -23,6 +23,7 @@ public class Amalgamation : MonoBehaviour
     public bool hitWallCharging = false;
     public bool jumpscare = false;
     public bool chaseActive = false;
+    public bool eggActive = false;
     public bool waitTimer = false;
     public bool roarCooldown = true; // set false
     public bool chargeEvent = false;
@@ -194,7 +195,7 @@ public class Amalgamation : MonoBehaviour
     // Pre Scare States
     void Hide()
     {
-        if (IsPlayerInRange(10))
+        if (eggActive)
         {
             currState = EnemyAction.Jumpscare;
         }
@@ -203,13 +204,14 @@ public class Amalgamation : MonoBehaviour
     void Jumpscare()
     {
         AAI();
-        getCamera.GetComponent<CameraController>().setCameraSize(50f);
+        getCamera.GetComponent<CameraController>().setCameraSize(5f);
         StartCoroutine(jumpscareTimer(jumpscareTime));
     }
 
     // Post Scare States
     void Chase()
     {
+        animator.SetBool("roar", false);
         AAI();
     }
 
@@ -227,7 +229,7 @@ public class Amalgamation : MonoBehaviour
         if (hitWallCharging)
         {
             currentSpeed = speed;
-            //animator.SetBool("stunned", true);
+            animator.SetBool("stunned", true);
             stunAnimation.SetActive(true);
             StartCoroutine(endChargeTimer(chargeEndTimer));
         }
@@ -239,7 +241,7 @@ public class Amalgamation : MonoBehaviour
 
     void Roar()
     {
-        
+        animator.SetBool("roar", true);
     }
 
     void Wait()
@@ -306,12 +308,29 @@ public class Amalgamation : MonoBehaviour
         
     }
 
-    //timer
+    // Activation from egg
+    public void StartChase()
+    {
+        StartCoroutine(chasingTimer(2));
+    }
+
+
+    //timers
+    //
+    //
+    //
     IEnumerator jumpscareTimer(float timer)
     {
         yield return new WaitForSeconds(timer);
         chaseActive = true;
         currentSpeed = speed;
+
+    }
+
+    IEnumerator chasingTimer(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        eggActive = true;
 
     }
 
