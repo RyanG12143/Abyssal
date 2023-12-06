@@ -14,14 +14,15 @@ public class SwordFish : MonoBehaviour
         Wander,
         Prime,
         Dash,
-        Die,
+        Stunned,
     }
 
     private GameObject player;
+    public GameObject stunAnimation;
     public EnemyAction currState = EnemyAction.Wander;
     public Vector2 oneDirection;
     public Transform target;
-    Rigidbody2D myRigidbody;
+    Rigidbody2D rb;
     
     // Editable movement variables
     public float range = 6f;
@@ -45,11 +46,18 @@ public class SwordFish : MonoBehaviour
     public bool directionTaken = false;
     public bool dashActive = false;
 
+    // Stun variables
+    public bool stunned = false;
+    private float stunTime = 4;
+
+    // Animator
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        myRigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         StartCoroutine(ChangeCreatureTurn());
         StartCoroutine(DashCooldown());
@@ -59,20 +67,17 @@ public class SwordFish : MonoBehaviour
     void Update()
     {
         stateSwitch();
-
-        if (!slowTimeCancel && currState != EnemyAction.Dash)
-        {
-            FacingUpdate();
-        }
+        FacingUpdate();
+        FlippingUpdate();
     }
     
     // Switches the states of the enemy creature
     private void stateSwitch()
     {
         // Checks what state to be in
-        if (hitByTorpedo)
+        if (hitByTorpedo && stunned)
         {
-            currState = EnemyAction.Die;
+            currState = EnemyAction.Stunned;
         }
         else if (dashPrimed && !dashOnCooldown)
         {
@@ -99,8 +104,8 @@ public class SwordFish : MonoBehaviour
             case EnemyAction.Dash:
                 Dash();
                 break;
-            case EnemyAction.Die:
-                Die();
+            case EnemyAction.Stunned:
+                Stunned();
                 break;
         }
     }
@@ -112,22 +117,19 @@ public class SwordFish : MonoBehaviour
     void Wander()
     {
         dashPrimed = false;
+        upFlipped = false;
+
         Vector3 localScale = transform.localScale;
-        
-        if (transform.up.y < 0f)
-        {
-            localScale.y = 1;
-            transform.localScale = localScale;
-            upFlipped = true;
-        }
+        localScale.y = 1;
+        transform.localScale = localScale;
 
         if (creatureTurn)
         {
-            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
+            rb.velocity = new Vector2(moveSpeed, 0f);
         }
         else
         {
-            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+            rb.velocity = new Vector2(-moveSpeed, 0f);
         }
     }
 
@@ -139,12 +141,10 @@ public class SwordFish : MonoBehaviour
 
         Vector2 direction = (targetPosition - currentPosition).normalized;
 
-        transform.right = myRigidbody.velocity;
+        transform.right = rb.velocity;
 
-        myRigidbody.velocity = new Vector2(direction.x * 0.1f, direction.y * 0.1f);
+        rb.velocity = new Vector2(direction.x * 0.1f, direction.y * 0.1f);
         StartCoroutine(DashCharge());
-        Flip();
-        CorrectFlip();
     }
 
     // Run creature state
@@ -154,79 +154,54 @@ public class SwordFish : MonoBehaviour
         OneDirection();
         directionTaken = true;
         dashActive = true;
-        //myRigidbody.velocity = new Vector2(oneDirection.x * dashSpeed, oneDirection.y * dashSpeed);
-        myRigidbody.velocity = new Vector2(oneDirection.x * dashSpeed, oneDirection.y * dashSpeed);
+        //rb.velocity = new Vector2(oneDirection.x * dashSpeed, oneDirection.y * dashSpeed);
+        rb.velocity = new Vector2(oneDirection.x * dashSpeed, oneDirection.y * dashSpeed);
     }
 
-    // Die method
-    void Die()
+    // Stunned
+    void Stunned()
     {
-        if (slowTimeActive == true)
-        {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x * 0.2f, myRigidbody.velocity.y * 0.2f);
-            slowTimeActive = false;
-        }
+        animator.SetBool("stunned", true);
+        stunAnimation.SetActive(true);
+        
     }
 
     // Helper methods
     //
     //
-    // Flipping sprite at critical points (Looking Straight Up and Down)
-    private void Flip()
-    {
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
-
-        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        if ((isFacingRight && direction.x < -0.01) || (!isFacingRight && direction.x > 0.01))
-        {
-            isFacingRight = !isFacingRight;
-
-            Vector3 localScale = transform.localScale;
-            localScale.y *= -1;
-            transform.localScale = localScale;
-        }
-    }
-
-    // Corrects Y flip after wander method and before die method (Edge Cases)
-    private void CorrectFlip()
-    {
-        Vector3 localScale = transform.localScale;
-
-        if (upFlipped)
-        {
-            localScale.y *= -1;
-            transform.localScale = localScale;
-            upFlipped = false;
-        }
-    }
-
-    // Updates facing direction of creature based on velocity
+    // Sets facing direction to velocity direction
     private void FacingUpdate()
     {
-        // Velocity Based Direction
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
-
-        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        transform.right = myRigidbody.velocity;
+        transform.right = rb.velocity;
 
         float angle;
         float rotateSpeed = 2;
 
-        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, myRigidbody.velocity));
+        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, rb.velocity));
 
         // This is to stop overrotation
-        if (Mathf.Abs(Vector2.Angle(transform.right, myRigidbody.velocity)) < 5f)
+        if (Mathf.Abs(Vector2.Angle(transform.right, rb.velocity)) < 5f)
         {
             angle = 0;
         }
 
         if (angle != 0)
         {
-            myRigidbody.MoveRotation(myRigidbody.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
+            rb.MoveRotation(rb.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
+        }
+    }
+
+    private void FlippingUpdate()
+    {
+        Vector3 localScale = transform.localScale;
+
+        bool test1 = transform.eulerAngles.z > 90f && transform.eulerAngles.z < 270f;
+
+        if (test1 != upFlipped)
+        {
+            localScale.y *= -1;
+            transform.localScale = localScale;
+            upFlipped = !upFlipped;
         }
     }
 
@@ -240,18 +215,19 @@ public class SwordFish : MonoBehaviour
         if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
         {
             hitPlayer = true;
-            myRigidbody.velocity = new Vector2(0, 0);
+            rb.velocity = new Vector2(0, 0);
             Vector3 localScale = transform.localScale;
             transform.localScale = localScale;
         }
-        else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
+        else if (collision.gameObject.name == "Torpedo2(Clone)")
         {
             hitByTorpedo = true;
-            myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-            myRigidbody.gravityScale = 0.01f;
-            StartCoroutine(deathSlowTime());
-            StartCoroutine(deathSlowTimeCancel());
-            CorrectFlip();
+            stunned = true;
+            hitPlayer = true;
+            rb.velocity = new Vector2(0, 0);
+            Vector3 localScale = transform.localScale;
+            transform.localScale = localScale;
+            StartCoroutine(Timer(stunTime));
         }
         else if (collision.gameObject.name == "Monstrosquid")
         {
@@ -285,6 +261,19 @@ public class SwordFish : MonoBehaviour
         return Vector3.Distance(transform.position, player.transform.position) <= range;
     }
 
+    // Stun Timer
+    IEnumerator Timer(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        stunned = false;
+        animator.SetBool("stunned", false);
+        stunAnimation.SetActive(false);
+        dashActive = false;
+        directionTaken = false;
+        hitByTorpedo = false;
+        StartCoroutine(DashCooldown());
+    }
+
     // Changing Creature Momentum Direction
     IEnumerator ChangeCreatureTurn()
     {
@@ -311,22 +300,5 @@ public class SwordFish : MonoBehaviour
         dashOnCooldown = true;
         yield return new WaitForSeconds(dashCooldownTimer);
         dashOnCooldown = false;
-    }
-
-    // Time to slow down after dying
-    IEnumerator deathSlowTime()
-    {
-        if (!slowTimeCancel)
-        {
-            yield return new WaitForSeconds(slowTimeInterval);
-            slowTimeActive = true;
-        }
-    }
-
-    //Cancels the slow time after a given time
-    IEnumerator deathSlowTimeCancel()
-    {
-        yield return new WaitForSeconds(4);
-        slowTimeCancel = true;
     }
 }
