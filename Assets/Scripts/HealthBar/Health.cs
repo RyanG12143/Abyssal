@@ -19,6 +19,8 @@ public class Health : MonoBehaviour
 
     public AudioSource deathSound;
 
+    private bool invince;
+
     private void Awake()
     {
         instance = this;
@@ -36,18 +38,24 @@ public class Health : MonoBehaviour
 
     public void damage()
     {
-        onHealthChanged(currHealth , currHealth - 1);
-        currHealth = currHealth - 1;
-
-        if (!isDamageFXrunning) {
-            StartCoroutine(damageFX());
-        }
-        if (currHealth < 1)
+        if (!invince)
         {
-            //deathSound.Play();
-            if (onFail !=  null)
+            invince = true;
+            StartCoroutine(i());
+            onHealthChanged(currHealth, currHealth - 1);
+            currHealth = currHealth - 1;
+
+            if (!isDamageFXrunning)
             {
-                onFail();
+                StartCoroutine(damageFX());
+            }
+            if (currHealth < 1)
+            {
+                //deathSound.Play();
+                if (onFail != null)
+                {
+                    onFail();
+                }
             }
         }
     }
@@ -106,4 +114,11 @@ public class Health : MonoBehaviour
         onFail += newFail;
     }
 
+
+    IEnumerator i()
+    {
+
+        yield return new WaitForSeconds(2.5f);
+        invince = false;
+    }
 }

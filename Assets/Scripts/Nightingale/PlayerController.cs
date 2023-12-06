@@ -38,13 +38,6 @@ public class PlayerController : MonoBehaviour
         return crystals;
     }
 
-    IEnumerator i()
-    {
-
-        yield return new WaitForSeconds(2.5f);
-        invinc = false;
-    }
-
     public void failureState()
     {
 
@@ -64,8 +57,7 @@ public class PlayerController : MonoBehaviour
         }
         if (newValue < oldValue)
         {
-            invinc = true;
-            StartCoroutine(i());
+
         }
     }
 

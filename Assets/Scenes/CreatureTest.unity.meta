@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/CreatureTest.unity.meta
 guid: c2d0df79ab6e7734bbb24536180e93c8
+========
+guid: b78660018c211ec44af2ca853bf2df3a
+folderAsset: yes
+>>>>>>>> Ryan-Test:Assets/Finished Assets/Creatures/Other.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

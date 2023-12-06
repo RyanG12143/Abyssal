@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Settings/Scenes/URP2DSceneTemplate.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Water_Current_Test.unity
-    guid: ffdee8d39807d874499f8ffea46247d1
+  - enabled: 1
+    path: Assets/Scenes/StartScreen.unity
+    guid: fc2cc7713ceefaa4b99620f0f19b4bb6
+  - enabled: 1
+    path: Assets/Scenes/ReefLevel.unity
+    guid: 122a03fc754b03f4c993097b047a0ebf
   - enabled: 1
     path: Assets/Scenes/TwilightLevel_Beta.unity
     guid: 2c0122a55aa829c408ce6d2f5ec172d4
+  - enabled: 0
+    path: Assets/Scenes/Water_Current_Test.unity
+    guid: ffdee8d39807d874499f8ffea46247d1
+  - enabled: 0
+    path: Assets/Settings/Scenes/URP2DSceneTemplate.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

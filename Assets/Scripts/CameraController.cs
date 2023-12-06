@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     // Current Nightingale Velocity
     private Vector2 currentVelocity;
 
-    static private float defaultCameraSize = 4.703125f;
+    static public float defaultCameraSize = 4.703125f;
 
     private float cameraSize;
 
