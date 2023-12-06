@@ -51,9 +51,17 @@ public class PlayerController : MonoBehaviour
 
     public void onHealthChange(int oldValue, int newValue)
     {
-        if (newValue > 0)
+        if (newValue == Health.GetInstance().getMax())
         {
-            spriteRenderer.sprite = spriteList[newValue - 1];
+            spriteRenderer.sprite = spriteList[2];
+        }
+        else if (newValue == 1)
+        {
+            spriteRenderer.sprite = spriteList[0];
+        }
+        else
+        {
+            spriteRenderer.sprite = spriteList[1];
         }
         if (newValue < oldValue)
         {
