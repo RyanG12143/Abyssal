@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChangeCameraSize : MonoBehaviour
+public class FixCamera : MonoBehaviour
 {
-    public Camera Camera;
-    public GameObject hidden;
-    public GameObject Nightingale;
+    public Camera MainCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +22,8 @@ public class ChangeCameraSize : MonoBehaviour
         {
             Debug.Log("test");
             Destroy(gameObject);
-            Destroy(hidden);
-            Nightingale.GetComponent<NightingaleMovement>().changeSpeed(500);
-            Nightingale.GetComponent<NightingaleMovement>().changeMaxSpeed(20);
-            Camera.GetComponent<CameraController>().InverseCamera();
+            MainCamera.GetComponent<CameraController>().changeCamera();
         }
-            
+
     }
 }
