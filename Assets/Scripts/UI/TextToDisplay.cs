@@ -7,7 +7,6 @@ public class TextToDisplay : MonoBehaviour
     public string[] textToDisplay;
     public float timeToDisplay;
     public GameObject prevEvent;
-    public AudioSource dialogueAudio;
     private bool triggered = false;
 
     public AudioSource Dialogue;
@@ -33,7 +32,6 @@ public class TextToDisplay : MonoBehaviour
             {
                 Dialogue.Play();
                 triggered = true;
-                dialogueAudio.Play();
                 EventHandler.getInstance().displayText(textToDisplay, timeToDisplay);
                 if (prevEvent != null)
                 {
