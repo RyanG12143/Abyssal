@@ -15,7 +15,7 @@ public class Amalgamation : MonoBehaviour
     private float jumpscareSpeed = 200f;
     private float primedSpeed = 10f;
     private float nextWaypointDistance = 4f;
-    private float jumpscareTime = 3;
+    private float jumpscareTime = 2;
     private float chargeTargetRange = 30;
     private float chargeEndTimer = 5;
     private float chargeUpTimer = 5;
