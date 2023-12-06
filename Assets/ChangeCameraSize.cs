@@ -27,7 +27,7 @@ public class ChangeCameraSize : MonoBehaviour
             Destroy(hidden);
             Nightingale.GetComponent<NightingaleMovement>().changeSpeed(500);
             Nightingale.GetComponent<NightingaleMovement>().changeMaxSpeed(20);
-            //Camera.GetComponent<CameraController>InverseCamera();
+            Camera.GetComponent<CameraController>().InverseCamera();
         }
             
     }

@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour
                 currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
 
                 // These two lines are what effect camera movement
-                Vector3 newPos = new Vector3(target.position.x - (currentVelocity.x * 1.20f), target.position.y - (currentVelocity.y * 0.60f), -10f);
+                Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.60f), -10f);
                 transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
             }
             else
@@ -73,40 +73,43 @@ public class CameraController : MonoBehaviour
                 Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.30f), -90f);
                 transform.position = Vector3.Lerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
             }
-            else {
-                if (!switchCamera)
-                {
-                    if (Nightingale == null)
-                    {
-                        Nightingale = GameObject.Find("Nightingale");
-                    }
-
-                    target = Nightingale.transform;
-
-                    currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
-
-                    // These two lines are what effect camera movement
-                    Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.60f), -10f);
-                    transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    if (Nightingale == null)
-                    {
-                        Nightingale = GameObject.Find("Nightingale");
-                    }
-                    //Vector3 middle = new Vector3(Nightingale.transform.position.x - TargetPosition.position.x, Nightingale.transform.position.y - TargetPosition.position.y, Nightingale.transform.position.z);
-                    target = TargetPosition.transform;
-
-                    currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
-
-                    // These two lines are what effect camera movement
-                    Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.30f), -90f);
-                    transform.position = Vector3.Lerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
-
-                }
-            }
         }
+        else
+        {
+            if (!switchCamera)
+            {
+                if (Nightingale == null)
+                {
+                    Nightingale = GameObject.Find("Nightingale");
+                }
+
+                target = Nightingale.transform;
+
+                currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
+
+                // These two lines are what effect camera movement
+                Vector3 newPos = new Vector3(target.position.x - (currentVelocity.x * 0.20f), target.position.y - (currentVelocity.y * 0.10f), -10f);
+                transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+            }
+            else
+            {
+                if (Nightingale == null)
+                {
+                    Nightingale = GameObject.Find("Nightingale");
+                }
+                //Vector3 middle = new Vector3(Nightingale.transform.position.x - TargetPosition.position.x, Nightingale.transform.position.y - TargetPosition.position.y, Nightingale.transform.position.z);
+                target = TargetPosition.transform;
+
+                currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
+
+                // These two lines are what effect camera movement
+                Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.30f), -90f);
+                transform.position = Vector3.Lerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+
+            }
+
+        }
+    }
         public void changeCamera()
         {
             Debug.Log("test");
@@ -123,8 +126,14 @@ public class CameraController : MonoBehaviour
         public void InverseCamera()
         {
             if (reverseCamera)
+            {
                 reverseCamera = false;
-            else reverseCamera = true;
+            }
+
+            else
+            {
+                reverseCamera = true;
+            }
         }
 
         public float getCameraSize()
@@ -180,5 +189,5 @@ public class CameraController : MonoBehaviour
 
             yield return null;
         }
-    }
+    
 }
