@@ -136,6 +136,8 @@ public class Monstrosquid : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             grabCreature = true;
+        } else if (collision.gameObject.tag == "Player") {
+            Health.GetInstance().damage();
         }
     }
 

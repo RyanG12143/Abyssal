@@ -233,7 +233,12 @@ public class SwordFish : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
+        if (collision.gameObject.name == "Nightingale" && !stunned)
+        {
+            Health.GetInstance().damage();
+        }
+
         dashPrimed = false;
         if (dashActive)
         {

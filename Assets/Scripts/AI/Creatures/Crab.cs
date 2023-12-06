@@ -193,9 +193,9 @@ public class Crab : MonoBehaviour
     // Checking if enemy hit player or Torpedo
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
+        if (collision.gameObject.tag == "Player" && !hitPlayer && !hitByTorpedo)
         {
-            hitPlayer = true;
+            Health.GetInstance().damage();
         }
         //else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
         //{
