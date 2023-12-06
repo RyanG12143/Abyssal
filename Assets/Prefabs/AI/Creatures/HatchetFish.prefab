@@ -83,13 +83,11 @@ MonoBehaviour:
   nextWaypointDistance: 1
   enemyGFX: {fileID: 2451932035082844621}
   detectionRange: 20
-  changeDirectionCooldown: 2
+  turnInterval: 2
   wanderSpeed: 2
   upFlipped: 0
   stunned: 0
-  animator: {fileID: 3635674864306542996}
   currState: 0
-  stunAnimation: {fileID: 3215531588070022880}
 --- !u!50 &5558966272975042315
 Rigidbody2D:
   serializedVersion: 4
@@ -273,7 +271,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2795199640603032322
@@ -364,7 +362,7 @@ GameObject:
   - component: {fileID: 3635674864306542996}
   m_Layer: 6
   m_Name: HatchetFishGFX
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

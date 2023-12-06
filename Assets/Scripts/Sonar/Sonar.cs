@@ -8,7 +8,7 @@ public class Sonar : MonoBehaviour
 {
     // List of scannable creatures
     private GameObject[] creaturesScanned;
-    private GameObject[] creaturesNoDamageScanned;
+    private GameObject[] bossScanned;
 
     // List of scannable environment tiles
     private GameObject[] tilesScanned;
@@ -81,7 +81,7 @@ public class Sonar : MonoBehaviour
     private void sonarTargetsUpdate()
     {
         creaturesScanned = GameObject.FindGameObjectsWithTag("Enemy");
-        creaturesNoDamageScanned = GameObject.FindGameObjectsWithTag("EnemyNoDamage");
+        bossScanned = GameObject.FindGameObjectsWithTag("Boss");
         interactablesScanned = GameObject.FindGameObjectsWithTag("ExplosivePackage");
         beaconsScanned = GameObject.FindGameObjectsWithTag("Beacon");
         crackedWallsScanned = GameObject.FindGameObjectsWithTag("CrackedWall");
@@ -115,9 +115,9 @@ public class Sonar : MonoBehaviour
                 }
             }
 
-            if (creaturesNoDamageScanned.Length > 0)
+            if (bossScanned.Length > 0)
             {
-                foreach (var creature in creaturesNoDamageScanned)
+                foreach (var creature in bossScanned)
                 {
 
                     if ((creature != null) && (Vector2.Distance(SonarSpread.transform.position, creature.transform.position) < (SonarSpread.transform.localScale.x * 0.5)))
