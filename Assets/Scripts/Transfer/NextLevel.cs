@@ -34,6 +34,8 @@ public class NextLevel : MonoBehaviour
 
     public IEnumerator FadeToBlack()
     {
+        blackScreen.SetActive(true);
+
         Color objectColor = blackScreen.GetComponent<Image>().color;
         float fadeAmount;
 

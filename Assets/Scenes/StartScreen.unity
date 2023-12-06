@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &75650351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1980555996600890027, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
+  m_PrefabInstance: {fileID: 99781634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &99781634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,17 +136,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 871690362090713399, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -70
-      objectReference: {fileID: 0}
-    - target: {fileID: 871690362090713399, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -66
+    - target: {fileID: 896398064492515670, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1568928199969130680, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1980555996600890027, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
       propertyPath: m_Name
@@ -154,10 +155,6 @@ PrefabInstance:
     - target: {fileID: 6104409622162415269, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6378151166281270900, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
-      propertyPath: m_MatchWidthOrHeight
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7867835952123348304, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
       propertyPath: m_Pivot.x
@@ -253,13 +250,28 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7867835952123348304, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 126948834}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1980555996600890027, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 99781639}
   m_SourcePrefab: {fileID: 100100000, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
 --- !u!224 &99781635 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7867835952123348304, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
   m_PrefabInstance: {fileID: 99781634}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &99781639
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75650351}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &126948833
 GameObject:
   m_ObjectHideFlags: 0
