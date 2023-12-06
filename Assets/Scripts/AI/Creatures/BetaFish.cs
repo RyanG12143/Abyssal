@@ -208,6 +208,7 @@ public class BetaFish : MonoBehaviour
     {
         //stunAnimation.SetActive(true);
         animator.SetBool("stunned", true);
+        stunAnimation.SetActive(true);
         FlippingUpdate();
 
         currentWaypoint = 0;
@@ -240,17 +241,17 @@ public class BetaFish : MonoBehaviour
     //
     //
     // Changing Creature Momentum Direction
-    //IEnumerator ChangeCreatureTurn()
-    //{
-    //    Vector3 localScale = transform.localScale;
+    IEnumerator ChangeCreatureTurn()
+    {
+        Vector3 localScale = transform.localScale;
 
-    //    while (true)
-    //    {
-    //        yield return new WaitForSeconds(turnInterval);
-    //        creatureTurn = !creatureTurn;
-    //        localScale.x *= -1f;
-    //    }
-    //}
+        while (true)
+        {
+            yield return new WaitForSeconds(turnInterval);
+            creatureTurn = !creatureTurn;
+            localScale.x *= -1f;
+        }
+    }
 
     // Updates facing direction of creature based on velocity
     private void FacingUpdate()
