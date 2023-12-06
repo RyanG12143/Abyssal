@@ -25812,16 +25812,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 111, y: -20, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 11
-      m_TileSpriteIndex: 47
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 116, y: -20, z: 0}
     second:
       serializedVersion: 2
@@ -38106,7 +38096,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: a4d38ab33e6c07b4b9648273445b5df6, type: 2}
   - m_RefCount: 88
     m_Data: {fileID: 11400000, guid: b1fd40acebc202541b13fc0a9915e243, type: 2}
-  - m_RefCount: 7
+  - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: cf9004e6fdf8c5b4d8816e75f806ee7b, type: 2}
   - m_RefCount: 16
     m_Data: {fileID: 11400000, guid: b513a02b39a11494090b39ed0727bee1, type: 2}
@@ -38317,7 +38307,7 @@ Tilemap:
     m_Data: {fileID: 1384925516, guid: 87df738ec9bf64042ab8a46c7a699838, type: 3}
   - m_RefCount: 51
     m_Data: {fileID: 867678904, guid: d605aa927a8369e4aa3c07f694c26073, type: 3}
-  - m_RefCount: 7
+  - m_RefCount: 6
     m_Data: {fileID: 21300000, guid: 932e4a58cbaa9444890d4382d55dd88f, type: 3}
   - m_RefCount: 28
     m_Data: {fileID: -1774648114, guid: 87df738ec9bf64042ab8a46c7a699838, type: 3}
@@ -38362,7 +38352,7 @@ Tilemap:
   - m_RefCount: 14
     m_Data: {fileID: 21300000, guid: 41d150cb769eca449bc50dc526be225c, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 3111
+  - m_RefCount: 3110
     m_Data:
       e00: 1
       e01: 0
@@ -38381,7 +38371,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 3111
+  - m_RefCount: 3110
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -61039,7 +61029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1839566275071349740, guid: f59a8c88543cf3949821ecca81647fa8, type: 3}
       propertyPath: orthographic size
-      value: 4.46875
+      value: 5.2265625
       objectReference: {fileID: 0}
     - target: {fileID: 3368375371860040146, guid: f59a8c88543cf3949821ecca81647fa8, type: 3}
       propertyPath: m_Name
