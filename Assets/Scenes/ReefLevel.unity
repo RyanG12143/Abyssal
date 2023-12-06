@@ -40782,7 +40782,6 @@ MonoBehaviour:
   - "Just... don\u2019t blow yourself up on accident, okay?"
   timeToDisplay: 5.2
   prevEvent: {fileID: 1087029246}
-  dialogueAudio: {fileID: 0}
   Dialogue: {fileID: 727057312}
 --- !u!4 &727057321 stripped
 Transform:
@@ -53592,7 +53591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[5]
-      value: still working. Let's see how she moves forward."
+      value: still working. Let's see how she moves forward.
       objectReference: {fileID: 0}
     - target: {fileID: 3856644253835703040, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: m_audioClip
