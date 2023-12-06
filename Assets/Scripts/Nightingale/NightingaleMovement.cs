@@ -133,4 +133,12 @@ public class NightingaleMovement : MonoBehaviour
         velocity.Normalize();
         return velocity;
     }
+    public void changeSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+    public void changeMaxSpeed(float newMaxSpeed)
+    {
+        maxSpeed = newMaxSpeed;
+    }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CurrentForce : MonoBehaviour
 {
     public float force = 5f;
+   
 
     /*Matthew Brodbck 11/01/2023
      * Forces the object in a horizontal direction*/

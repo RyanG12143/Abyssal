@@ -1,372 +1,282 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using System.ComponentModel;
-//using TMPro;
-//using Unity.VisualScripting;
-//using UnityEngine;
-//using UnityEngine.UIElements;
-//using UnityEngine.UIElements.Experimental;
+using System.Collections;
+using UnityEngine;
+using Pathfinding;
+using System.IO;
 
-//public class SeaMonkeyScene : MonoBehaviour
-//{
-//    // A* variables
-//    public Transform target;
-//    public float speed = 200f;
-//    public float nextWaypointDistance = 3f;
+public class SeaMonkeyScene : MonoBehaviour
+{
+    // variables
+    public Transform currentTarget;
+    private Transform runTarget;
+    private Transform leaveTarget;
+    public float speed = 400f;
+    public float runSpeed = 200f;
+    private float nextWaypointDistance = 1f;
 
-//    public Transform enemyGFX;
+    public Transform enemyGFX;
 
-//    Pathfinding.Path path;
-//    int currentWaypoint = 0;
-//    bool reachedEndOfPath = false;
+    Pathfinding.Path path;
+    int currentWaypoint = 0;
+    bool reachedEndOfPath = false;
 
-//    Seeker seeker;
-//    Rigidbody2D rb;
+    Seeker seeker;
+    Rigidbody2D rb;
 
-//    // Variables
-//    //
-//    // Wander variables
-//    public float detectionRange = 5.0f;
-//    public float changeDirectionCooldown = 2.0f;
-//    public float wanderSpeed = 2.0f;
+    // Wander variables
+    public float detectionRange = 5.0f;
 
-//    // Bool's for creature state change
-//    private bool hitPlayer = false;
-//    private bool creatureTurn = true;
+    // Bool's for creature state change
+    private bool hitPlayer = false;
+    public bool hitByTorpedo = false;
 
-//    // Fix flipping
-//    public bool upFlipped = false;
+    // Fix flipping
+    public bool upFlipped = false;
 
-//    // Stun variables
-//    public bool stunned = false;
-//    private float stunTime = 5f;
+    // Animator
+    public Animator animator;
 
-//    // Animator
-//    public Animator animator;
+    public GameObject bubbles;
+    private bool bubblesSpawning = false;
 
-//    // State Enum
-//    public enum EnemyAction
-//    {
-//        Primed,
-//        Lunge,
-//        Run,
-//        Leave,
-//    }
+    // State Enum
+    public enum EnemyAction
+    {
+        Primed,
+        Lunge,
+        Run,
+        Leave,
+    }
 
-//    public EnemyAction currState = EnemyAction.Primed;
+    public EnemyAction currState = EnemyAction.Primed;
 
-//    //player declaration
-//    private GameObject player;
+    //player declaration
+    private GameObject player;
+    public GameObject objectToSpawn;
+    public GameObject stunAnimation;
 
-//    public GameObject stunAnimation;
+    // Start is called before the first frame update
+    void Start()
+    {
+        seeker = GetComponent<Seeker>();
+        rb = GetComponent<Rigidbody2D>();
 
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
 
-//    //Old Variables
-//    //public enum EnemyAction
-//    //{
-//    //    Lunge,
-//    //    Run,
-//    //    Leave,
-//    //}
+        // Declaring player
+        player = GameObject.FindGameObjectWithTag("Player");
+        currentTarget = player.GetComponent<Transform>();
+        runTarget = GameObject.Find("runTarget").GetComponent<Transform>();
+        leaveTarget = GameObject.Find("leaveTarget").GetComponent<Transform>();
+    }
 
-//    //private GameObject player;
-//    //public GameObject objectToSpawn;
-//    //public EnemyAction currState = EnemyAction.Wander;
+    void UpdatePath()
+    {
+        if (seeker.IsDone())
+            seeker.StartPath(rb.position, currentTarget.position, OnPathComplete);
+    }
 
-//    //public Transform target;
-//    //Rigidbody2D myRigidbody;
+    void OnPathComplete(Pathfinding.Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
 
-//    //// Editable movement variables
-//    //public float range = 2f;
-//    //public float moveSpeed = 2f;
-//    //public float moveDistance = 5f;
-//    //public float turnInterval = 2.0f;
-//    //public float wanderBufferTime = 2.0f;
-//    //public float slowTimeInterval = 0.5f;
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        stateSwitch();
+        FacingUpdate();
+        FlippingUpdate();
 
-//    //// Bool's for creature state changes
-//    //public bool hitPlayer = false;
-//    //public bool hitByTorpedo = false;
-//    //private bool isFacingRight = true;
-//    //private bool creatureTurn = false;
-//    //private bool upFlipped = false;
-//    //private bool buffer = false;
-//    //private bool slowTimeActive = false;
-//    //private bool slowTimeCancel = false;
+        if (!bubblesSpawning && currState==EnemyAction.Run)
+        {
+            StartCoroutine(SpawnBubble());
+        }
+    }
 
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-//        player = GameObject.FindGameObjectWithTag("Player");
-//        myRigidbody = GetComponent<Rigidbody2D>();
-//        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-//        StartCoroutine(ChangeCreatureTurn());
-//    }
+    // Core AI
+    private void AAI()
+    {
+        if (path == null)
+            return;
 
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        stateSwitch();
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+        {
+            reachedEndOfPath = false;
+        }
 
-//        if (!slowTimeCancel)
-//        {
-//            facingUpdate();
-//        }
-//    }
-    
-//    // Switches the states of the enemy creature
-//    private void stateSwitch()
-//    {
-//        // Checks what state to be in
-//        if (hitByTorpedo)
-//        {
-//            currState = EnemyAction.Die;
-//        }
-//        else if (IsPlayerInRange(range) && currState != EnemyAction.Die && hitPlayer == true)
-//        {
-//            currState = EnemyAction.Run;
-//        }
-//        else if (IsPlayerInRange(range) && currState != EnemyAction.Die && currState != EnemyAction.Run)
-//        {
-//            currState = EnemyAction.Follow;
-//        }
-//        else if (!IsPlayerInRange(range) && currState != EnemyAction.Die)
-//        {
-//            currState = EnemyAction.Wander;
-//        }
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = direction * speed * Time.deltaTime;
 
-//        // Switches current state based on currState
-//        switch (currState)
-//        {
-//            case EnemyAction.Wander:
-//                Wander();
-//                break;
-//            case EnemyAction.Follow:
-//                Follow();
-//                break;
-//            case EnemyAction.Run:
-//                Run();
-//                break;
-//            case EnemyAction.Die:
-//                Die();
-//                break;
-//        }
-//    }
+        rb.AddForce(force);
 
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
-//    // Different creature state methods
-//    //
-//    //
-//    // Wander creature state
-//    void Wander()
-//    {
-//        StartCoroutine (wanderBuffer());
+        if (distance < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
+    }
 
-//        Vector3 localScale = transform.localScale;
-        
+    // Switches the states of the enemy creature
+    private void stateSwitch()
+    {
+        if (hitByTorpedo)
+        {
+            currState = EnemyAction.Leave;
+        }
+        else if (IsPlayerInRange(detectionRange) && !hitPlayer)
+        {
+            currState = EnemyAction.Lunge;
+        }
+        else if (hitPlayer)
+        {
+            currState = EnemyAction.Run;
+        }
+        else
+        {
+            currState = EnemyAction.Primed;
+        }
 
-
-//        if(buffer == false)
-//        {
-//            if (transform.up.y < 0f)
-//            {
-//                localScale.y = 1;
-//                transform.localScale = localScale;
-//                upFlipped = true;
-//            }
-
-//            if (creatureTurn)
-//            {
-//                myRigidbody.velocity = new Vector2(moveSpeed, 0f);
-//            }
-//            else
-//            {
-//                myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
-//            }
-//        }
-//    }
-
-//    // Follow creature state
-//    void Follow()
-//    {
-//        Vector2 targetPosition = target.position;
-//        Vector2 currentPosition = transform.position;
-
-//        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-//        //// Use LookAt to make the enemy face the player;
-//        transform.right = myRigidbody.velocity;
-
-//        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
-
-//        buffer = true;
-//        flip();
-//        correctFlip();
-//    }
-
-//    // Run creature state
-//    void Run()
-//    {
-//        Vector2 targetPosition = target.position;
-//        Vector2 currentPosition = transform.position;
-
-//        Vector2 direction = (targetPosition - currentPosition).normalized;
-        
-//        // Invert the direction for running away
-//        direction = -direction;
-
-//        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
-
-//        buffer = true;
-//        flip();
-//        correctFlip();
-//    }
-
-//    // Die method
-//    void Die()
-//    {
-//        if (slowTimeActive == true)
-//        {
-//            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x * 0.2f, myRigidbody.velocity.y * 0.2f);
-//            slowTimeActive = false;
-//        }
-//    }
-
-//    // Helper methods
-//    //
-//    //
-//    // Flipping sprite at critical points (Looking Straight Up and Down)
-//    private void flip()
-//    {
-//        Vector2 targetPosition = target.position;
-//        Vector2 currentPosition = transform.position;
-
-//        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-//        if ((isFacingRight && direction.x < -0.01) || (!isFacingRight && direction.x > 0.01))
-//        {
-//            isFacingRight = !isFacingRight;
-
-//            Vector3 localScale = transform.localScale;
-//            localScale.y *= -1;
-//            transform.localScale = localScale;
-//        }
-//    }
-
-//    // Corrects Y flip after wander method and before die method (Edge Cases)
-//    private void correctFlip()
-//    {
-//        Vector3 localScale = transform.localScale;
-
-//        if (upFlipped)
-//        {
-//            localScale.y *= -1;
-//            transform.localScale = localScale;
-//            upFlipped = false;
-//        }
-//    }
-
-//    // Updates facing direction of creature based on velocity
-//    private void facingUpdate()
-//    {
-//        // Velocity Based Direction
-//        Vector2 targetPosition = target.position;
-//        Vector2 currentPosition = transform.position;
-
-//        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-//        transform.right = myRigidbody.velocity;
-
-//        float angle;
-//        float rotateSpeed = 2;
-
-//        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, myRigidbody.velocity));
-
-//        // This is to stop overrotation
-//        if (Mathf.Abs(Vector2.Angle(transform.right, myRigidbody.velocity)) < 5f)
-//        {
-//            angle = 0;
-//        }
-
-//        if (angle != 0)
-//        {
-//            myRigidbody.MoveRotation(myRigidbody.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
-//        }
-//    }
+        // Switches current state based on currState
+        switch (currState)
+        {
+            case EnemyAction.Primed:
+                Primed();
+                break;
+            case EnemyAction.Run:
+                Run();
+                break;
+            case EnemyAction.Lunge:
+                Lunge();
+                break;
+            case EnemyAction.Leave:
+                Leave();
+                break;
+        }
+    }
 
 
-//    // Status Checks
-//    //
-//    //
-//    // Checking if enemy hit player or Torpedo
-//    private void OnCollisionEnter2D(Collision2D collision)
-//    {
-//        if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
-//        {
-//            hitPlayer = true;
+    // Different creature state methods
+    //
+    //
+    // Wander creature state
+    void Primed()
+    {
 
-//            Vector3 localScale = transform.localScale;
-//            localScale.y *= -1;
-//            transform.localScale = localScale;
-//            Oxygen.GetInstance().activateOxygen();
-//        }
-//        else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
-//        {
-//            if(hitPlayer)
-//            {
-//                Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
-//                Instantiate(objectToSpawn, transform.position + dropModify, objectToSpawn.transform.rotation);
-//            }
-//            hitByTorpedo = true;
-//            myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-//            myRigidbody.gravityScale = 0.01f;
-//            StartCoroutine(deathSlowTime());
-//            StartCoroutine(deathSlowTimeCancel());
-//            correctFlip();
-//        }
-//    }
+    }
 
-//    // Checks if player is in range
-//    private bool IsPlayerInRange(float range)
-//    {
-//        return Vector3.Distance(transform.position, player.transform.position) <= range;
-//    }
+    // Lunge creature state
+    void Lunge()
+    {
+        AAI();
+    }
 
-//    // Changing Creature Momentum Direction
-//    IEnumerator ChangeCreatureTurn()
-//    {
+    // Run creature state
+    void Run()
+    {
+        speed = runSpeed;
+        currentTarget = runTarget;
+        AAI();
+    }
 
-//        Vector3 localScale = transform.localScale;
+    // Leaving level
+    void Leave()
+    {
+        currentTarget = leaveTarget;
+        AAI();
+        StartCoroutine(Delete());
+    }
 
-//        while (true)
-//        {
-//            yield return new WaitForSeconds(turnInterval);
-//            creatureTurn = !creatureTurn;
-//            localScale.x *= -1f;
-//        }
-//    }
+    // Helper methods
+    //
+    //
+    // Flipping sprite at critical points (Looking Straight Up and Down)
+    private void FacingUpdate()
+    {
+        transform.right = rb.velocity;
 
-//    // Buffer timer so creature gets further away
-//    IEnumerator wanderBuffer()
-//    {
-//        yield return new WaitForSeconds(wanderBufferTime);
-//        buffer = false;
-//    }
+        float angle;
+        float rotateSpeed = 2;
 
-//    // Time to slow down after dying
-//    IEnumerator deathSlowTime()
-//    {
-//        if (!slowTimeCancel)
-//        {
-//            yield return new WaitForSeconds(slowTimeInterval);
-//            slowTimeActive = true;
-//        }
-//    }
+        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, rb.velocity));
 
-//    //Cancels the slow time after a given time
-//    IEnumerator deathSlowTimeCancel()
-//    {
-//        yield return new WaitForSeconds(4);
-//        slowTimeCancel = true;
-//    }
-//}
+        // This is to stop overrotation
+        if (Mathf.Abs(Vector2.Angle(transform.right, rb.velocity)) < 5f)
+        {
+            angle = 0;
+        }
+
+        if (angle != 0)
+        {
+            rb.MoveRotation(rb.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
+        }
+    }
+
+    private void FlippingUpdate()
+    {
+        Vector3 localScale = transform.localScale;
+
+        bool test1 = transform.eulerAngles.z > 90f && transform.eulerAngles.z < 270f;
+
+        if (test1 != upFlipped)
+        {
+            localScale.y *= -1;
+            transform.localScale = localScale;
+            upFlipped = !upFlipped;
+        }
+    }
+
+
+    // Status Checks
+    //
+    //
+    // Checking if enemy hit player or Torpedo
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && !hitPlayer)
+        {
+            hitPlayer = true;
+            animator.SetBool("oxygenTank", true);
+            Oxygen.GetInstance().activateOxygen();
+        }
+        else if (collision.gameObject.tag == "Torpedo" && hitByTorpedo == false && hitPlayer == true)
+        {
+            hitByTorpedo = true;
+            if(hitPlayer == true)
+            {
+                Instantiate(objectToSpawn, transform.position, objectToSpawn.transform.rotation);
+                stunAnimation.SetActive(true);
+                animator.SetBool("stunned", true);
+            }
+        }
+    }
+
+    // Checks if player is in range
+    private bool IsPlayerInRange(float range)
+    {
+        return Vector3.Distance(transform.position, player.transform.position) <= range;
+    }
+
+    IEnumerator SpawnBubble()
+    {
+        bubblesSpawning = true;
+        Instantiate(bubbles, gameObject.transform.position, gameObject.transform.rotation);
+        yield return new WaitForSeconds(0.1f);
+        bubblesSpawning = false;
+
+    }
+
+    IEnumerator Delete(){
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+    }
+}
