@@ -35,6 +35,9 @@ public class SeaMonkeyScene : MonoBehaviour
     // Animator
     public Animator animator;
 
+    public GameObject bubbles;
+    private bool bubblesSpawning = false;
+
     // State Enum
     public enum EnemyAction
     {
@@ -87,6 +90,11 @@ public class SeaMonkeyScene : MonoBehaviour
         stateSwitch();
         FacingUpdate();
         FlippingUpdate();
+
+        if (!bubblesSpawning && currState==EnemyAction.Run)
+        {
+            StartCoroutine(SpawnBubble());
+        }
     }
 
     // Core AI
@@ -185,6 +193,7 @@ public class SeaMonkeyScene : MonoBehaviour
     {
         currentTarget = leaveTarget;
         AAI();
+        StartCoroutine(Delete());
     }
 
     // Helper methods
@@ -255,5 +264,19 @@ public class SeaMonkeyScene : MonoBehaviour
     private bool IsPlayerInRange(float range)
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
+    }
+
+    IEnumerator SpawnBubble()
+    {
+        bubblesSpawning = true;
+        Instantiate(bubbles, gameObject.transform.position, gameObject.transform.rotation);
+        yield return new WaitForSeconds(0.1f);
+        bubblesSpawning = false;
+
+    }
+
+    IEnumerator Delete(){
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 }

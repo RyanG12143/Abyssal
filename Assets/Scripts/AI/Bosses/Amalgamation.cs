@@ -212,6 +212,14 @@ public class Amalgamation : MonoBehaviour
     void Chase()
     {
         AAI();
+        if (IsPlayerInRange(5))
+        {
+            rb.GetComponent<Rigidbody2D>().drag = 5;
+        }
+        else
+        {
+            rb.GetComponent<Rigidbody2D>().drag = 1.5f;
+        }
     }
 
     void Primed()
@@ -311,11 +319,7 @@ public class Amalgamation : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             // Ask Ryan If Right!!!!!
-            Health.GetInstance().damage();
-            Health.GetInstance().damage();
-            Health.GetInstance().damage();
-            Health.GetInstance().damage();
-            Health.GetInstance().damage();
+            Health.GetInstance().kill();
         }
         else if (collision.gameObject.tag == "BossChargeWall")
         {
