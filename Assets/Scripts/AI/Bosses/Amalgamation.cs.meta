@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/AI/Other/SeaMonkeyScene.cs.meta
-guid: 6a095a90c9fd64a4baa9b3a581bdc3fa
-========
+<<<<<<<< HEAD:Assets/Scripts/AI/Bosses/Amalgamation.cs.meta
 guid: fa3138bd582f361428555333cafb4cf5
->>>>>>>> Dustins-Branch:Assets/Scripts/AI/Bosses/Amalgamation.cs.meta
+========
+guid: 5421a2c5e7c80e34da2b06a06f47117f
+>>>>>>>> origin/Andrew_Alpha:Assets/BossChargeEvent.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 
 public class ChangeCameraSize : MonoBehaviour
 {
-    public Camera camera;
+    public Camera Camera;
     // Start is called before the first frame update
     void Start()
     {
-        //camera.GetComponent<PixelPerfectCamera>().SetAssetsPixelsPerUnit(24);
+        
     }
+
     // Update is called once per frame
     void Update()
     {

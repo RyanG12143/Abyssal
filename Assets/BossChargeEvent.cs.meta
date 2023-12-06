@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/AI/Bosses/Amalgamation.cs.meta
+guid: 497c186002d3e4d4491f4d357d5a5a16
+========
 guid: 5421a2c5e7c80e34da2b06a06f47117f
+>>>>>>>> origin/Andrew_Alpha:Assets/BossChargeEvent.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

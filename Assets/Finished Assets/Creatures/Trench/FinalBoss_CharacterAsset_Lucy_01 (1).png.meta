@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Finished Assets/Creatures/Other/StunAnimationFrames_CharacterAsset_Lucy_01.png.meta
+guid: 04e724218651626479d74847aa91af34
+========
 guid: 25d7420501312194db04bb164b9e1312
+>>>>>>>> origin/Andrew_Alpha:Assets/Finished Assets/Creatures/Trench/FinalBoss_CharacterAsset_Lucy_01 (1).png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +47,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,7 +138,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: StunAnimationFrames_CharacterAsset_Lucy_01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23ea2fa151685dc4e932594565f962d9
+      internalID: 715188095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StunAnimationFrames_CharacterAsset_Lucy_01_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35df5fc3658a4374aa0f272ac4def006
+      internalID: -492982697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StunAnimationFrames_CharacterAsset_Lucy_01_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6d12d43465725f4ba66232a9c0539cf
+      internalID: 1146721779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +212,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      StunAnimationFrames_CharacterAsset_Lucy_01_0: 715188095
+      StunAnimationFrames_CharacterAsset_Lucy_01_1: -492982697
+      StunAnimationFrames_CharacterAsset_Lucy_01_2: 1146721779
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -24,6 +24,8 @@ TagManager:
   - CurrentDown
   - EnemyNoDamage
   - Boss
+  - ExplosivePackage
+  - BossChargeWall
   layers:
   - Default
   - TransparentFX
