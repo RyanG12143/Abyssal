@@ -352,7 +352,6 @@ MonoBehaviour:
   torpedoPrefab: {fileID: 5618860476881002139, guid: 592ebd0937163d9459e96f7c3b4108c4, type: 3}
   fireSound: {fileID: 7923326996719245162}
   readyLight: {fileID: 173478596017636542}
-  bubbles: {fileID: 8611637075343629141, guid: a097321a78df17f4fa30e27e8ab8af45, type: 3}
 --- !u!82 &7923326996719245162
 AudioSource:
   m_ObjectHideFlags: 0
@@ -531,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bcbb1b236cc8748bb692e2c633e2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 5
   damageSound: {fileID: 6409098542728766936}
   SR: {fileID: 3807067947529759256}
   deathSound: {fileID: 8281811635105881734}
