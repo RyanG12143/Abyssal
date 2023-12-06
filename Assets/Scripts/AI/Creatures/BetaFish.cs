@@ -1,82 +1,143 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.UIElements.Experimental;
+using Pathfinding;
 
 public class BetaFish : MonoBehaviour
 {
+    // A* variables
+    public Transform target;
+    public float speed = 200f;
+    public float nextWaypointDistance = 3f;
+
+    public Transform enemyGFX;
+
+    Pathfinding.Path path;
+    int currentWaypoint = 0;
+    bool reachedEndOfPath = false;
+
+    Seeker seeker;
+    Rigidbody2D rb;
+
+    // Editable movement variables
+    public float detectionRange = 2f;
+    public float turnInterval = 2.0f;
+    public float wanderBufferTime = 2.0f;
+    private bool buffer = false;
+    private bool randomTargetFound = false;
+
+    // Flipping
+    private bool upFlipped = false;
+
+    private bool creatureTurn = true;
+   
+
+    public bool stunned = false;
+    private float stunTime = 5f;
+
+    // Animator
+    public Animator animator;
+
+    // State Enum
     public enum EnemyAction
     {
         Wander,
         Run,
-        Die,
+        Stunned,
     }
 
-    private GameObject player;
     public EnemyAction currState = EnemyAction.Wander;
-
-    public Transform target;
-    Rigidbody2D myRigidbody;
     
-    // Editable movement variables
-    public float range = 2f;
-    public float moveSpeed = 2f;
-    public float turnInterval = 2.0f;
-    public float wanderBufferTime = 2.0f;
-    public float slowTimeInterval = 0.5f;
+    //player declaration
+    private GameObject player;
 
-    // Bool's for creature state changes
-    public bool hitPlayer = false;
-    public bool hitByTorpedo = false;
-    private bool isFacingRight = true;
-    private bool creatureTurn = false;
-    private bool upFlipped = true;
-    private bool buffer = false;
-    private bool slowTimeActive = false;
-    private bool slowTimeCancel = false;
+    public GameObject stunAnimation;
 
     // Start is called before the first frame update
     void Start()
     {
+        seeker = GetComponent<Seeker>();
+        rb = GetComponent<Rigidbody2D>();
+
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
+
+        // Declaring player
         player = GameObject.FindGameObjectWithTag("Player");
-        myRigidbody = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        // Starting creature turning
         StartCoroutine(ChangeCreatureTurn());
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdatePath()
+    {
+        if (seeker.IsDone())
+            seeker.StartPath(rb.position, target.position, OnPathComplete);
+    }
+
+    void OnPathComplete(Pathfinding.Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    // Update
+    void FixedUpdate()
     {
         stateSwitch();
+        FacingUpdate();
 
-        if (!slowTimeCancel)
-        {
-            facingUpdate();
-        }
-
-        if (buffer && !IsPlayerInRange(range))
+        if (buffer && !IsPlayerInRange(detectionRange))
         {
             StartCoroutine(wanderBuffer());
         }
     }
-    
+
+    // Core AI
+    private void AAI()
+    {
+        if (path == null)
+            return;
+
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            reachedEndOfPath = true;
+            return;
+        }
+        else
+        {
+            reachedEndOfPath = false;
+        }
+
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = direction * speed * Time.deltaTime;
+
+        rb.AddForce(force);
+
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+        if (distance < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
+
+    }
+
     // Switches the states of the enemy creature
     private void stateSwitch()
     {
         // Checks what state to be in
-        if (hitByTorpedo)
+        if (stunned)
         {
-            currState = EnemyAction.Die;
+            currState = EnemyAction.Stunned;
         }
-        else if (IsPlayerInRange(range) && currState != EnemyAction.Die)
+        else if (IsPlayerInRange(detectionRange) && !stunned)
         {
             currState = EnemyAction.Run;
         }
-        else if (!IsPlayerInRange(range) && currState != EnemyAction.Die && !buffer)
+        else if (!IsPlayerInRange(detectionRange) && !stunned && !buffer)
         {
             currState = EnemyAction.Wander;
         }
@@ -90,8 +151,8 @@ public class BetaFish : MonoBehaviour
             case EnemyAction.Run:
                 Run();
                 break;
-            case EnemyAction.Die:
-                Die();
+            case EnemyAction.Stunned:
+                Stunned();
                 break;
         }
     }
@@ -103,22 +164,25 @@ public class BetaFish : MonoBehaviour
     // Wander creature state
     void Wander()
     {
-        Vector3 localScale = transform.localScale;
-        
-        if (transform.up.y < 0f)
+        if (!randomTargetFound)
         {
-            localScale.y = 1;
-            transform.localScale = localScale;
-            upFlipped = true;
+            Vector3 randomTarget = new Vector3(Random.Range(45f, 55f), Random.Range(-3.4f, -2.3f), 0);
+            randomTargetFound = true;
         }
+
+        upFlipped = false;
+
+        Vector3 localScale = transform.localScale;
+        localScale.y = 1;
+        transform.localScale = localScale;
 
         if (creatureTurn)
         {
-            myRigidbody.velocity = new Vector2(moveSpeed, 0f);
+            rb.velocity = new Vector2(speed, 0f);
         }
         else
         {
-            myRigidbody.velocity = new Vector2(-moveSpeed, 0f);
+            rb.velocity = new Vector2(-speed, 0f);
         }
     }
 
@@ -133,82 +197,95 @@ public class BetaFish : MonoBehaviour
         // Invert the direction for running away
         direction = -direction;
 
-        myRigidbody.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+        rb.velocity = new Vector2(direction.x * speed, direction.y * speed);
 
         buffer = true;
-        rotationFlip();
-        correctFlip();
+        FlippingUpdate();
     }
 
-    // Die method
-    void Die()
+    // Stunned method
+    void Stunned()
     {
-        if (slowTimeActive == true)
+        //stunAnimation.SetActive(true);
+        animator.SetBool("stunned", true);
+        FlippingUpdate();
+
+        currentWaypoint = 0;
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = -direction * speed * Time.deltaTime;
+
+        rb.AddForce(force);
+    }
+
+    // Collision
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && !stunned)
         {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x * 0.2f, myRigidbody.velocity.y * 0.2f);
-            slowTimeActive = false;
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = -direction * speed * Time.deltaTime * 100;
+
+            rb.AddForce(force);
+        }
+        else if (collision.gameObject.tag == "Torpedo" && stunned == false)
+        {
+            stunned = true;
+            StartCoroutine(Timer(stunTime));
         }
     }
+
+
 
     // Helper methods
     //
     //
-    // Flipping sprite at critical points (Looking Straight Up and Down)
-    private void rotationFlip()
-    {
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
+    // Changing Creature Momentum Direction
+    //IEnumerator ChangeCreatureTurn()
+    //{
+    //    Vector3 localScale = transform.localScale;
 
-        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        if ((isFacingRight && direction.x < -0.01) || (!isFacingRight && direction.x > 0.01))
-        {
-            isFacingRight = !isFacingRight;
-
-            Vector3 localScale = transform.localScale;
-            localScale.y *= -1;
-            transform.localScale = localScale;
-        }
-    }
-
-    // Corrects Y flip after wander method and before die method (Edge Cases)
-    private void correctFlip()
-    {
-        Vector3 localScale = transform.localScale;
-
-        if (upFlipped)
-        {
-            localScale.y *= -1;
-            transform.localScale = localScale;
-            upFlipped = false;
-        }
-    }
+    //    while (true)
+    //    {
+    //        yield return new WaitForSeconds(turnInterval);
+    //        creatureTurn = !creatureTurn;
+    //        localScale.x *= -1f;
+    //    }
+    //}
 
     // Updates facing direction of creature based on velocity
-    private void facingUpdate()
+    private void FacingUpdate()
     {
-        // Velocity Based Direction
-        Vector2 targetPosition = target.position;
-        Vector2 currentPosition = transform.position;
-
-        Vector2 direction = (targetPosition - currentPosition).normalized;
-
-        transform.right = myRigidbody.velocity;
+        transform.right = rb.velocity;
 
         float angle;
         float rotateSpeed = 2;
 
-        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, myRigidbody.velocity));
+        angle = Mathf.Sign(Vector2.SignedAngle(transform.up, rb.velocity));
 
         // This is to stop overrotation
-        if (Mathf.Abs(Vector2.Angle(transform.right, myRigidbody.velocity)) < 5f)
+        if (Mathf.Abs(Vector2.Angle(transform.right, rb.velocity)) < 5f)
         {
             angle = 0;
         }
 
         if (angle != 0)
         {
-            myRigidbody.MoveRotation(myRigidbody.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
+            rb.MoveRotation(rb.rotation + rotateSpeed * angle * Time.fixedDeltaTime);
+        }
+    }
+
+
+    private void FlippingUpdate()
+    {
+        Vector3 localScale = transform.localScale;
+
+        bool test1 = transform.eulerAngles.z > 90f && transform.eulerAngles.z < 270f;
+
+        if (test1 != upFlipped)
+        {
+            localScale.y *= -1;
+            transform.localScale = localScale;
+            upFlipped = !upFlipped;
         }
     }
 
@@ -216,69 +293,32 @@ public class BetaFish : MonoBehaviour
     // Status Checks
     //
     //
-    // Checking if enemy hit player or Torpedo
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "Nightingale" && !hitPlayer && !hitByTorpedo)
-        {
-            hitPlayer = true;
-        }
-        else if (collision.gameObject.name == "Torpedo2(Clone)" && hitByTorpedo == false)
-        {
-            if(hitPlayer)
-            {
-                Vector3 dropModify = new Vector3(1f, -0.5f, 0f);
-            }
-            hitByTorpedo = true;
-            myRigidbody.bodyType = RigidbodyType2D.Dynamic;
-            myRigidbody.gravityScale = 0.01f;
-            StartCoroutine(deathSlowTime());
-            StartCoroutine(deathSlowTimeCancel());
-            correctFlip();
-        }
-    }
-
-    // Checks if player is in range
-    private bool IsPlayerInRange(float range)
-    {
-        return Vector3.Distance(transform.position, player.transform.position) <= range;
-    }
-
-    // Changing Creature Momentum Direction
-    IEnumerator ChangeCreatureTurn()
-    {
-
-        Vector3 localScale = transform.localScale;
-
-        while (true)
-        {
-            yield return new WaitForSeconds(turnInterval);
-            creatureTurn = !creatureTurn;
-            localScale.x *= -1f;
-        }
-    }
-
-    // Buffer timer so creature gets further away
+    // Buffer timer so creature gets further away before wander
     IEnumerator wanderBuffer()
     {
         yield return new WaitForSeconds(wanderBufferTime);
         buffer = false;
     }
 
-    // Time to slow down after dying
-    IEnumerator deathSlowTime()
+    // Stun Timer
+    IEnumerator Timer(float timer)
     {
-        if (!slowTimeCancel)
-        {
-            yield return new WaitForSeconds(slowTimeInterval);
-            yield return slowTimeActive = true;
-        }
+        yield return new WaitForSeconds(timer);
+        stunned = false;
+        animator.SetBool("stunned", false);
+        stunAnimation.SetActive(false);
     }
 
-    //Cancels the slow time after a given time
-    IEnumerator deathSlowTimeCancel()
+    // Stun Timer
+    IEnumerator wanderTimer(float timer)
     {
-        yield return new WaitForSeconds(4);
-        slowTimeCancel = true;
+        yield return new WaitForSeconds(timer);
+        randomTargetFound = false;
+    }
+
+    // Checks if player is in range
+    private bool IsPlayerInRange(float range)
+    {
+        return Vector3.Distance(transform.position, player.transform.position) <= range;
     }
 }
