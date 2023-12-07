@@ -48731,7 +48731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[3]
-      value: "You can activate your sonar again if you need to see the arrow.\u201D"
+      value: You can activate your sonar again if you need to see the arrow.
       objectReference: {fileID: 0}
     - target: {fileID: 3381318711597719683, guid: f7992d05f4c891d45b58b8dcfcf52ed1, type: 3}
       propertyPath: textToDisplay.Array.data[4]
