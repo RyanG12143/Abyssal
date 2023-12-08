@@ -26,6 +26,7 @@ TagManager:
   - Boss
   - ExplosivePackage
   - BossChargeWall
+  - ParasiteSlowWall
   layers:
   - Default
   - TransparentFX
