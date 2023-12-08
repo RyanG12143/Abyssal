@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class TriggerEgg : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class TriggerEgg : MonoBehaviour
     private Amalgamation amalgamation;
     public GameObject spawnParasite;
     public GameObject parasiteCluster;
+    public GameObject eggLight;
 
     // Animator
     public Animator animator;
@@ -33,6 +35,7 @@ public class TriggerEgg : MonoBehaviour
             animator.SetBool("eggBroken", true);
             spawnParasite.SetActive(true);
             parasiteCluster.SetActive(true);
+            eggLight.SetActive(false);
             amalgamation.StartChase();
         }
     }
