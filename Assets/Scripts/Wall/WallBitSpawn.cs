@@ -16,6 +16,7 @@ public class WallBitSpawn : MonoBehaviour
     // Update is called once per frame
 
     public void OnDestroy(){
+        if (!this.gameObject.scene.isLoaded) return;
         Instantiate(wallBit, gameObject.transform.position, gameObject.transform.rotation);
         Instantiate(wallBit, gameObject.transform.position, gameObject.transform.rotation);
         Instantiate(wallBit, gameObject.transform.position, gameObject.transform.rotation);

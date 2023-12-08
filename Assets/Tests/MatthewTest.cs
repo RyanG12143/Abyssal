@@ -18,7 +18,7 @@ public class MatthewTest : InputTestFixture
     Mouse mouse;
     public override void Setup()
     {
-        SceneManager.LoadScene("Scenes/ReefLevel");
+        SceneManager.LoadScene("Scenes/TwilightLevel");
         base.Setup();
 
         mouse = InputSystem.AddDevice<Mouse>("mouse");
