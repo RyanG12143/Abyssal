@@ -18,7 +18,7 @@ public class MatthewTest : InputTestFixture
     Mouse mouse;
     public override void Setup()
     {
-        SceneManager.LoadScene("Scenes/TwilightLevel");
+        SceneManager.LoadScene("Scenes/ReefLevel");
         base.Setup();
 
         mouse = InputSystem.AddDevice<Mouse>("mouse");
@@ -38,9 +38,9 @@ public class MatthewTest : InputTestFixture
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         Press(mouse.leftButton);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         Release(mouse.leftButton);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
 
         GameObject torpedo = GameObject.FindGameObjectWithTag("Torpedo");
         Assert.IsNotNull(torpedo);

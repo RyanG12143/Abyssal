@@ -15,6 +15,7 @@ public class Crumblelol : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         Instantiate(wallBit, gameObject.transform.position, gameObject.transform.rotation);
     }
 }
