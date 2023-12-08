@@ -36,15 +36,27 @@ public class NextLevel : MonoBehaviour
     {
         blackScreen.SetActive(true);
 
+        Color prevObjectColor = blackScreen.GetComponent<Image>().color;
         Color objectColor = blackScreen.GetComponent<Image>().color;
-        float fadeAmount;
+        objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, 1);
+        float fadeAmount = 0;
 
+        while (blackScreen.GetComponent<Image>().color.a < .2)
+        {
+            fadeAmount = fadeAmount + (fadeSpeed / 4 * Time.deltaTime);
+            blackScreen.GetComponent<Image>().color = Color.Lerp(prevObjectColor, objectColor, fadeAmount);
+            yield return null;
+        }
+        while (blackScreen.GetComponent<Image>().color.a < .5)
+        {
+            fadeAmount = fadeAmount + (fadeSpeed / 2 * Time.deltaTime);
+            blackScreen.GetComponent<Image>().color = Color.Lerp(prevObjectColor, objectColor, fadeAmount);
+            yield return null;
+        }
         while (blackScreen.GetComponent<Image>().color.a < 1)
         {
-            fadeAmount = objectColor.a + (fadeSpeed * Time.deltaTime);
-
-            objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
-            blackScreen.GetComponent<Image>().color = objectColor;
+            fadeAmount = fadeAmount + (fadeSpeed * Time.deltaTime);
+            blackScreen.GetComponent<Image>().color = Color.Lerp(prevObjectColor, objectColor, fadeAmount);
             yield return null;
         }
         SceneManager.LoadScene(nextLevel);

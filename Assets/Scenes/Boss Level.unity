@@ -3030,7 +3030,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
 --- !u!1 &521922581 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3616964933292294961, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8645743342960940651, guid: efb3821fcefbb3948bcc8d827680cfbd, type: 3}
   m_PrefabInstance: {fileID: 521922580}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &521922582 stripped
@@ -7890,7 +7890,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.84375
+  orthographic size: 4.46875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
