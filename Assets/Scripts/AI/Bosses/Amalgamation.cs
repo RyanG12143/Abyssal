@@ -30,6 +30,9 @@ public class Amalgamation : MonoBehaviour
     private float waitTime;
     private bool slowForceApplied = false;
 
+    //Audio
+    public AudioSource roarSound;
+
     // Animator
     public Animator animator;
 
@@ -206,6 +209,7 @@ public class Amalgamation : MonoBehaviour
         AAI();
         getCamera.GetComponent<CameraController>().setCameraSize(5f);
         StartCoroutine(jumpscareTimer(jumpscareTime));
+        roarSound.Play();
     }
 
     // Post Scare States
@@ -224,19 +228,7 @@ public class Amalgamation : MonoBehaviour
 
     void Primed()
     {
-        if(!slowForceApplied)
-        {
-            //Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-            //Vector2 force = -direction * speed * Time.deltaTime * 50;
-            //rb.AddForce(force);
-            rb.GetComponent<Rigidbody2D>().drag = 1000;
-            slowForceApplied = true;
-        }
-        else
-        {
-            rb.GetComponent<Rigidbody2D>().drag = 1;
-        }
-        
+        rb.GetComponent<Rigidbody2D>().drag = 10;
         currentSpeed = primedSpeed;
         currentTarget = chargeTarget;
         StartCoroutine(chargingTimer(chargeUpTimer));
@@ -245,6 +237,7 @@ public class Amalgamation : MonoBehaviour
 
     void Charge()
     {
+        rb.GetComponent<Rigidbody2D>().drag = 1.5f;
         currentSpeed = chargeSpeed;
         if (hitWallCharging)
         {
