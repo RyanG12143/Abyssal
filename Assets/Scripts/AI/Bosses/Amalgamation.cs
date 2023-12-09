@@ -29,6 +29,7 @@ public class Amalgamation : MonoBehaviour
     private bool charge1 = false;
     private float waitTime;
     private bool slowForceApplied = false;
+    private bool playRoar = false;
 
     //Audio
     public AudioSource roarSound;
@@ -209,7 +210,6 @@ public class Amalgamation : MonoBehaviour
         AAI();
         getCamera.GetComponent<CameraController>().setCameraSize(5f);
         StartCoroutine(jumpscareTimer(jumpscareTime));
-        roarSound.Play();
     }
 
     // Post Scare States
@@ -337,6 +337,12 @@ public class Amalgamation : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         animator.SetBool("active", true);
+        yield return new WaitForSeconds(0.5f);
+        if (!playRoar)
+        {
+            roarSound.Play();
+            playRoar = true;
+        }
         yield return new WaitForSeconds(timer);
         chaseActive = true;
         currentSpeed = speed;

@@ -12,6 +12,9 @@ public class ParasiteEgg : MonoBehaviour
     // Animator
     public Animator animator;
 
+    //Audio
+    public AudioSource eggCrack;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,7 @@ public class ParasiteEgg : MonoBehaviour
     {
         if (IsPlayerInRange(detectionRange) && !hatched)
         {
+            eggCrack.Play();
             animator.SetBool("hatched", true);
             Vector3 modify = new Vector3(0f, 1f, 0f);
             Instantiate(parasite, transform.position + modify, parasite.transform.rotation);
