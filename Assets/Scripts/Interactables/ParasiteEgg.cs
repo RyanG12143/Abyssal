@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParasiteEgg : MonoBehaviour
 {
-    private float detectionRange = 7f;
+    public float detectionRange = 7f;
     private bool hatched = false;
     private GameObject player;
     public GameObject parasite;
