@@ -1,7 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 using UnityEngine.Rendering.Universal;
 
 public class CreatureSonarPulse : MonoBehaviour
@@ -10,7 +9,7 @@ public class CreatureSonarPulse : MonoBehaviour
     private SpriteRenderer SR;
 
     // Is this creature being scanned(fading in/out)?
-    private Boolean isFadeRunning = false;
+    private bool isFadeRunning = false;
 
     // SpriteLight of the creature
     public GameObject SpriteLight;
