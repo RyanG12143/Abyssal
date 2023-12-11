@@ -87309,6 +87309,10 @@ PrefabInstance:
       value: EndLevel
       objectReference: {fileID: 0}
     - target: {fileID: 1472797817975672727, guid: 4404f99e03c3af647bc169638f6f14b1, type: 3}
+      propertyPath: nextLevel
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472797817975672727, guid: 4404f99e03c3af647bc169638f6f14b1, type: 3}
       propertyPath: blackScreen
       value: 
       objectReference: {fileID: 521922581}

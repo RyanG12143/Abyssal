@@ -13,7 +13,7 @@ public class Amalgamation : MonoBehaviour
     private float speed = 1000f;
     private float chargeSpeed = 3000f;
     private float jumpscareSpeed = 200f;
-    private float primedSpeed = 10f;
+    private float primedSpeed = 75f;
     private float nextWaypointDistance = 4f;
     private float jumpscareTime = 2;
     private float chargeTargetRange = 30;
@@ -228,7 +228,7 @@ public class Amalgamation : MonoBehaviour
 
     void Primed()
     {
-        rb.GetComponent<Rigidbody2D>().drag = 8;
+        rb.GetComponent<Rigidbody2D>().drag = 3;
         currentSpeed = primedSpeed;
         currentTarget = chargeTarget;
         StartCoroutine(chargingTimer(chargeUpTimer));
