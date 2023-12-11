@@ -7,6 +7,8 @@ public class RockSpawner : MonoBehaviour
     public GameObject rockPre;
     public int rockSpawnLimit;
     private int rockSpawnCount;
+
+    public GameObject HatchetFishSwarm;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class RockSpawner : MonoBehaviour
             rockSpawnCount++;
             yield return new WaitForSeconds(.2f);  
         }
-        
+
+        // disable hatchet fish
+        HatchetFishSwarm.SetActive(false);
     }
 }

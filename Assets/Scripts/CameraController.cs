@@ -70,8 +70,9 @@ public class CameraController : MonoBehaviour
                 currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
 
                 // These two lines are what effect camera movement
-                Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.30f), -90f);
-                transform.position = Vector3.Lerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+                //Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.30f), -90f);
+                Vector3 newPos = new Vector3(target.position.x, target.position.y, -90f);
+                transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime);
             }
         }
         else
@@ -103,8 +104,9 @@ public class CameraController : MonoBehaviour
                 currentVelocity = Nightingale.GetComponent<NightingaleMovement>().getVelocity();
 
                 // These two lines are what effect camera movement
-                Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.30f), -90f);
-                transform.position = Vector3.Lerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+                //Vector3 newPos = new Vector3(target.position.x + (currentVelocity.x * 1.20f), target.position.y + (currentVelocity.y * 0.30f), -90f);
+                Vector3 newPos = new Vector3(target.position.x, target.position.y, -90f);
+                transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime);
 
             }
 
@@ -112,7 +114,6 @@ public class CameraController : MonoBehaviour
     }
         public void changeCamera()
         {
-            Debug.Log("test");
             if (switchCamera)
                 switchCamera = false;
             else switchCamera = true;

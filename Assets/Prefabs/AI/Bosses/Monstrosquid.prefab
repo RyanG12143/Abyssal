@@ -343,7 +343,7 @@ MonoBehaviour:
   animator: {fileID: 6448331753207056086}
   currState: 0
   target: {fileID: 0}
-  scareRange: 13
+  scareRange: 12
   playerRange: 4.5
   creatureRange: 6
   grabPlayer: 0

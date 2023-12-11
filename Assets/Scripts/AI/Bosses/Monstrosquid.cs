@@ -110,7 +110,6 @@ public class Monstrosquid : MonoBehaviour
         //getCamera.GetComponent<CameraController>().getCameraSize();
 
         getCamera.GetComponent<CameraController>().setCameraSize(8f);
-
         StartCoroutine(jumpscareActivate());
         myRigidbody.velocity = new Vector2(0f, 4f);
     }
@@ -227,6 +226,5 @@ public class Monstrosquid : MonoBehaviour
     {
         animator.SetBool("Attack", false);
         animator.SetBool("grabFish", false);
-        animator.SetBool("Jumpscare", false);
     }
 }
