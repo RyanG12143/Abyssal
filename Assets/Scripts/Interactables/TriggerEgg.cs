@@ -12,6 +12,9 @@ public class TriggerEgg : MonoBehaviour
     public GameObject parasiteCluster;
     public GameObject eggLight;
 
+    public GameObject deleteSong;
+    public GameObject chaseSong;
+
     // Animator
     public Animator animator;
 
@@ -38,6 +41,7 @@ public class TriggerEgg : MonoBehaviour
         {
             eggCrack.Play();
             StartCoroutine(screechTimer(1f));
+            StartCoroutine(songChange());   
             animator.SetBool("eggBroken", true);
             spawnParasite.SetActive(true);
             parasiteCluster.SetActive(true);
@@ -56,5 +60,20 @@ public class TriggerEgg : MonoBehaviour
         yield return new WaitForSeconds(timer);
         parasiteScreech.Play();
 
+    IEnumerator songChange()
+    {
+        for (int i = 0; i < 55; i++)
+        {
+            deleteSong.GetComponent<AudioSource>().volume -= 0.01f;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        Destroy(deleteSong.gameObject);
+
+        yield return new WaitForSeconds(1f);
+
+        Instantiate(chaseSong);
+
+        yield return null;
     }
 }
