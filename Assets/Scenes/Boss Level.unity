@@ -3098,6 +3098,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1148529753}
     - target: {fileID: 1974930555442890160, guid: 804f292b58b48cb438cadff5fef5776c, type: 3}
+      propertyPath: chaseSong
+      value: 
+      objectReference: {fileID: 6507187295877833549, guid: 13058caf5947146409dbbacb5b3c500b, type: 3}
+    - target: {fileID: 1974930555442890160, guid: 804f292b58b48cb438cadff5fef5776c, type: 3}
       propertyPath: deleteSong
       value: 
       objectReference: {fileID: 731642986}
