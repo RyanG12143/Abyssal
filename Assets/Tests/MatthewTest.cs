@@ -40,7 +40,7 @@ public class MatthewTest : InputTestFixture
         Press(mouse.leftButton);
         yield return new WaitForSeconds(1);
         Release(mouse.leftButton);
-        yield return new WaitForSeconds(1);
+
 
         GameObject torpedo = GameObject.FindGameObjectWithTag("Torpedo");
         Assert.IsNotNull(torpedo);
