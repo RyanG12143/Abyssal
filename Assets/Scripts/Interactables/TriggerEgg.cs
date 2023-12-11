@@ -59,7 +59,7 @@ public class TriggerEgg : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
         parasiteScreech.Play();
-
+    }
     IEnumerator songChange()
     {
         for (int i = 0; i < 55; i++)
