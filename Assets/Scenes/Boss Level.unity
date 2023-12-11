@@ -1991,6 +1991,7 @@ MonoBehaviour:
   Camera: {fileID: 1311983338}
   hidden: {fileID: 765995406}
   Nightingale: {fileID: 802398397}
+  blockPath: {fileID: 0}
 --- !u!66 &76765667
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -17917,6 +17918,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bioluminescent_Plant_Trench (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 5540059426347400230, guid: 9f893939b757ed04dac9769a01b477aa, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6704882806400456245, guid: 9f893939b757ed04dac9769a01b477aa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2
@@ -17968,7 +17973,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4739923966021223282, guid: 9f893939b757ed04dac9769a01b477aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1870347855}
   m_SourcePrefab: {fileID: 100100000, guid: 9f893939b757ed04dac9769a01b477aa, type: 3}
 --- !u!1001 &898365422
 PrefabInstance:
@@ -32036,6 +32044,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4085442569185587856, guid: c142703d8c923d147840f563fd311f85, type: 3}
   m_PrefabInstance: {fileID: 898365422}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1762918199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3878475349216247133, guid: 9f893939b757ed04dac9769a01b477aa, type: 3}
+  m_PrefabInstance: {fileID: 897301567}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1768665663 stripped
 Transform:
@@ -83913,6 +83926,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e757040d56bf54141b645146123691bb, type: 3}
+--- !u!1 &1870347854 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4739923966021223282, guid: 9f893939b757ed04dac9769a01b477aa, type: 3}
+  m_PrefabInstance: {fileID: 897301567}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1870347855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870347854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a16ce7135082740b9dde32465cbd0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpriteLight: {fileID: 1762918199}
 --- !u!4 &1871223857 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3139474851852011650, guid: d72249ace2c2cac4795590d05112abf9, type: 3}
@@ -87276,6 +87307,10 @@ PrefabInstance:
     - target: {fileID: 1417615007106020541, guid: 4404f99e03c3af647bc169638f6f14b1, type: 3}
       propertyPath: m_Name
       value: EndLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472797817975672727, guid: 4404f99e03c3af647bc169638f6f14b1, type: 3}
+      propertyPath: nextLevel
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1472797817975672727, guid: 4404f99e03c3af647bc169638f6f14b1, type: 3}
       propertyPath: blackScreen
