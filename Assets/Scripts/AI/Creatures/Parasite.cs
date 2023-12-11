@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Pathfinding;
+using Unity.VisualScripting;
 
 public class Parasite : MonoBehaviour
 {
@@ -272,6 +273,22 @@ public class Parasite : MonoBehaviour
             transform.localScale = localScale;
             upFlipped = !upFlipped;
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ParasiteSlowWall"))
+        {
+            rb.velocity = Vector3.zero;
+            speed = 0;
+            StartCoroutine(Death(1));
+        }
+    }
+
+    IEnumerator Death(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        Destroy(gameObject);
     }
 
     // Stun Timer

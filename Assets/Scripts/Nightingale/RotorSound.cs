@@ -24,14 +24,20 @@ public class RotorSound : MonoBehaviour
 
  
         
-        if(speed > 0.3)
+        if((speed > 0.3) && (speed < 5.0))
         {
             Sound.pitch = (speed / 5f) + 0.4f;
             Sound.volume = (speed / 30f) + 0.05f;
         }
-        else{
+        else if (speed < 0.3)
+        {
             Sound.pitch = 1;
             Sound.volume = 0;
+        }
+        else if (speed > 5.0)
+        {
+            Sound.pitch = 1.4f;
+            Sound.volume = (5f / 30f) + 0.05f;
         }
 
 
