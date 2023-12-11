@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class NextLevel : MonoBehaviour
+public class FadeIn : MonoBehaviour
 {
+
     public float fadeSpeed;
-    public int nextLevel;
     public GameObject blackScreen;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(FadeFromBlack());
     }
 
     // Update is called once per frame
@@ -21,45 +21,36 @@ public class NextLevel : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.LogWarning("Enter");
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.LogWarning("Player Enter");
-
-            StartCoroutine(FadeToBlack());
-        }
-    }
-
-    public IEnumerator FadeToBlack()
+    public IEnumerator FadeFromBlack()
     {
         blackScreen.SetActive(true);
 
-        Color prevObjectColor = blackScreen.GetComponent<Image>().color;
-        Color objectColor = blackScreen.GetComponent<Image>().color;
-        objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, 1);
+        Color prevObjectColor = Color.black;
+        prevObjectColor = new Color(prevObjectColor.r, prevObjectColor.g, prevObjectColor.b, 1);
+        Color objectColor = Color.black;
+        objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, 0);
         float fadeAmount = 0;
 
-        while (blackScreen.GetComponent<Image>().color.a < .2)
+        while (blackScreen.GetComponent<Image>().color.a > .8)
         {
             fadeAmount = fadeAmount + (fadeSpeed / 4 * Time.deltaTime);
             blackScreen.GetComponent<Image>().color = Color.Lerp(prevObjectColor, objectColor, fadeAmount);
             yield return null;
         }
-        while (blackScreen.GetComponent<Image>().color.a < .5)
+        while (blackScreen.GetComponent<Image>().color.a > .5)
         {
             fadeAmount = fadeAmount + (fadeSpeed / 2 * Time.deltaTime);
             blackScreen.GetComponent<Image>().color = Color.Lerp(prevObjectColor, objectColor, fadeAmount);
             yield return null;
         }
-        while (blackScreen.GetComponent<Image>().color.a < 1)
+        while (blackScreen.GetComponent<Image>().color.a > 0)
         {
             fadeAmount = fadeAmount + (fadeSpeed * Time.deltaTime);
             blackScreen.GetComponent<Image>().color = Color.Lerp(prevObjectColor, objectColor, fadeAmount);
             yield return null;
         }
-        SceneManager.LoadScene(nextLevel);
+
+        blackScreen.SetActive(false);
         yield return null;
     }
 }

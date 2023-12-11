@@ -10,6 +10,10 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
+    public void toStart()
+    {
+        SceneManager.LoadScene(0);
+    }
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

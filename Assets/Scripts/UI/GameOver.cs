@@ -17,6 +17,6 @@ public class GameOver : MonoBehaviour
 
     public void rageQuit()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 }
