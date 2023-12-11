@@ -17918,6 +17918,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bioluminescent_Plant_Trench (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 5540059426347400230, guid: 9f893939b757ed04dac9769a01b477aa, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6704882806400456245, guid: 9f893939b757ed04dac9769a01b477aa, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2
