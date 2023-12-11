@@ -7,6 +7,7 @@ public class ChangeCameraSize : MonoBehaviour
     public Camera Camera;
     public GameObject hidden;
     public GameObject Nightingale;
+    public GameObject blockPath;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,10 @@ public class ChangeCameraSize : MonoBehaviour
             Nightingale.GetComponent<NightingaleMovement>().changeSpeed(500);
             Nightingale.GetComponent<NightingaleMovement>().changeMaxSpeed(20);
             Camera.GetComponent<CameraController>().InverseCamera();
+            if (blockPath != null)
+            {
+                blockPath.SetActive(true);
+            }
         }
             
     }
