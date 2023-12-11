@@ -228,7 +228,7 @@ public class Amalgamation : MonoBehaviour
 
     void Primed()
     {
-        rb.GetComponent<Rigidbody2D>().drag = 8;
+        rb.GetComponent<Rigidbody2D>().drag = 3;
         currentSpeed = primedSpeed;
         currentTarget = chargeTarget;
         StartCoroutine(chargingTimer(chargeUpTimer));
