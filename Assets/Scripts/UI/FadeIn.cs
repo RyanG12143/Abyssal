@@ -31,9 +31,21 @@ public class FadeIn : MonoBehaviour
         objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, 0);
         float fadeAmount = 0;
 
-        while (blackScreen.GetComponent<Image>().color.a > 0)
+        while (blackScreen.GetComponent<Image>().color.a > .8)
         {
             fadeAmount = fadeAmount + (fadeSpeed / 4 * Time.deltaTime);
+            blackScreen.GetComponent<Image>().color = Color.Lerp(prevObjectColor, objectColor, fadeAmount);
+            yield return null;
+        }
+        while (blackScreen.GetComponent<Image>().color.a > .5)
+        {
+            fadeAmount = fadeAmount + (fadeSpeed / 2 * Time.deltaTime);
+            blackScreen.GetComponent<Image>().color = Color.Lerp(prevObjectColor, objectColor, fadeAmount);
+            yield return null;
+        }
+        while (blackScreen.GetComponent<Image>().color.a > 0)
+        {
+            fadeAmount = fadeAmount + (fadeSpeed * Time.deltaTime);
             blackScreen.GetComponent<Image>().color = Color.Lerp(prevObjectColor, objectColor, fadeAmount);
             yield return null;
         }
