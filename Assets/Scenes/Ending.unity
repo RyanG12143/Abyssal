@@ -2420,6 +2420,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  - 
   - Nightingale, come in!
   - Nightingale, come in!
   - Communications Systems error.
@@ -2551,8 +2552,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.10490012, y: -0.07574999, z: 0}
-    m_Extent: {x: 4.5411997, y: 2.6276498, z: 0}
+    m_Center: {x: -0.09575009, y: -0.07229996, z: 0}
+    m_Extent: {x: 4.53815, y: 2.6275, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
