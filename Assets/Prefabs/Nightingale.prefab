@@ -291,6 +291,7 @@ Transform:
   - {fileID: 8120793219803548095}
   - {fileID: 5344713262239837633}
   - {fileID: 5634663801051760365}
+  - {fileID: 7035191187650155909}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1202467531740560110
@@ -350,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torpedoPrefab: {fileID: 5618860476881002139, guid: 592ebd0937163d9459e96f7c3b4108c4, type: 3}
   fireSound: {fileID: 7923326996719245162}
-  readyLight: {fileID: 6574166710954606354, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+  readyLight: {fileID: 173478596017636542}
 --- !u!82 &7923326996719245162
 AudioSource:
   m_ObjectHideFlags: 0
@@ -529,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bcbb1b236cc8748bb692e2c633e2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 5
   damageSound: {fileID: 6409098542728766936}
   SR: {fileID: 3807067947529759256}
   deathSound: {fileID: 8281811635105881734}
@@ -835,3 +836,70 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &6436893015388093356
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8538275826428669977}
+    m_Modifications:
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574166710954606354, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+      propertyPath: m_Name
+      value: Torpedo Ready
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+--- !u!1 &173478596017636542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6574166710954606354, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+  m_PrefabInstance: {fileID: 6436893015388093356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7035191187650155909 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4104596803012193833, guid: 997e2b6edeaa0ab4e832e1a2898f317c, type: 3}
+  m_PrefabInstance: {fileID: 6436893015388093356}
+  m_PrefabAsset: {fileID: 0}

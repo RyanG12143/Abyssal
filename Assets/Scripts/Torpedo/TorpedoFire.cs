@@ -8,8 +8,10 @@ public class TorpedoFire : MonoBehaviour
     public float fireSpeed = 5.0f;
     private float horizontalBound;
     private float verticalBound;
+    
     private GameObject Nightingale = null;
     private GameObject mainCamera;
+    
     
     private Vector2 direction;
 
@@ -29,13 +31,17 @@ public class TorpedoFire : MonoBehaviour
             mainCamera = GameObject.Find("Main Camera");
         }
 
+        
+
         //Has the bounds of the screen be based on the current camera
-        horizontalBound = Mathf.Abs(mainCamera.transform.position.x) + 10;
-        verticalBound = Mathf.Abs(mainCamera.transform.position.y) + 5;
+        horizontalBound = Mathf.Abs(mainCamera.transform.position.x) + 20;
+        verticalBound = Mathf.Abs(mainCamera.transform.position.y) + 20;
 
         direction = new Vector2(1, 0);
 
         transform.localRotation = Nightingale.transform.rotation;
+
+        
         
 
     }

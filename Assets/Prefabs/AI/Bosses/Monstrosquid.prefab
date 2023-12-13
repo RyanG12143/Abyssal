@@ -47,9 +47,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 1
   m_Color: {r: 0.56368816, g: 0.74906385, b: 0.7924528, a: 1}
-  m_Intensity: 1
+  m_Intensity: 10
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -70,7 +70,7 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
+  m_PointLightInnerRadius: 0.1
   m_PointLightOuterRadius: 1
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
@@ -108,11 +108,11 @@ Transform:
   m_GameObject: {fileID: 1804512337771329270}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.0026252812, w: 0.99999654}
-  m_LocalPosition: {x: 0.13, y: 0, z: 0}
+  m_LocalPosition: {x: 0.01, y: -0.1, z: 0.00053465366}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3836059175037309058}
+  m_Father: {fileID: 4681931146604556421}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3834792875500320603
 MonoBehaviour:
@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4681931146604556421}
   m_Layer: 0
-  m_Name: Monstrosquid Eyes
+  m_Name: Monstrosquid GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,6 +197,7 @@ Transform:
   - {fileID: 904983520077486907}
   - {fileID: 4549504233027263720}
   - {fileID: 590825438921418227}
+  - {fileID: 1772452899689865058}
   m_Father: {fileID: 3836059175037309058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4231877551243274378
@@ -236,7 +237,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1772452899689865058}
   - {fileID: 4681931146604556421}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -284,16 +284,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 2.5973969, y: 3.9310243}
-      - {x: 0.034519434, y: 1.8491418}
-      - {x: -0.8207091, y: 1.1562228}
+    - - {x: 1.2605762, y: 2.8713503}
+      - {x: -1.2207868, y: 2.9251182}
+      - {x: -1.2282752, y: 1.2703414}
       - {x: -1.2122154, y: 0.76594603}
       - {x: -1.6513941, y: 0.35206077}
-      - {x: -3.8527026, y: -1.5043827}
-      - {x: -1.5766511, y: -1.5734924}
-      - {x: -1.017216, y: -2.0187364}
-      - {x: -0.29324317, y: -2.1430798}
-      - {x: 0.32848942, y: -2.257891}
+      - {x: -2.1898303, y: -0.44470894}
+      - {x: -1.0712667, y: -2.2582054}
+      - {x: -1.0498202, y: -2.9968972}
+      - {x: 0.35886407, y: -3.0560293}
+      - {x: 0.9968988, y: -3.056721}
       - {x: 1.1341727, y: -2.173803}
       - {x: 2.0590162, y: -1.6666942}
       - {x: 2.1535025, y: -0.34855938}
@@ -343,7 +343,7 @@ MonoBehaviour:
   animator: {fileID: 6448331753207056086}
   currState: 0
   target: {fileID: 0}
-  scareRange: 13
+  scareRange: 12
   playerRange: 4.5
   creatureRange: 6
   grabPlayer: 0
@@ -678,9 +678,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 1
   m_Color: {r: 0.56368816, g: 0.74906385, b: 0.7924528, a: 1}
-  m_Intensity: 1
+  m_Intensity: 10
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -701,7 +701,7 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
+  m_PointLightInnerRadius: 0.1
   m_PointLightOuterRadius: 1
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
@@ -760,9 +760,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 1
   m_Color: {r: 0.56368816, g: 0.74906385, b: 0.7924528, a: 1}
-  m_Intensity: 1
+  m_Intensity: 10
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -783,7 +783,7 @@ MonoBehaviour:
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
+  m_PointLightInnerRadius: 0.1
   m_PointLightOuterRadius: 1
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0

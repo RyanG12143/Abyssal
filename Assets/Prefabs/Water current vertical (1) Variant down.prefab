@@ -17,8 +17,28 @@ PrefabInstance:
       value: CurrentDown
       objectReference: {fileID: 0}
     - target: {fileID: 4389060351020586845, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_Size.x
+      value: 1.1357076
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389060351020586845, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.009389311
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389060351020586845, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4389060351020586845, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7572207544193842713, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -61,6 +81,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8247334962201283001, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 117328086, guid: 0845d46e732bb1143b0e2351b55041e5, type: 3}
+    - target: {fileID: 8247334962201283001, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_Color.a
       value: 0.9529412
       objectReference: {fileID: 0}
@@ -75,6 +99,18 @@ PrefabInstance:
     - target: {fileID: 8247334962201283001, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
       propertyPath: m_Color.r
       value: 0.7026542
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247334962201283001, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688614135007068463, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688614135007068463, guid: c48a584566390c84a9b19e47ae37e07f, type: 3}
+      propertyPath: m_Constraints
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

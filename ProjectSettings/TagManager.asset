@@ -23,6 +23,10 @@ TagManager:
   - SwordFish
   - CurrentDown
   - EnemyNoDamage
+  - Boss
+  - ExplosivePackage
+  - BossChargeWall
+  - ParasiteSlowWall
   layers:
   - Default
   - TransparentFX
@@ -31,7 +35,7 @@ TagManager:
   - Water
   - UI
   - Tilemap
-  - 
+  - Minion
   - 
   - 
   - 
