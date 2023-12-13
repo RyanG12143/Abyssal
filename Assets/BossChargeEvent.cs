@@ -26,6 +26,7 @@ public class BossChargeEvent : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             MainCamera.GetComponent<CameraController>().changeCamera();
+            Destroy(gameObject);
         }
        /* if (other.gameObject.tag == "Player")
         {
